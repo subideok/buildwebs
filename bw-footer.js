@@ -4,7 +4,7 @@
   if (customElements.get('bw-footer')) return;
   const CFG = {
     logoSrc: 'assets/logo-white.png',
-    line: '방문을 문의로 바꾸는\n홈페이지 제작업체',
+    line: '매출로 이어지도록\n홈페이지를 설계합니다.',
     menu: [
       { label: '빌드웹스', href: '#about' }, { label: '포트폴리오', href: '#portfolio' }, { label: '고객후기', href: '#reviews' },
       { label: '서비스', href: '#service' }, { label: '자주 묻는 질문', href: '#faq' }, { label: '무료 견적 받기', href: '#contact' }
