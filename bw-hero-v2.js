@@ -422,6 +422,7 @@ h1 .ln{display:block}
   .steps li{gap:10px}
   .steps li+li::before{width:16px}
 }
+@media (max-width:1180px){.steps{display:none}}   /* 태블릿·모바일에서 단계 문구 숨김 */
 @media (max-width:380px){.logo{font-size:13px}.cta{padding:0 13px}}
 .still .rot span{transition:opacity .6s ease;transform:none}
 .still.s-od{width:1280px;height:800px;background:#0d0c0b;color:#f4efe9;font-family:Pretendard,sans-serif}
