@@ -3,6 +3,7 @@
    Shadow DOM 안에서만 동작하므로 아임웹의 다른 스타일과 충돌하지 않습니다.
    수정: 아래 BW_CONFIG 또는 페이지에서 window.BW_HERO_CONFIG = {...} 로 덮어쓰기. */
 (function () {
+  const BW_SELF_BASE = (document.currentScript && document.currentScript.src) ? new URL('./', document.currentScript.src).href : document.baseURI;
   if (customElements.get('bw-hero-v2')) return;
 
   const BW_CONFIG = {
@@ -497,12 +498,12 @@ h1 .ln{display:block}
         const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = href; document.head.appendChild(l);
       });
       const I = {};
-      for (const k in cfg.images) I[k] = /^(https?:|\/|data:)/.test(cfg.images[k]) ? cfg.images[k] : new URL(cfg.assetBase + cfg.images[k], (window.BW_ASSET_BASE || document.baseURI)).href;
+      for (const k in cfg.images) I[k] = /^(https?:|\/|data:)/.test(cfg.images[k]) ? cfg.images[k] : new URL(cfg.assetBase + cfg.images[k], (window.BW_ASSET_BASE || BW_SELF_BASE)).href;
       this.mq = window.matchMedia('(prefers-reduced-motion: reduce)');
       this.mob = window.matchMedia('(max-width: 860px)');
       const root = this.attachShadow({ mode: 'open' });
-      const logoUrl = cfg.logoSrc && !/^(https?:|\/|data:)/.test(cfg.logoSrc) ? new URL(cfg.logoSrc, window.BW_ASSET_BASE || document.baseURI).href : cfg.logoSrc;
-      const logo = cfg.logoSrc ? `<img src="${esc(logoUrl)}" alt="${esc(cfg.logoText)}">` : esc(cfg.logoText);
+      const logoUrl = cfg.logoSrc && !/^(https?:|\/|data:)/.test(cfg.logoSrc) ? new URL(cfg.logoSrc, window.BW_ASSET_BASE || BW_SELF_BASE).href : cfg.logoSrc;
+      const logo = cfg.logoSrc ? `<img src="${esc(logoUrl)}" alt="${esc(cfg.logoText)}" onerror="this.replaceWith(this.alt)">` : esc(cfg.logoText);
       const links = cfg.menu.map((m) => `<li><a href="${esc(m.href)}">${esc(m.label)}</a></li>`).join('');
       root.innerHTML = `<style>${css(cfg.colors, I)}</style>
 <div class="wrap anim">

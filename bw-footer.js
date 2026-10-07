@@ -1,5 +1,6 @@
 /* 빌드웹스 푸터 <bw-footer></bw-footer> — 사업자 정보는 CFG.info 에 실제 값으로 넣으세요. */
 (function () {
+  const BW_SELF_BASE = (document.currentScript && document.currentScript.src) ? new URL('./', document.currentScript.src).href : document.baseURI;
   if (customElements.get('bw-footer')) return;
   const CFG = {
     logoSrc: 'assets/logo-white.png',
@@ -49,7 +50,7 @@ a:hover{color:#6F8DFF}
     connectedCallback() {
       if (this._init) return; this._init = true;
       const c = merge(CFG, window.BW_FOOTER_CONFIG);
-      const logo = /^(https?:|\/|data:)/.test(c.logoSrc) ? c.logoSrc : new URL(c.logoSrc, (window.BW_ASSET_BASE || document.baseURI)).href;
+      const logo = /^(https?:|\/|data:)/.test(c.logoSrc) ? c.logoSrc : new URL(c.logoSrc, (window.BW_ASSET_BASE || BW_SELF_BASE)).href;
       const root = this.attachShadow({ mode: 'open' });
       root.innerHTML = `<style>${css(c.colors)}</style><footer class="ft">
   <div class="tp">

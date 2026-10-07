@@ -1,6 +1,7 @@
 /* 빌드웹스 두 번째 섹션 — <bw-about></bw-about>
    Shadow DOM 안에서만 동작합니다. 문구·예시는 아래 CFG(또는 window.BW_ABOUT_CONFIG)에서 수정합니다. */
 (function () {
+  const BW_SELF_BASE = (document.currentScript && document.currentScript.src) ? new URL('./', document.currentScript.src).href : document.baseURI;
   if (customElements.get('bw-about')) return;
 
   const CFG = {
@@ -511,7 +512,7 @@ ul,ol{list-style:none}
       const c = this.cfg = merge(CFG, window.BW_ABOUT_CONFIG);
       if (c.id && !this.id) { this.id = c.id; this.style.scrollMarginTop = '84px'; }
       const I = {};
-      for (const k in c.images) I[k] = /^(https?:|\/|data:)/.test(c.images[k]) ? c.images[k] : new URL(c.images[k], (window.BW_ASSET_BASE || document.baseURI)).href;
+      for (const k in c.images) I[k] = /^(https?:|\/|data:)/.test(c.images[k]) ? c.images[k] : new URL(c.images[k], (window.BW_ASSET_BASE || BW_SELF_BASE)).href;
       this.mq = window.matchMedia('(prefers-reduced-motion: reduce)');
       this.mob = window.matchMedia('(max-width: 860px)');
       const root = this.attachShadow({ mode: 'open' });

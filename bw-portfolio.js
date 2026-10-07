@@ -2,6 +2,7 @@
    Shadow DOM 안에서만 동작합니다. 아래 CFG(또는 window.BW_PORTFOLIO_CONFIG)에서 수정합니다.
    실제 작업으로 바꿀 때: items의 site 대신 img: '캡처 이미지 주소'(가로 1280 기준)와 url: '홈페이지 주소'를 넣으세요. */
 (function () {
+  const BW_SELF_BASE = (document.currentScript && document.currentScript.src) ? new URL('./', document.currentScript.src).href : document.baseURI;
   if (customElements.get('bw-portfolio')) return;
 
   const CFG = {
@@ -444,7 +445,7 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
       const c = this.cfg = merge(CFG, window.BW_PORTFOLIO_CONFIG);
       if (c.id && !this.id) { this.id = c.id; this.style.scrollMarginTop = '84px'; }
       const I = {};
-      for (const k in c.images) I[k] = /^(https?:|\/|data:)/.test(c.images[k]) ? c.images[k] : new URL(c.assetBase + c.images[k], (window.BW_ASSET_BASE || document.baseURI)).href;
+      for (const k in c.images) I[k] = /^(https?:|\/|data:)/.test(c.images[k]) ? c.images[k] : new URL(c.assetBase + c.images[k], (window.BW_ASSET_BASE || BW_SELF_BASE)).href;
       const N = c.items.length;
       const screen = (it) => it.img ? `<img src="${esc(it.img)}" alt="" loading="lazy">` : (SITES[it.site] ? SITES[it.site](I) : '');
       const card = (it, i, clone) => `<button class="card" type="button" data-i="${i}"${clone ? ' tabindex="-1" aria-hidden="true"' : ` aria-label="${esc(it.name)} 크게 보기"`}><span class="scr" style="aspect-ratio:1280/${Math.round(800 * (it.h || 1))}">${screen(it)}</span><span class="cap"><b>${esc(it.name)}</b><span>${esc(it.type)}</span><i>크게 보기</i></span></button>`;
