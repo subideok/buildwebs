@@ -5,7 +5,7 @@
   const CFG = {
     id: 'service',
     kicker: '서비스',
-    title: '간결한 소개부터 상세한 구성까지.\n사업에 맞게 선택하세요.',
+    title: '간결한 소개부터|상세한 구성까지.\n사업에 맞게 선택하세요.',   // | = 모바일에서만 줄바꿈
     desc: '모든 상품에 강점 도출 질문지, 시안 3개,\n무제한 수정, 모바일 반응형, 검색 등록이 포함됩니다.',
     plans: [
       { name: 'QUICK', sub: '한 페이지로 빠르게 시작', price: '300,000', pages: '1페이지', items: ['강점 도출 질문지 · 카피 작성', '시안 3개 · 무제한 수정', '모바일 반응형', '네이버 · 구글 사이트 등록', '전화 · 카카오톡 상담 연결', '운영 가이드 제공'] },
@@ -25,7 +25,8 @@
 :host{display:block;background:${c.bg};color:${c.text};font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
 *{box-sizing:border-box}
 p,h2,h3,ul{margin:0;padding:0;list-style:none}
-.sec{max-width:1440px;margin:0 auto;padding:clamp(110px,11vw,180px) clamp(24px,6.5vw,112px)}
+.sec{max-width:1440px;margin:0 auto;padding:clamp(48px,5vw,88px) clamp(24px,6.5vw,112px) clamp(80px,9vw,150px)}
+br.mb{display:none}
 .hd{text-align:center;display:flex;flex-direction:column;align-items:center}
 .kick{display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 22px 0 18px;border-radius:999px;border:1px solid #2a2d35;background:#0c0d11;font-size:clamp(16px,1.25vw,19px);font-weight:600;margin-bottom:clamp(28px,3vw,44px)}
 .kick::before{content:'';width:8px;height:8px;border-radius:50%;background:${c.accent};box-shadow:0 0 0 5px rgba(53,96,255,.18)}
@@ -60,7 +61,7 @@ h2{font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:1.16;letter-spac
 .rec .bt:hover{background:#4D74FF}
 .fn{margin-top:28px;text-align:center;font-size:14px;color:#6f747e}
 @media (max-width:1100px){.pl{grid-template-columns:1fr 1fr}}
-@media (max-width:640px){.sec{padding:96px 20px}h2{font-size:clamp(30px,8.4vw,44px)}.hd p br{display:none}.pl{grid-template-columns:1fr}}
+@media (max-width:640px){.sec{padding:48px 20px 72px}h2{font-size:clamp(30px,8.4vw,44px)}br.mb{display:inline}.hd p{margin-top:3.2em}.hd p br{display:none}.pl{grid-template-columns:1fr}}
 .still .cd{opacity:1;transform:none;transition:none}
 `;
   class BWServices extends HTMLElement {
@@ -71,7 +72,7 @@ h2{font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:1.16;letter-spac
       if (c.id && !this.id) { this.id = c.id; this.style.scrollMarginTop = '84px'; }
       const root = this.attachShadow({ mode: 'open' });
       root.innerHTML = `<style>${css(c.colors)}</style><div class="wrap"><section class="sec" aria-labelledby="bw-sv-title">
-  <div class="hd"><p class="kick">${esc(c.kicker)}</p><h2 id="bw-sv-title">${br(c.title)}</h2><p>${br(c.desc)}</p></div>
+  <div class="hd"><p class="kick">${esc(c.kicker)}</p><h2 id="bw-sv-title">${br(c.title).replace(/\|/g, ' <br class="mb">')}</h2><p>${br(c.desc)}</p></div>
   <div class="pl">${c.plans.map((p, i) => `<article class="cd${p.badge ? ' rec' : ''}" style="transition-delay:${i * 0.08}s">
     <div class="top"><span class="no">${String(i + 1).padStart(2, '0')}</span><h3>${esc(p.name)}</h3>${p.badge ? `<span class="bd">${esc(p.badge)}</span>` : ''}</div>
     <p class="sb">${esc(p.sub)}</p>

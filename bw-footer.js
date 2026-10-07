@@ -4,7 +4,7 @@
   if (customElements.get('bw-footer')) return;
   const CFG = {
     logoSrc: 'assets/logo-white.png',
-    line: '선택받을 이유를 설계하는\n홈페이지 제작',
+    line: '방문을 문의로 바꾸는\n홈페이지 제작업체',
     menu: [
       { label: '빌드웹스', href: '#about' }, { label: '포트폴리오', href: '#portfolio' }, { label: '고객후기', href: '#reviews' },
       { label: '서비스', href: '#service' }, { label: '자주 묻는 질문', href: '#faq' }, { label: '무료 견적 받기', href: '#contact' }
@@ -44,7 +44,8 @@ a:hover{color:#6F8DFF}
 .bt .pl{margin-left:auto;display:flex;gap:20px}
 .bt .pl a:first-child{color:#c4c8d0;font-weight:600}
 .cp{margin-top:18px;font-size:13px;color:#5d626c}
-@media (max-width:860px){.br,.m,.ct{grid-column:1/-1}.bt .pl{margin-left:0}}
+@media (max-width:1024px){.br a.go{display:none}}
+@media (max-width:860px){.br,.m,.ct{grid-column:1/-1}.bt .pl{margin-left:0}.tp{row-gap:32px}}
 `;
   class BWFooter extends HTMLElement {
     connectedCallback() {

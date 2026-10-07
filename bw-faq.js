@@ -5,7 +5,7 @@
     id: 'faq',
     kicker: '자주 묻는 질문',
     title: '상담 전에\n먼저 확인해 보세요.',
-    desc: '더 궁금한 점은 무료 견적 문의에 남겨 주시면 답해 드립니다.',
+    desc: '더 궁금한 점은 무료 견적 문의에|남겨 주시면 답해 드립니다.',   // | = 모바일에서만 줄바꿈
     cats: ['전체', '제작', '비용', '운영'],
     items: [
       { cat: '제작', q: '기획이 없는 상태에서도 맡길 수 있나요?', a: '네. 기획은 빌드웹스가 맡습니다. 강점 도출 질문지에 답해 주시면, 그 답변으로 화면 구성과 문구를 설계합니다.' },
@@ -32,12 +32,13 @@
 p,h2,ul{margin:0;padding:0;list-style:none}
 button{font:inherit;color:inherit}
 button:focus-visible,a:focus-visible{outline:2px solid ${c.accent};outline-offset:3px}
-.sec{max-width:1440px;margin:0 auto;padding:clamp(110px,11vw,180px) clamp(24px,6.5vw,112px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px)}
+.sec{max-width:1440px;margin:0 auto;padding:clamp(64px,7vw,120px) clamp(24px,6.5vw,112px) clamp(80px,9vw,150px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px)}
 .hd{grid-column:1/5;align-self:start;position:sticky;top:120px}
 .kick{display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 22px 0 18px;border-radius:999px;border:1px solid ${c.line};background:#fff;font-size:clamp(16px,1.25vw,19px);font-weight:600;margin-bottom:clamp(28px,3vw,44px)}
 .kick::before{content:'';width:8px;height:8px;border-radius:50%;background:${c.accent};box-shadow:0 0 0 5px rgba(53,96,255,.14)}
 h2{font-size:clamp(34px,3.8vw,60px);font-weight:700;line-height:1.18;letter-spacing:-.045em}
 .hd p{margin-top:22px;font-size:16px;line-height:1.75;color:${c.gray}}
+br.mb{display:none}
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:36px}
 .tabs button{height:44px;padding:0 20px;border-radius:999px;border:1px solid ${c.line};background:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
 .tabs button:hover{border-color:#c9cdd6}
@@ -60,7 +61,7 @@ h2{font-size:clamp(34px,3.8vw,60px);font-weight:700;line-height:1.18;letter-spac
 .mo a{flex:none;display:inline-flex;align-items:center;gap:8px;height:50px;padding:0 22px;border-radius:999px;background:${c.accent};color:#fff;text-decoration:none;font-size:15px;font-weight:600;transition:background .2s}
 .mo a:hover{background:#4D74FF;color:#fff}
 @media (max-width:960px){.sec{display:block}.hd{position:static;margin-bottom:40px}}
-@media (max-width:640px){.sec{padding:96px 20px}h2{font-size:clamp(30px,8.4vw,44px)}.q{padding:20px;gap:12px}.an p{padding:0 20px 22px}.mo{flex-direction:column;align-items:flex-start}.mo a{width:100%;justify-content:center}}
+@media (max-width:640px){.sec{padding:64px 20px 80px}br.mb{display:inline}h2{font-size:clamp(30px,8.4vw,44px)}.q{padding:20px;gap:12px}.an p{padding:0 20px 22px}.mo{flex-direction:column;align-items:flex-start}.mo a{width:100%;justify-content:center}}
 .still *{transition:none!important}
 `;
   const CHEV = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 6l4.5 4.5L12.5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -72,7 +73,7 @@ h2{font-size:clamp(34px,3.8vw,60px);font-weight:700;line-height:1.18;letter-spac
       if (c.id && !this.id) { this.id = c.id; this.style.scrollMarginTop = '84px'; }
       const root = this.attachShadow({ mode: 'open' });
       root.innerHTML = `<style>${css(c.colors)}</style><div class="wrap"><section class="sec" aria-labelledby="bw-fq-title">
-  <div class="hd"><p class="kick">${esc(c.kicker)}</p><h2 id="bw-fq-title">${br(c.title)}</h2><p>${br(c.desc)}</p>
+  <div class="hd"><p class="kick">${esc(c.kicker)}</p><h2 id="bw-fq-title">${br(c.title)}</h2><p>${br(c.desc).replace(/\|/g, ' <br class="mb">')}</p>
     <div class="tabs" role="tablist">${c.cats.map((t, i) => `<button type="button" role="tab" aria-selected="${i === 0}" data-c="${esc(t)}">${esc(t)}</button>`).join('')}</div></div>
   <div class="ls">${c.items.map((it, i) => `<div class="it" data-c="${esc(it.cat)}"><button class="q" type="button" aria-expanded="false" aria-controls="a${i}"><i>Q</i><span>${esc(it.q)}</span>${CHEV}</button><div class="an" id="a${i}" role="region"><div><p>${esc(it.a)}</p></div></div></div>`).join('')}
     <div class="mo"><b>${esc(c.more.title)}</b><a href="${esc(c.more.href)}"${/^https?:/.test(c.more.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(c.more.label)} →</a></div></div>

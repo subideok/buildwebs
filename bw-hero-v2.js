@@ -181,7 +181,7 @@ h1 .ln{display:block}
 .desc span{display:block}
 .desc{margin:32px 0 0;max-width:620px;font-size:clamp(16px,1.15vw,18px);line-height:1.75;color:#a7acb6;text-wrap:pretty}
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:58px;padding:0 30px;border-radius:999px;font-size:16px;font-weight:600;transition:background .2s,border-color .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:58px;padding:0 30px;white-space:nowrap;border-radius:999px;font-size:16px;font-weight:600;transition:background .2s,border-color .2s}
 .btn.pri{background:var(--accent);color:#fff}
 .btn.pri:hover{background:var(--accent-hi);color:#fff}
 .btn.pri svg{transition:transform .25s}
@@ -408,7 +408,7 @@ h1 .ln{display:block}
   h1{font-size:clamp(32px,9.2vw,52px)}
   .desc{margin-top:20px;font-size:16px}
   .actions{margin-top:30px}
-  .btn{height:54px;flex:1 1 160px}
+  .btn{height:54px;flex:1 1 0;min-width:0;padding:0 14px;font-size:15px;gap:6px}
   .desc span{display:inline}
   .stage{order:2;position:relative;left:auto;right:auto;top:auto;bottom:auto;height:min(92vw,520px);margin-top:36px}
   .stack{--cw:74vw}
@@ -418,7 +418,7 @@ h1 .ln{display:block}
   .meta .now{min-width:0;justify-content:flex-start}
   .meta .now em,.meta .idx{display:none}
   .meta .mk{border:0;padding:0;font-size:12px}
-  .steps{order:3;position:static;padding:28px 20px 48px;flex-wrap:wrap;gap:10px}
+  .steps{display:none}
   .steps li{gap:10px}
   .steps li+li::before{width:16px}
 }

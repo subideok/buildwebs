@@ -160,7 +160,7 @@
 *{box-sizing:border-box}
 p,h2,h3,h4,h5,ul,ol{margin:0;padding:0}
 ul,ol{list-style:none}
-.sec{max-width:1440px;margin:0 auto;padding:clamp(120px,14vw,220px) clamp(24px,6.5vw,112px) clamp(80px,10vw,160px)}
+.sec{max-width:1440px;margin:0 auto;padding:clamp(72px,8vw,140px) clamp(24px,6.5vw,112px) clamp(32px,4vw,64px)}
 
 /* 큰 문장 */
 .intro{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px)}
@@ -184,7 +184,7 @@ ul,ol{list-style:none}
 .in .side p+p{transition-delay:.18s}
 
 /* 작업 방식 */
-.how{display:grid;grid-template-columns:minmax(0,62fr) minmax(0,38fr);column-gap:clamp(40px,6vw,104px);margin-top:clamp(120px,14vw,220px)}
+.how{display:grid;grid-template-columns:minmax(0,62fr) minmax(0,38fr);column-gap:clamp(40px,6vw,104px);margin-top:clamp(80px,9vw,140px)}
 .stick{position:sticky;top:calc(50vh - var(--mh,320px)/2 + 30px);align-self:start}
 .stage{position:relative;aspect-ratio:1280/841}
 .stage .frame{position:absolute;inset:0;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease,visibility .6s}
@@ -203,6 +203,7 @@ ul,ol{list-style:none}
 .exl{margin-top:16px;font-size:13px;color:#6f747e}
 
 .steps li{min-height:88vh;display:flex;flex-direction:column;justify-content:center;gap:18px;padding:40px 0}
+.steps li:last-child{min-height:64vh}
 .steps li:first-child{min-height:70vh;justify-content:flex-start;padding-top:calc(50vh - 260px)}
 .steps .no{font-size:14px;font-weight:600;color:var(--dim);transition:color .5s}
 .steps h3{font-size:clamp(28px,2.6vw,42px);font-weight:700;line-height:1.3;letter-spacing:-.035em;color:var(--dim);transition:color .5s}
@@ -471,14 +472,14 @@ ul,ol{list-style:none}
 .still .eg>li{opacity:1;transform:none}
 
 @media (max-width:860px){
-  .sec{padding:120px 20px 80px}
+  .sec{padding:56px 20px 24px}
   .intro{display:block}
   .big{font-size:clamp(34px,9.6vw,56px)}
   .big .ln+.ln{padding-left:0}
   .rule{margin-top:44px}
   .side{display:block}
   .side p{font-size:20px;padding-top:28px}
-  .side p:nth-child(2){padding-top:20px}
+  .side p:nth-child(2){padding-top:3.2em}
   .exs{margin-top:110px}
   .eh{display:block}
   .eh h3{font-size:clamp(30px,8.4vw,44px)}
@@ -490,10 +491,11 @@ ul,ol{list-style:none}
   .eg h4{font-size:26px}
   .gd{padding:10px 0 22px}
   .gd br{display:none}
-  .how{display:block;margin-top:100px}
+  .how{display:block;margin-top:56px}
   .stick{display:none}
   .slot{display:block;margin-bottom:28px}
   .steps li,.steps li:first-child{min-height:0;padding:0 0 88px;justify-content:flex-start;gap:14px}
+  .steps li:last-child{padding-bottom:0}
   .steps h3{font-size:26px}
   .steps .ds{font-size:16px}
   .steps .rs{font-size:15px}

@@ -21,7 +21,7 @@
 *{box-sizing:border-box}
 p,h2,ul,fieldset,legend{margin:0;padding:0;list-style:none;border:0}
 input,textarea,button,select{font:inherit;color:inherit}
-.sec{max-width:1440px;margin:0 auto;padding:clamp(110px,11vw,180px) clamp(24px,6.5vw,112px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px)}
+.sec{max-width:1440px;margin:0 auto;padding:clamp(64px,7vw,120px) clamp(24px,6.5vw,112px) clamp(80px,9vw,150px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px)}
 .lf{grid-column:1/6;align-self:start;position:sticky;top:120px}
 .kick{display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 22px 0 18px;border-radius:999px;border:1px solid #2a2d35;background:#0c0d11;font-size:clamp(16px,1.25vw,19px);font-weight:600;margin-bottom:clamp(28px,3vw,44px)}
 .kick::before{content:'';width:8px;height:8px;border-radius:50%;background:${c.accent};box-shadow:0 0 0 5px rgba(53,96,255,.18)}
@@ -66,7 +66,7 @@ fieldset.f legend{margin-bottom:14px}
 .ok b{font-size:26px;font-weight:700}
 .ok p{font-size:16px;color:${c.gray}}
 @media (max-width:960px){.sec{display:block}.lf{position:static;margin-bottom:44px}}
-@media (max-width:640px){.sec{padding:96px 20px}h2{font-size:clamp(30px,8.4vw,44px)}form{grid-template-columns:1fr;padding:24px;border-radius:22px}.bg .ch{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-right:-24px;padding-right:24px}.bg .ch label{flex:none}.bg .ch span{padding:0 16px}}
+@media (max-width:640px){.sec{padding:64px 20px 80px}h2{font-size:clamp(30px,8.4vw,44px)}form{grid-template-columns:1fr;padding:24px;border-radius:22px}.bg .ch{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-right:-24px;padding-right:24px}.bg .ch label{flex:none}.bg .ch span{padding:0 16px}}
 `;
   class BWContact extends HTMLElement {
     connectedCallback() {

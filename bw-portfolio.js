@@ -11,7 +11,8 @@
     title: '업종이 다르면,\n설계도 달라집니다.',
     desc: '강점은 한눈에 보이게.\n궁금한 점은 쉽게 풀리게.\n문의까지 자연스럽게 이어지게.',
     label: '업종별 설계안',
-    speed: 26,              // 줄 이동 속도(px/초)
+    speed: 26,              // PC 줄 이동 속도(px/초)
+    mobileSpeed: 34,        // 모바일·태블릿 흐르는 속도(px/초)
     gap: 24,                // 카드 간격(px)
     visibleCards: 3.4,      // PC 한 줄에 보이는 카드 수(양옆 일부 포함)
     assetBase: 'assets/',
@@ -142,7 +143,7 @@ p,h2,h3{margin:0}
 button{font:inherit;color:inherit}
 a{color:inherit}
 button:focus-visible,a:focus-visible{outline:2px solid var(--accent-text);outline-offset:4px}
-.sec{padding:clamp(100px,11vw,180px) 0 clamp(100px,11vw,180px)}
+.sec{padding:clamp(56px,6vw,100px) 0 clamp(64px,7vw,120px)}
 .hd{max-width:1440px;margin:0 auto;padding:0 clamp(24px,6.5vw,112px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:end}
 .kick{grid-column:1/-1;justify-self:start;display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 22px 0 18px;border-radius:999px;border:1px solid #2a2d35;background:#0c0d11;font-size:clamp(16px,1.25vw,19px);font-weight:600;color:${c.text};margin:0 0 clamp(28px,3vw,44px);width:max-content}
 .kick::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px rgba(53,96,255,.18)}
@@ -152,9 +153,6 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
 .ctl{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .tag{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;border:1px solid #2a2d35;font-size:13px;font-weight:500;color:#c4c8d0}
 .cnt{font-size:13px;color:#6f747e}
-.tgl{margin-left:auto;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px 0 12px;border-radius:999px;border:1px solid #2a2d35;background:transparent;font-size:13px;font-weight:600;cursor:pointer;transition:border-color .2s}
-.tgl:hover{border-color:#4a4e58}
-.tgl svg{width:16px;height:16px}
 
 .rows{margin-top:clamp(56px,6vw,88px);display:flex;flex-direction:column;gap:clamp(28px,3vw,44px);overflow:hidden;
   -webkit-mask:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
@@ -205,11 +203,10 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
   .hd{display:block;padding:0 20px}
   h2{font-size:clamp(32px,9vw,48px)}
   .rt{margin-top:24px;padding:0}
-  .tgl{display:none}
   .rows{display:none}
-  .mrow{display:flex;gap:14px;margin-top:40px;padding:0 20px 8px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .mrow{display:flex;gap:14px;margin-top:40px;padding:0 20px 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .mrow::-webkit-scrollbar{display:none}
-  .mrow .card{width:80vw;scroll-snap-align:start;scroll-margin-left:20px}
+  .mrow .card{width:76vw}
   .vt{height:68px}
   .sd{display:none}
   .mn,.vi{width:calc(100vw - 32px)}
@@ -463,11 +460,10 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
     <p class="kick">${esc(c.kicker)}</p>
     <h2 id="bw-pf-title">${br(c.title)}</h2>
     <div class="rt"><p>${br(c.desc)}</p>
-      <div class="ctl"><span class="tag">${esc(c.label)}</span><span class="cnt">${N}개 업종</span>
-        <button class="tgl" type="button" aria-pressed="false"></button></div></div>
+      <div class="ctl"><span class="tag">${esc(c.label)}</span><span class="cnt">${N}개 업종</span></div></div>
   </div>
   <div class="rows" style="--gap:${c.gap}px">${row(1)}${row(2)}</div>
-  <div class="mrow" role="list">${c.items.map((it, i) => card(it, i, false)).join('')}</div>
+  <div class="mrow" role="list">${c.items.map((it, i) => card(it, i, false)).join('')}${c.items.map((it, i) => card(it, i, true)).join('')}</div>
 </section>
 <div class="vw" role="dialog" aria-modal="true" aria-label="포트폴리오 크게 보기" aria-hidden="true">
   <div class="vt"><span class="ix"></span><span class="tag">${esc(c.label)}</span><button class="x" type="button" aria-label="닫기">${ICON.x}</button></div>
@@ -506,12 +502,32 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
         if (!r.init) { r.x = k ? -r.set * 0.5 : -r.set * 0.15; r.init = true; }
       });
       new ResizeObserver(measure).observe(rowsEl);
-      const tgl = $('.tgl');
-      const setPaused = (p) => { paused = p; tgl.setAttribute('aria-pressed', p); tgl.innerHTML = p ? `${ICON.play}자동 이동` : `${ICON.pause}멈춤`; tgl.setAttribute('aria-label', p ? '자동 이동 다시 시작' : '자동 이동 멈추기'); };
-      tgl.addEventListener('click', () => setPaused(!paused));
-      setPaused(this.mq.matches || this.getAttribute('still') === 'true');
-      this.applyStill = () => setPaused(this.mq.matches || this.getAttribute('still') === 'true');
-      this.mq.addEventListener && this.mq.addEventListener('change', this.applyStill);
+      paused = this.getAttribute('still') === 'true';
+      this.applyStill = () => { paused = this.getAttribute('still') === 'true'; };
+
+      // 모바일 · 태블릿: 카드가 자동으로 옆으로 넘어갑니다
+      const mrow = $('.mrow'), mob = window.matchMedia('(max-width: 860px)');
+      // 천천히 계속 흐르기 (손으로 밀면 4초 멈춤)
+      let mHold = 0, mX = 0, mLast = performance.now();
+      const holdM = () => { mHold = performance.now() + 4000; };
+      ['touchstart', 'pointerdown', 'wheel'].forEach((ev) => mrow.addEventListener(ev, holdM, { passive: true }));
+      mrow.addEventListener('focusin', holdM);
+      const mTick = (t) => {
+        requestAnimationFrame(mTick);
+        const dt = Math.min((t - mLast) / 1000, 0.05); mLast = t;
+        if (!mob.matches || paused || viewer.open || document.hidden) return;
+        const r = mrow.getBoundingClientRect(); if (r.bottom < 0 || r.top > window.innerHeight) return;
+        const n = mrow.children.length / 2, half = mrow.children[n].offsetLeft - mrow.children[0].offsetLeft;
+        if (t < mHold) { mX = mrow.scrollLeft; return; }
+        mX += (c.mobileSpeed || 34) * dt;
+        if (mX >= half) mX -= half;
+        if (mrow.scrollLeft < 2 && mX > half - 2) mX = 0;
+        mrow.scrollLeft = mX;
+        if (mrow.scrollLeft >= half) { mX -= half; mrow.scrollLeft = mX; }
+      };
+      requestAnimationFrame(mTick);
+
+
 
       let visible = true, last = performance.now();
       new IntersectionObserver((es) => { visible = es[0].isIntersecting; }).observe(rowsEl);

@@ -17,7 +17,7 @@
       { text: '오픈 후에 설명회 일정 바꾸는 법을 몰라 연락드렸는데, 화면을 보면서 바로 알려주셨어요. 간단한 건 직접 고쳐 주시기도 하고요.', name: '최*아 원장', biz: '교육 · 학원', plan: '홈페이지 신규 제작' },
       { text: '예약 문의가 카카오톡으로 바로 들어오게 연결해 주셔서 응대가 훨씬 편해졌습니다.', name: '김*림 대표', biz: '숙박', plan: '홈페이지 수정 제작' }
     ],
-    ctaCard: { title: '다음 이야기의\n주인공이 되어 주세요', desc: '업종과 원하는 구성을 남겨 주시면\n맞는 상품과 일정을 안내해 드립니다.', label: '무료 견적 받기', href: '#contact' },
+    ctaCard: { title: '더 많은 후기가\n궁금하신가요?', desc: '업종별로 남겨 주신 이야기를\n한곳에 모아 두었습니다.', label: '후기 더보기', href: '#' },   // href: 후기 전체 페이지 주소
     colors: { bg: '#F4F5F7', ink: '#0B0C10', gray: '#5B616C', line: '#E2E4E9', card: '#FFFFFF', accent: '#3560FF', dark: '#0B0C10' }
   };
   function merge(a, b) { if (!b) return a; const o = Array.isArray(a) ? a.slice() : Object.assign({}, a); for (const k in b) o[k] = (b[k] && typeof b[k] === 'object' && !Array.isArray(b[k]) && a[k]) ? merge(a[k], b[k]) : b[k]; return o; }
@@ -28,7 +28,7 @@
 *{box-sizing:border-box}
 p,h2,h3,ul{margin:0;padding:0;list-style:none}
 a{color:inherit}
-.sec{max-width:1440px;margin:0 auto;padding:clamp(110px,11vw,180px) clamp(24px,6.5vw,112px) clamp(110px,11vw,180px)}
+.sec{max-width:1440px;margin:0 auto;padding:clamp(64px,7vw,120px) clamp(24px,6.5vw,112px) clamp(80px,9vw,150px)}
 .hd{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:end}
 .kick{grid-column:1/-1;justify-self:start;display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 22px 0 18px;border-radius:999px;border:1px solid ${c.line};background:#fff;font-size:clamp(16px,1.25vw,19px);font-weight:600;margin-bottom:clamp(28px,3vw,44px)}
 .kick::before{content:'';width:8px;height:8px;border-radius:50%;background:${c.accent};box-shadow:0 0 0 5px rgba(53,96,255,.14)}
@@ -61,7 +61,7 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
 .cd.ct a:hover{transform:translateX(3px);color:${c.ink}}
 @media (max-width:1000px){.grid{grid-template-columns:1fr 1fr}.cd.ft{grid-column:1/-1}.cd.ct{grid-column:auto;flex-direction:column;align-items:flex-start}.cd.ct a{width:100%;justify-content:center}}
 @media (max-width:860px){.hd{display:block}.rt{margin-top:22px}.rt p br{display:none}}
-@media (max-width:640px){.sec{padding:96px 20px}h2{font-size:clamp(30px,8.4vw,44px)}.grid{grid-template-columns:1fr}.cd.ct{flex-direction:column;align-items:flex-start}.cd.ct a{width:100%;justify-content:center}.who i{display:none}}
+@media (max-width:640px){.sec{padding:64px 20px 80px}h2{font-size:clamp(30px,8.4vw,44px)}.grid{grid-template-columns:1fr}.cd.ct{flex-direction:column;align-items:flex-start}.cd.ct a{width:100%;justify-content:center}.who i{display:none}}
 .still .cd{opacity:1;transform:none;transition:none}
 `;
   class BWReviews extends HTMLElement {

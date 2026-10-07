@@ -56,7 +56,7 @@
 :host{display:block;background:${c.bg};color:${c.text};font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
 *{box-sizing:border-box}
 p,h2,h3,h4,ul,ol{margin:0;padding:0;list-style:none}
-.sec{max-width:1440px;margin:0 auto;padding:clamp(80px,9vw,160px) clamp(24px,6.5vw,112px) clamp(120px,12vw,200px)}
+.sec{max-width:1440px;margin:0 auto;padding:clamp(72px,8vw,140px) clamp(24px,6.5vw,112px) clamp(48px,5vw,88px)}
 .kick{display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 22px 0 18px;border-radius:999px;border:1px solid #2a2d35;background:#0c0d11;font-size:clamp(16px,1.25vw,19px);font-weight:600;margin-bottom:clamp(28px,3vw,44px)}
 .kick::before{content:'';width:8px;height:8px;border-radius:50%;background:${c.accent};box-shadow:0 0 0 5px rgba(53,96,255,.18)}
 h2{font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:1.16;letter-spacing:-.045em}
@@ -95,7 +95,7 @@ h3{font-size:clamp(22px,1.9vw,30px);font-weight:700;letter-spacing:-.03em;line-h
 .gl span{font-size:14px;line-height:1.6;color:#7d828c}
 @media (max-width:1000px){.box{grid-template-columns:1fr 1fr}.box li:nth-child(3n){border-right:1px solid #1a1c22}.box li:nth-child(2n){border-right:0}}
 @media (max-width:860px){.inc{display:block}.il{position:static;margin-bottom:36px}.gl{grid-template-columns:1fr}}
-@media (max-width:640px){.sec{padding:80px 20px 110px}h2{font-size:clamp(30px,8.4vw,44px)}.box{grid-template-columns:1fr;border-radius:20px 20px 0 0}.box li{border-right:0!important;padding:32px 24px}.wr{margin-bottom:8px}.ds br{display:none}.inc{border-radius:0 0 20px 20px;padding:40px 24px}}
+@media (max-width:640px){.sec{padding:72px 20px 40px}h2{font-size:clamp(30px,8.4vw,44px)}.box{grid-template-columns:1fr;border-radius:20px 20px 0 0}.box li{border-right:0!important;padding:32px 24px}.wr{margin-bottom:8px}.ds br{display:none}.inc{border-radius:0 0 20px 20px;padding:40px 24px}}
 .still li{opacity:1!important;transform:none!important;transition:none!important}
 `;
   class BWWhy extends HTMLElement {

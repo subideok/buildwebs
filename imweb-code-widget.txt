@@ -1,0 +1,22 @@
+<style>#doz_header_wrap,#doz_header{display:none!important}html{scroll-behavior:smooth}body{background:#050507}</style>
+<script src="https://cdn.jsdelivr.net/gh/subideok/buildwebs@main/bw-hero-v2.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/subideok/buildwebs@main/bw-about.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/subideok/buildwebs@main/bw-portfolio.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/subideok/buildwebs@main/bw-reviews.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/subideok/buildwebs@main/bw-why.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/subideok/buildwebs@main/bw-process.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/subideok/buildwebs@main/bw-services.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/subideok/buildwebs@main/bw-faq.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/subideok/buildwebs@main/bw-contact.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/subideok/buildwebs@main/bw-footer.js"></script>
+
+<bw-hero-v2></bw-hero-v2>
+<bw-about></bw-about>
+<bw-portfolio></bw-portfolio>
+<bw-reviews></bw-reviews>
+<bw-why></bw-why>
+<bw-process></bw-process>
+<bw-services></bw-services>
+<bw-faq></bw-faq>
+<bw-contact></bw-contact>
+<bw-footer></bw-footer>
