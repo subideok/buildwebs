@@ -4,7 +4,7 @@
   if (customElements.get('bw-contact')) return;
   const CFG = {
     id: 'contact',
-    action: '',   // ← 구글 Apps Script 웹 앱 주소(https://script.google.com/macros/s/.../exec). 비우면 시연용
+    action: 'https://script.google.com/macros/s/AKfycbwcnG9B4BmnQcdvYS2CFHmodBj1MlyfMlq9f5Qi6_mbIA2byWC3JHMqSe3IqxHtIZPRJw/exec',   // ← 구글 Apps Script 웹 앱 주소(https://script.google.com/macros/s/.../exec). 비우면 시연용
     maxFileMB: 10,   // 첨부 파일 전체 최대 용량(MB)
     kicker: '무료 견적 받기',
     title: '사업 이야기를 들려주세요.\n홈페이지 방향을\n함께 잡아드립니다.',
