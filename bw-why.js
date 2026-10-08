@@ -17,6 +17,7 @@
     incKicker: '기본 혜택',
     incUnit: '가지',
     incTitle: '추가 요금 없이\n처음부터 포함됩니다',
+    incNote: '파란 표시가 붙은 묶음은 해당 상품부터 포함됩니다.',
     incDesc: '디자인만 넘기고 끝나지 않습니다.\n검색, 상담 연결, 운영까지 오픈 전에 모두 갖춥니다.',
     cta: { label: '무료 견적 받기', href: '#contact' },
     extras: [
@@ -36,10 +37,12 @@
         ['페이지별 제목 · 설명 설정', '검색 결과에 보일 문장을 페이지마다 따로 씁니다'],
         ['이미지 경량화', '사진 용량을 줄여 첫 화면이 빠르게 열립니다'],
         ['방문 분석 도구 설치', '구글 애널리틱스로 유입과 문의 경로를 확인합니다'] ] },
-      { name: 'AI 검색 대응', desc: 'AI가 답변할 때\n우리 회사를 인용하기 쉽게 씁니다.', items: [
-        ['질문과 답변 형식의 문단', '고객이 실제로 묻는 질문에 바로 답하는 문장으로 씁니다'],
-        ['구조화 데이터 삽입', '회사 정보, 자주 묻는 질문을 검색 엔진이 읽는 형식으로 넣습니다'],
-        ['회사 정보 일관 표기', '상호, 주소, 연락처를 사이트 전체에 같은 형식으로 정리합니다'] ] },
+      { name: 'AI 검색 대응', tag: 'STANDARD부터 포함', desc: 'ChatGPT · 제미나이 · 네이버 AI가\n우리 회사를 찾고 인용하기 쉽게 준비합니다.', items: [
+        ['AI용 회사 소개서 작성', 'AI가 우리 회사를 정확히 소개하도록 핵심 정보를 따로 정리합니다'],
+        ['구조화 데이터 · FAQ 코드 삽입', '회사 정보와 자주 묻는 질문을 검색 엔진이 읽는 형식으로 넣습니다'],
+        ['질문과 답변 형식의 문단', '고객이 AI에 실제로 묻는 질문에 바로 답하는 문장으로 씁니다'],
+        ['구글 비즈니스 프로필 연결', '지도, 블로그, 홈페이지를 하나의 회사 정보로 묶습니다'],
+        ['회사 정보 일관 표기', '상호, 주소, 연락처를 모든 채널에 같은 형식으로 정리합니다'] ] },
       { name: '운영 · 브랜드', desc: '오픈 후에도\n대표님이 직접 관리합니다.', items: [
         ['관리 화면에서 직접 수정', '사진, 가격, 문구를 로그인 후 바로 고칩니다'],
         ['팝업 관리 + 오픈 팝업 1종 제작', '행사와 공지를 직접 올리고 내립니다'],
@@ -86,6 +89,9 @@ h3{font-size:clamp(22px,1.9vw,30px);font-weight:700;letter-spacing:-.03em;line-h
 .gh{display:flex;align-items:baseline;gap:12px;margin-bottom:22px}
 .gh h5{margin:0;font-size:clamp(19px,1.5vw,23px);font-weight:700;letter-spacing:-.02em}
 .gh em{font-style:normal;font-size:13px;font-weight:600;color:#6f747e}
+.gh{flex-wrap:wrap}
+.inote{display:block;margin-top:14px;font-size:13px;color:#6f747e}
+.tgx{align-self:center;margin-left:auto;height:26px;padding:0 11px;border-radius:999px;background:rgba(53,96,255,.16);color:#9db2ff;font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;white-space:nowrap}
 .gl{display:grid;grid-template-columns:1fr 1fr;gap:18px clamp(20px,2.4vw,40px)}
 .gl li{position:relative;padding-left:28px;display:flex;flex-direction:column;gap:4px;opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
 .gp.in .gl li{opacity:1;transform:none}
@@ -111,8 +117,8 @@ h3{font-size:clamp(22px,1.9vw,30px);font-weight:700;letter-spacing:-.03em;line-h
   <ul class="box">${c.items.map((it, i) => `<li style="transition-delay:${(i % 3) * 0.08 + Math.floor(i / 3) * 0.12}s"><span class="wr">${esc(it.worry)}</span><h3>${esc(it.title)}</h3><p class="ds">${br(it.desc)}</p></li>`).join('')}</ul>
   <div class="inc">
     <div class="il"><span class="tg">${esc(c.incKicker)}</span><p class="num" aria-label="${total}${esc(c.incUnit)}"><b aria-hidden="true">0</b><span aria-hidden="true">${esc(c.incUnit)}</span></p>
-      <h4>${br(c.incTitle)}</h4><p>${br(c.incDesc)}</p></div>
-    <div class="ig">${c.extras.map((g) => `<div class="gp"><div class="gh"><h5>${esc(g.name)}</h5><em>${g.items.length}${esc(c.incUnit)}</em></div><ul class="gl">${g.items.map(([a, b], j) => `<li style="transition-delay:${j * 0.06}s"><b>${esc(a)}</b><span>${esc(b)}</span></li>`).join('')}</ul></div>`).join('')}</div>
+      <h4>${br(c.incTitle)}</h4><p>${br(c.incDesc)}</p>${c.incNote ? `<small class="inote">${esc(c.incNote)}</small>` : ''}</div>
+    <div class="ig">${c.extras.map((g) => `<div class="gp"><div class="gh"><h5>${esc(g.name)}</h5><em>${g.items.length}${esc(c.incUnit)}</em>${g.tag ? `<span class="tgx">${esc(g.tag)}</span>` : ''}</div><ul class="gl">${g.items.map(([a, b], j) => `<li style="transition-delay:${j * 0.06}s"><b>${esc(a)}</b><span>${esc(b)}</span></li>`).join('')}</ul></div>`).join('')}</div>
   </div>
 </section></div>`;
       const $ = (q) => root.querySelector(q), box = $('.box'), wrap = $('.wrap'), num = $('.num b');
