@@ -1,10 +1,11 @@
 /* 빌드웹스 무료 견적 문의 <bw-contact></bw-contact>
-   시안용 폼입니다. 실제로 전송되지 않습니다. 아임웹 적용 시 action(전송 주소)을 연결하거나 아임웹 폼 위젯으로 교체하세요. */
+   action 에 구글 Apps Script 웹 앱 주소를 넣으면 문의가 구글 시트 + 메일로 들어옵니다. (설정법: FORM-SETUP.md) */
 (function () {
   if (customElements.get('bw-contact')) return;
   const CFG = {
     id: 'contact',
-    action: '',   // 전송 주소(예: 폼 서비스 주소). 비우면 시연용으로 접수 완료 화면만 보여줍니다.
+    action:https://script.google.com/macros/s/AKfycbwcnG9B4BmnQcdvYS2CFHmodBjlMlyfMlq9f5Qi6_mbIA2byWC3JHMqSe3IqxHtIZPRJw/exec'',   // ← 구글 Apps Script 웹 앱 주소(https://script.google.com/macros/s/.../exec). 비우면 시연용
+    maxFileMB: 10,   // 첨부 파일 전체 최대 용량(MB)
     kicker: '무료 견적 받기',
     title: '사업 이야기를 들려주세요.\n홈페이지 방향을\n함께 잡아드립니다.',
     points: ['남겨 주신 내용을 읽고 맞는 상품과 일정을 안내해 드립니다.', '상담과 견적은 무료입니다.', '자료가 없어도 괜찮습니다. 아는 만큼만 적어 주세요.'],
@@ -57,6 +58,7 @@ fieldset.f legend{margin-bottom:14px}
 .ag input{flex:none;width:20px;height:20px;margin:1px 0 0;accent-color:${c.accent}}
 .ag.bad{box-shadow:none!important;color:#ff8b80}
 .sb{grid-column:1/-1;height:62px;border:0;border-radius:999px;background:${c.accent};color:#fff;font-size:17px;font-weight:700;cursor:pointer;transition:background .2s}
+.sb:disabled{opacity:.6;cursor:wait}
 .sb:hover{background:#4D74FF}
 .err{grid-column:1/-1;font-size:14px;color:#ff8b80;min-height:0}
 .ok{position:absolute;inset:0;border-radius:28px;background:#0c0d11;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:40px}
@@ -78,7 +80,7 @@ fieldset.f legend{margin-bottom:14px}
       const chips = (name, list, type) => `<div class="ch">${list.map((t, i) => `<label><input type="${type}" name="${name}" value="${esc(t)}"${type === 'radio' && i === 0 && name === 'budget' ? ' checked' : ''}><span>${esc(t)}</span></label>`).join('')}</div>`;
       root.innerHTML = `<style>${css(c.colors)}</style><section class="sec" aria-labelledby="bw-ct-title">
   <div class="lf"><p class="kick">${esc(c.kicker)}</p><h2 id="bw-ct-title">${br(c.title)}</h2><ul class="pts">${c.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></div>
-  <form novalidate${c.action ? ` action="${esc(c.action)}" method="post" enctype="multipart/form-data"` : ''}>
+  <form novalidate>
     <fieldset class="f w"><legend class="lb">프로젝트 유형<em>*</em></legend>${chips('type', c.types, 'radio')}</fieldset>
     ${inp('name', '성함', 'text', '홍길동', true)}${inp('company', '회사명', 'text', '회사 또는 상호명', true)}
     ${inp('position', '직책', 'text', '대표, 실장 등', false)}${inp('phone', '연락처', 'tel', '010-0000-0000', true)}
@@ -108,7 +110,21 @@ fieldset.f legend{margin-bottom:14px}
         if (!type) bad.push(f.querySelector('input[name=type]'));
         if (bad.length) { e.preventDefault(); err.textContent = !type ? '프로젝트 유형을 선택해 주세요.' : '표시된 항목을 확인해 주세요.'; bad[0].focus(); return; }
         err.textContent = '';
-        if (!c.action) { e.preventDefault(); root.querySelector('.ok').classList.add('on'); }
+        e.preventDefault();
+        const ok = () => root.querySelector('.ok').classList.add('on');
+        if (!c.action) { ok(); return; }
+        const sb = f.querySelector('.sb');
+        const files = [...file.files];
+        if (files.reduce((n, x) => n + x.size, 0) > c.maxFileMB * 1048576) { err.textContent = '첨부 파일은 합계 ' + c.maxFileMB + 'MB까지 보낼 수 있습니다.'; return; }
+        const fd = new FormData(f), data = {};
+        fd.forEach((v, k) => { if (k !== 'files') data[k] = v; });
+        data.page = location.href;
+        sb.disabled = true; sb.textContent = '보내는 중…';
+        Promise.all(files.map((x) => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res({ name: x.name, type: x.type || 'application/octet-stream', data: String(r.result).split(',')[1] }); r.onerror = rej; r.readAsDataURL(x); })))
+          .then((fl) => { data.files = fl; return fetch(c.action, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) }); })
+          .then(() => { ok(); f.reset(); })
+          .catch(() => { err.textContent = '전송에 실패했습니다. 입력하신 내용은 그대로 있으니 잠시 후 다시 눌러 주세요.'; })
+          .finally(() => { sb.disabled = false; sb.textContent = '무료 견적 문의하기'; });
       });
     }
   }
