@@ -4,7 +4,7 @@
   if (customElements.get('bw-contact')) return;
   const CFG = {
     id: 'contact',
-    action:https://script.google.com/macros/s/AKfycbwcnG9B4BmnQcdvYS2CFHmodBjlMlyfMlq9f5Qi6_mbIA2byWC3JHMqSe3IqxHtIZPRJw/exec'',   // ← 구글 Apps Script 웹 앱 주소(https://script.google.com/macros/s/.../exec). 비우면 시연용
+    action: '',   // ← 구글 Apps Script 웹 앱 주소(https://script.google.com/macros/s/.../exec). 비우면 시연용
     maxFileMB: 10,   // 첨부 파일 전체 최대 용량(MB)
     kicker: '무료 견적 받기',
     title: '사업 이야기를 들려주세요.\n홈페이지 방향을\n함께 잡아드립니다.',
@@ -89,7 +89,7 @@ fieldset.f legend{margin-bottom:14px}
     <label class="f w"><span class="lb">원하는 사이트 구성 및 회사 소개<em>*</em></span><textarea name="about" placeholder="어떤 일을 하는 회사인지, 어떤 페이지가 필요한지 편하게 적어 주세요." required></textarea></label>
     ${inp('site', '기존 홈페이지', 'url', 'https://', false)}${inp('sns', 'SNS 주소', 'text', '블로그, 인스타그램, 유튜브 등', false)}
     ${inp('ref', '원하는 레퍼런스', 'text', '마음에 드는 사이트 주소', false, true)}
-    <label class="f w"><span class="lb">관련 자료 첨부<small>회사 소개서, 로고 등</small></span><span class="fl"><input type="file" name="files" multiple><span class="fn">선택된 파일 없음</span><b>파일 선택</b></span></label>
+    <label class="f w"><span class="lb">관련 자료 첨부<small>회사 소개서, 로고 등 · 합계 ${c.maxFileMB}MB까지</small></span><span class="fl"><input type="file" name="files" multiple><span class="fn">선택된 파일 없음</span><b>파일 선택</b></span></label>
     <label class="ag"><input type="checkbox" name="agree" required><span>개인정보 수집 · 이용에 동의합니다. 수집 항목은 문의 답변에만 사용하며, 상담이 끝나면 지체 없이 파기합니다.</span></label>
     <p class="err" role="alert"></p>
     <button class="sb" type="submit">무료 견적 문의하기</button>
