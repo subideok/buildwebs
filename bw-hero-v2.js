@@ -16,10 +16,11 @@
     ],
     cta: { label: '무료 견적 받기', href: '#contact' },
     eyebrow: '기업 · 전문직 · 서비스 업종 홈페이지 제작',
-    titleTop: '고객사의 강점을 찾아',
-    rotating: ['문의가 오는', '한눈에 이해되는', '신뢰가 느껴지는'],
-    titleBottom: '홈페이지로 만듭니다',
-    desc: ['마케팅·기획·카피 6년의 경험으로 고객사의 강점을 담고,', '방문자가 이해하고 문의하도록 설계합니다.'],   // 한 줄씩
+    titleTop: '매출이 오르는 홈페이지는',
+    rotating: [],                 // 단어 바뀌는 효과: ['단어1','단어2'] 넣으면 가운데 줄로 표시
+    titleAccent: '기획부터',      // 둘째 줄 파란 글자
+    titleBottom: '다릅니다.',
+    desc: ['6년의 마케팅·기획·카피 경험으로,', '문의로 이어지는 구조와 메시지를 설계합니다.'],   // 한 줄씩
     primary: { label: '무료 견적 받기', href: '#contact' },
     secondary: { label: '포트폴리오 보기', href: '#portfolio' },
     steps: ['강점 발견', '문구 설계', '디자인 · 제작'],
@@ -164,6 +165,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent-text);outlin
 .panel.open{opacity:1;transform:translate(-50%,0);pointer-events:auto}
 .panel a{display:flex;align-items:center;min-height:56px;padding:0 18px;font-size:18px;font-weight:500;border-radius:16px}
 .panel a:hover{background:rgba(255,255,255,.05)}
+.panel a.pc{color:var(--accent-text);font-weight:600}
 
 .hero{position:relative;min-height:max(760px,100svh);overflow:hidden;display:flex;align-items:center;isolation:isolate}
 .bgl{display:none}
@@ -174,12 +176,13 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent-text);outlin
 .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(53,96,255,.16)}
 h1{margin:0;font-weight:700;font-size:clamp(40px,4.2vw,80px);line-height:1.2;letter-spacing:-.035em}
 h1 .ln{display:block}
+h1 .ac{color:var(--accent-text)}
 .rot{display:block;position:relative;height:1.2em;overflow:hidden;color:var(--accent-text)}
 .rot span{position:absolute;left:0;top:0;white-space:nowrap;transform:translateY(100%);opacity:0;transition:transform 1s cubic-bezier(.7,0,.2,1),opacity .8s ease}
 .rot span.on{transform:none;opacity:1}
 .rot span.out{transform:translateY(-100%);opacity:0}
 .desc span{display:block}
-.desc{margin:32px 0 0;max-width:620px;font-size:clamp(16px,1.15vw,18px);line-height:1.75;color:#a7acb6;text-wrap:pretty}
+.desc{margin:40px 0 0;max-width:620px;font-size:clamp(16px,1.15vw,18px);line-height:1.75;color:#a7acb6;text-wrap:pretty}
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:58px;padding:0 30px;white-space:nowrap;border-radius:999px;font-size:16px;font-weight:600;transition:background .2s,border-color .2s}
 .btn.pri{background:var(--accent);color:#fff}
@@ -400,16 +403,15 @@ h1 .ln{display:block}
   .links{display:none}
   .burger{display:flex}
   .panel{display:block;top:76px;width:calc(100% - 24px)}
-  .cta{height:42px;padding:0 16px;font-size:14px}
+  .cta{display:none}
   .hero{display:flex;flex-direction:column;align-items:stretch;min-height:auto}
   .content{order:1;padding:120px 20px 0}
   .inner{max-width:none}
   .eyebrow{font-size:14px;margin-bottom:18px}
-  h1{font-size:clamp(32px,9.2vw,52px)}
-  .desc{margin-top:20px;font-size:16px}
+  h1{font-size:clamp(30px,8.6vw,52px)}
+  .desc{margin-top:28px;font-size:16px;line-height:1.7}
   .actions{margin-top:30px}
   .btn{height:54px;flex:1 1 0;min-width:0;padding:0 14px;font-size:15px;gap:6px}
-  .desc span{display:inline}
   .stage{order:2;position:relative;left:auto;right:auto;top:auto;bottom:auto;height:min(92vw,520px);margin-top:36px}
   .stack{--cw:74vw}
   .card,.ghost{left:50%;top:46%;border-radius:10px}
@@ -516,7 +518,7 @@ h1 .ln{display:block}
       <button class="burger" type="button" aria-label="메뉴 열기" aria-expanded="false"><i></i><i></i></button>
     </div>
   </header>
-  <div class="panel" role="menu">${cfg.menu.map((m) => `<a role="menuitem" href="${esc(m.href)}">${esc(m.label)}</a>`).join('')}</div>
+  <div class="panel" role="menu">${cfg.menu.map((m) => `<a role="menuitem" href="${esc(m.href)}">${esc(m.label)}</a>`).join('')}<a role="menuitem" class="pc" href="${esc(cfg.cta.href)}">${esc(cfg.cta.label)}</a></div>
   <section class="hero" aria-label="빌드웹스 소개">
     <div class="bgl" aria-hidden="true"></div>
     <div class="stage" role="img" aria-label="빌드웹스가 자체 기획한 가상 브랜드 홈페이지 시안 모음">
@@ -526,11 +528,11 @@ h1 .ln{display:block}
     </div>
     <div class="content"><div class="inner">
       <p class="eyebrow"><span class="dot"></span>${esc(cfg.eyebrow)}</p>
-      <h1 aria-label="${esc(cfg.titleTop + ' ' + cfg.rotating[0] + ' ' + cfg.titleBottom)}">
+      ${cfg.rotating && cfg.rotating.length ? `<h1 aria-label="${esc(cfg.titleTop + ' ' + cfg.rotating[0] + ' ' + cfg.titleBottom)}">
         <span class="ln" aria-hidden="true">${esc(cfg.titleTop)}</span>
         <span class="rot" aria-hidden="true">${cfg.rotating.map((w, i) => `<span class="${i ? '' : 'on'}">${esc(w)}</span>`).join('')}</span>
         <span class="ln" aria-hidden="true">${esc(cfg.titleBottom)}</span>
-      </h1>
+      </h1>` : `<h1><span class="ln">${esc(cfg.titleTop)}</span><span class="ln">${cfg.titleAccent ? `<span class="ac">${esc(cfg.titleAccent)}</span> ` : ''}${esc(cfg.titleBottom)}</span></h1>`}
       <p class="desc">${[].concat(cfg.desc).map((l) => `<span>${esc(l)}</span>`).join(' ')}</p>
       <div class="actions">
         <a class="btn pri" href="${esc(cfg.primary.href)}">${esc(cfg.primary.label)}${arrow}</a>

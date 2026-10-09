@@ -8,7 +8,7 @@
   const CFG = {
     id: 'portfolio',
     kicker: '포트폴리오',
-    title: '업종이 다르면,\n설계도 달라집니다.',
+    title: '업종에 맞게,\n홈페이지를 설계합니다.',
     desc: '강점은 한눈에 보이게.\n궁금한 점은 쉽게 풀리게.\n문의까지 자연스럽게 이어지게.',
     label: '업종별 설계안',
     speed: 26,              // PC 줄 이동 속도(px/초)
@@ -459,8 +459,7 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
   <div class="hd">
     <p class="kick">${esc(c.kicker)}</p>
     <h2 id="bw-pf-title">${br(c.title)}</h2>
-    <div class="rt"><p>${br(c.desc)}</p>
-      <div class="ctl"><span class="tag">${esc(c.label)}</span><span class="cnt">${N}개 업종</span></div></div>
+    <div class="rt"><p>${br(c.desc)}</p></div>
   </div>
   <div class="rows" style="--gap:${c.gap}px">${row(1)}${row(2)}</div>
   <div class="mrow" role="list">${c.items.map((it, i) => card(it, i, false)).join('')}${c.items.map((it, i) => card(it, i, true)).join('')}</div>
