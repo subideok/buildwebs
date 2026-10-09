@@ -18,7 +18,7 @@
       { icon: 'youtube', label: '유튜브', href: 'https://www.youtube.com/@subideoki' },
       { icon: 'blog', label: '네이버 블로그', href: 'https://blog.naver.com/buildwebs' }
     ],
-    policy: [{ label: '개인정보처리방침', href: '#' }, { label: '이용약관', href: '#' }],
+    policy: [{ label: '개인정보처리방침', href: 'https://buildwebs.co.kr/?mode=policy' }],
     copy: '© 2026 BUILD WEBS. All rights reserved.',
     colors: { bg: '#020203', text: '#F4F5F7', gray: '#7D828C', accent: '#3560FF' }
   };
