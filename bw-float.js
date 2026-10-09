@@ -3,7 +3,7 @@
 (function () {
   if (customElements.get('bw-float')) return;
   const CFG = {
-    kakaoUrl: '',            // ← 카카오톡 채널 채팅 주소 (예: https://pf.kakao.com/_xxxxx/chat)
+    kakaoUrl: 'https://pf.kakao.com/_jfXFX/chat',            // ← 카카오톡 채널 채팅 주소 (예: https://pf.kakao.com/_xxxxx/chat)
     label: '카카오톡 상담',
     showOn: 1024,            // 이 폭(px) 이하에서만 보임 (모바일·태블릿)
     hideNear: '#contact'     // 이 섹션이 화면에 보이면 버튼 숨김
