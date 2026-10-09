@@ -113,8 +113,14 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
         pv.disabled = grid.scrollLeft < 4; nx.disabled = grid.scrollLeft > max - 4;
       };
       const go = (i) => { const cd = cards[Math.max(0, Math.min(cards.length - 1, i))]; const gl = grid.getBoundingClientRect().left + parseFloat(getComputedStyle(grid).paddingLeft); grid.scrollTo({ left: Math.max(0, grid.scrollLeft + cd.getBoundingClientRect().left - gl), behavior: 'smooth' }); };
-      pv.addEventListener('click', () => { const i = curIdx(); if (i <= 1) grid.scrollTo({ left: 0, behavior: 'smooth' }); else go(i - 1); });
-      nx.addEventListener('click', () => go(curIdx() + 1));
+      const pos = () => { const max = grid.scrollWidth - grid.clientWidth, o = cards[0].offsetLeft; return cards.map((cd) => Math.min(max, Math.max(0, cd.offsetLeft - o))); };
+      const step = (d) => { const p = pos(), s = grid.scrollLeft; let t;
+        if (d < 0) { t = 0; p.forEach((v) => { if (v < s - 8) t = v; }); }
+        else { t = p.find((v) => v > s + 8); if (t === undefined) t = p[p.length - 1]; }
+        grid.style.scrollSnapType = 'none'; grid.scrollTo({ left: t, behavior: 'smooth' });
+        clearTimeout(step.tm); step.tm = setTimeout(() => { grid.style.scrollSnapType = ''; }, 700); };
+      pv.addEventListener('click', () => step(-1));
+      nx.addEventListener('click', () => step(1));
       grid.addEventListener('scroll', update, { passive: true });
       window.addEventListener('resize', update);
       update();

@@ -84,7 +84,7 @@ canvas,video{position:absolute;inset:0;width:100%;height:100%;display:block;obje
         { col: 2, y: 0.50, amp: 0.26, freq: 1.1, width: 0.42, sp: 0.00006, ph: 4.0, twist: 1.6, lines: 40 }
       ];
       const size = () => {
-        dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        dpr = 1;
         W = cv.clientWidth; H = cv.clientHeight;
         cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
         this.draw();
@@ -98,11 +98,11 @@ canvas,video{position:absolute;inset:0;width:100%;height:100%;display:block;obje
         const D = Math.hypot(W, H), mob = W < 860;
         ctx.save();
         ctx.translate(W / 2, H / 2); ctx.rotate(-0.36); ctx.translate(-D / 2, -D / 2);
-        const steps = mob ? 36 : 64;
+        const steps = mob ? 32 : 40;
         ribbons.forEach((r) => {
           const [R, G, B] = cols[r.col % cols.length];
           const ph = r.ph + t * r.sp;
-          const L = mob ? Math.round(r.lines * 0.6) : r.lines;
+          const L = Math.round(r.lines * (mob ? 0.5 : 0.6));
           for (let i = 0; i <= L; i++) {
             const u = i / L;
             const sheen = Math.pow(Math.abs(Math.cos(u * Math.PI * 1.2 + ph * 0.7)), 10);
@@ -127,7 +127,8 @@ canvas,video{position:absolute;inset:0;width:100%;height:100%;display:block;obje
       new ResizeObserver(size).observe(cv);
       const tick = (now) => {
         requestAnimationFrame(tick);
-        const dt = Math.min(64, now - last); last = now;
+        const dt = Math.min(64, now - last);
+        if (dt < 32) return; last = now;
         if (!this.visible || document.hidden || this.still) return;
         t += dt * (this.cfg.speed || 1) * 10;
         this.draw();

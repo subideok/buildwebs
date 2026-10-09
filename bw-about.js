@@ -57,10 +57,10 @@
     ],
     // 장면별 동작 시점(ms). 숫자를 바꾸면 속도가 달라집니다.
     timeline: [
-      [300, 700, 1100, 1500, 1900, 2300, 2800, 3100, 3400, 4000],
-      [300, 900, 1500, 2200, 2800],
-      [400, 1000, 1600, 2300, 3000],
-      [600, 1000, 1700, 2300, 2900, 3300]
+      [100, 250, 400, 550, 700, 850, 1000, 1100, 1200, 1400],
+      [100, 320, 540, 780, 1000],
+      [120, 350, 580, 820, 1050],
+      [150, 300, 550, 780, 1000, 1150]
     ],
     colors: { bg: '#050507', text: '#F4F5F7', gray: '#9AA0AA', dim: '#3A3D45', accent: '#3560FF', accentText: '#6F8DFF' }
   };
@@ -203,6 +203,7 @@ ul,ol{list-style:none}
 .tb{position:absolute;left:0;right:0;top:0;height:64px;display:flex;align-items:center;gap:14px;padding:0 40px;border-bottom:1px solid #eceef1;font-size:17px;color:#8a8f97}
 .tb b{color:#10151c;font-size:20px}
 .lb{font-size:20px;font-weight:600;color:#8a8f97}
+.cv *,.cv *::before,.cv *::after{transition-duration:.3s!important;animation-duration:.6s!important}
 
 /* 1 사업 이해 */
 .s1 .qs{position:absolute;left:40px;right:40px;top:92px;display:flex;flex-direction:column;gap:14px}
@@ -417,8 +418,8 @@ ul,ol{list-style:none}
         const tl = c.timeline[i], l = loops[i] = { ts: [], nx: 0 };
         const cyc = () => {
           tl.forEach((_, j) => cvs[i].classList.remove('a' + (j + 1)));
-          l.ts = tl.map((t, j) => setTimeout(() => cvs[i].classList.add('a' + (j + 1)), t + 700));
-          l.nx = setTimeout(cyc, tl[tl.length - 1] + 700 + 3200);
+          l.ts = tl.map((t, j) => setTimeout(() => cvs[i].classList.add('a' + (j + 1)), t + 200));
+          l.nx = setTimeout(cyc, tl[tl.length - 1] + 200 + 2200);
         };
         cyc();
       };
