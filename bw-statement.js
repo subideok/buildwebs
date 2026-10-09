@@ -75,7 +75,7 @@ canvas,video{position:absolute;inset:0;width:100%;height:100%;display:block;obje
     attributeChangedCallback() { this.applyStill(); }
 
     initLight(cv, c) {
-      const ctx = cv.getContext('2d');
+      const ctx = cv.getContext('2d', { alpha: false });
       const cols = c.colors.light.map(rgb);
       let W = 0, H = 0, dpr = 1, t = 0, last = performance.now();
       const ribbons = [
@@ -84,7 +84,7 @@ canvas,video{position:absolute;inset:0;width:100%;height:100%;display:block;obje
         { col: 2, y: 0.50, amp: 0.26, freq: 1.1, width: 0.42, sp: 0.00006, ph: 4.0, twist: 1.6, lines: 40 }
       ];
       const size = () => {
-        dpr = 1;
+        dpr = 0.5; // 절반 해상도로 그린 뒤 화면에 맞춰 늘림(빛 효과라 차이 거의 없음)
         W = cv.clientWidth; H = cv.clientHeight;
         cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
         this.draw();
@@ -98,17 +98,17 @@ canvas,video{position:absolute;inset:0;width:100%;height:100%;display:block;obje
         const D = Math.hypot(W, H), mob = W < 860;
         ctx.save();
         ctx.translate(W / 2, H / 2); ctx.rotate(-0.36); ctx.translate(-D / 2, -D / 2);
-        const steps = mob ? 32 : 40;
+        const steps = 28;
         ribbons.forEach((r) => {
           const [R, G, B] = cols[r.col % cols.length];
           const ph = r.ph + t * r.sp;
-          const L = Math.round(r.lines * (mob ? 0.5 : 0.6));
+          const L = Math.round(r.lines * (mob ? 0.45 : 0.5));
           for (let i = 0; i <= L; i++) {
             const u = i / L;
             const sheen = Math.pow(Math.abs(Math.cos(u * Math.PI * 1.2 + ph * 0.7)), 10);
             const a = 0.025 + 0.32 * sheen;
             ctx.strokeStyle = `rgba(${R},${G},${B},${a.toFixed(3)})`;
-            ctx.lineWidth = 0.6 + sheen * 1.4;
+            ctx.lineWidth = 1.2 + sheen * 2.8;
             ctx.beginPath();
             for (let s = 0; s <= steps; s++) {
               const x = (s / steps) * D;
@@ -128,7 +128,7 @@ canvas,video{position:absolute;inset:0;width:100%;height:100%;display:block;obje
       const tick = (now) => {
         requestAnimationFrame(tick);
         const dt = Math.min(64, now - last);
-        if (dt < 32) return; last = now;
+        if (dt < 40) return; last = now;
         if (!this.visible || document.hidden || this.still) return;
         t += dt * (this.cfg.speed || 1) * 10;
         this.draw();
