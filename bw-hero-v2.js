@@ -502,7 +502,7 @@ h1 .ac{color:var(--accent-text)}
       });
       const I = {};
       for (const k in cfg.images) I[k] = /^(https?:|\/|data:)/.test(cfg.images[k]) ? cfg.images[k] : new URL(cfg.assetBase + cfg.images[k], (window.BW_ASSET_BASE || BW_SELF_BASE)).href;
-      this.mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      this.mq = ({ matches: false, addEventListener() {} });
       this.mob = window.matchMedia('(max-width: 860px)');
       const root = this.attachShadow({ mode: 'open' });
       const logoUrl = cfg.logoSrc && !/^(https?:|\/|data:)/.test(cfg.logoSrc) ? new URL(cfg.logoSrc, window.BW_ASSET_BASE || BW_SELF_BASE).href : cfg.logoSrc;
@@ -610,10 +610,9 @@ h1 .ac{color:var(--accent-text)}
       this.frame = () => layout();
       this.mob.addEventListener && this.mob.addEventListener('change', layout);
       new ResizeObserver(layout).observe(stack);
-      new IntersectionObserver((es) => { visible = es[0].isIntersecting; }).observe(this.$('.stage'));
-      stack.addEventListener('pointerenter', () => { hover = true; });
-      stack.addEventListener('pointerleave', () => { hover = false; });
-      label(); layout();
+      new IntersectionObserver((es) => { visible = es[0].isIntersecting; last = performance.now(); }).observe(this.$('.stage'));
+      document.addEventListener('visibilitychange', () => { last = performance.now(); if (cur !== to) t0 = performance.now() - G.duration; });
+            label(); layout();
 
       const tick = (nowT) => {
         requestAnimationFrame(tick);

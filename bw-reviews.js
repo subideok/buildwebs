@@ -99,7 +99,7 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
     <div class="nb"><button type="button" class="pv" aria-label="이전 후기"><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="nx" aria-label="다음 후기"><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
 </section><div class="lb" role="dialog" aria-modal="true" aria-label="후기 이미지"><img alt=""><button type="button" aria-label="닫기">×</button></div></div>`;
       const wrap = root.querySelector('.wrap'), grid = root.querySelector('.grid');
-      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mq = ({ matches: false, addEventListener() {} });
       this.applyStill = () => wrap.classList.toggle('still', mq.matches || this.getAttribute('still') === 'true');
       this.applyStill();
       new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { grid.classList.add('in'); o.disconnect(); } }, { threshold: 0.12 }).observe(grid);
@@ -112,8 +112,8 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
         ix.textContent = String(i + 1).padStart(2, '0');
         pv.disabled = grid.scrollLeft < 4; nx.disabled = grid.scrollLeft > max - 4;
       };
-      const go = (i) => { const cd = cards[Math.max(0, Math.min(cards.length - 1, i))]; grid.scrollTo({ left: cd.offsetLeft - parseFloat(getComputedStyle(grid).paddingLeft), behavior: 'smooth' }); };
-      pv.addEventListener('click', () => go(curIdx() - 1));
+      const go = (i) => { const cd = cards[Math.max(0, Math.min(cards.length - 1, i))]; const gl = grid.getBoundingClientRect().left + parseFloat(getComputedStyle(grid).paddingLeft); grid.scrollTo({ left: Math.max(0, grid.scrollLeft + cd.getBoundingClientRect().left - gl), behavior: 'smooth' }); };
+      pv.addEventListener('click', () => { const i = curIdx(); if (i <= 1) grid.scrollTo({ left: 0, behavior: 'smooth' }); else go(i - 1); });
       nx.addEventListener('click', () => go(curIdx() + 1));
       grid.addEventListener('scroll', update, { passive: true });
       window.addEventListener('resize', update);

@@ -105,7 +105,7 @@ h2{font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:1.16;letter-spac
   <p class="fn">${esc(c.footnote)}</p>
 </section></div>`;
       const wrap = root.querySelector('.wrap'), pl = root.querySelector('.pl');
-      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mq = ({ matches: false, addEventListener() {} });
       this.applyStill = () => wrap.classList.toggle('still', mq.matches || this.getAttribute('still') === 'true');
       this.applyStill();
       new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { pl.classList.add('in'); o.disconnect(); } }, { threshold: 0.12 }).observe(pl);

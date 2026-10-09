@@ -71,7 +71,7 @@ h2 .n{display:inline-block;font-family:'Instrument Serif',Georgia,serif;font-sty
   ${c.note ? `<p class="nt"><b>미리 알려드립니다</b><span>${esc(c.note).replace(/\n/g, ' <br>')}</span></p>` : ''}
 </section></div>`;
       const wrap = root.querySelector('.wrap'), st = root.querySelector('.st');
-      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mq = ({ matches: false, addEventListener() {} });
       this.applyStill = () => wrap.classList.toggle('still', mq.matches || this.getAttribute('still') === 'true');
       this.applyStill();
       new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { st.classList.add('in'); o.disconnect(); } }, { threshold: 0.15 }).observe(st);

@@ -49,7 +49,7 @@ canvas,video{position:absolute;inset:0;width:100%;height:100%;display:block;obje
     connectedCallback() {
       if (this._init) return; this._init = true;
       const c = this.cfg = merge(CFG, window.BW_STATEMENT_CONFIG);
-      this.mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      this.mq = ({ matches: false, addEventListener() {} });
       const root = this.attachShadow({ mode: 'open' });
       const bg = c.videoSrc
         ? `<video src="${esc(c.videoSrc)}"${c.posterSrc ? ` poster="${esc(c.posterSrc)}"` : ''} autoplay muted loop playsinline aria-hidden="true"></video>`
@@ -64,8 +64,8 @@ canvas,video{position:absolute;inset:0;width:100%;height:100%;display:block;obje
       this.applyStill();
       new IntersectionObserver((es) => es.forEach((e) => {
         this.visible = e.isIntersecting;
-        if (e.intersectionRatio > 0.35) this.wrap.classList.add('in');
-      }), { threshold: [0, 0.35] }).observe(sec);
+        if (e.intersectionRatio > 0.35 || (e.rootBounds && e.intersectionRect.height > e.rootBounds.height * 0.35)) this.wrap.classList.add('in');
+      }), { threshold: [0, 0.1, 0.2, 0.35, 0.5] }).observe(sec);
 
       const cv = root.querySelector('canvas');
       if (cv) this.initLight(cv, c);

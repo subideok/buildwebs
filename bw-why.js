@@ -165,7 +165,7 @@ h3{font-size:clamp(22px,1.9vw,30px);font-weight:700;letter-spacing:-.03em;line-h
   </div>
 </section></div>`;
       const $ = (q) => root.querySelector(q), box = $('.box'), wrap = $('.wrap'), num = $('.num b');
-      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mq = ({ matches: false, addEventListener() {} });
       const still = () => mq.matches || this.getAttribute('still') === 'true';
       this.applyStill = () => { wrap.classList.toggle('still', still()); if (still()) num.textContent = total; };
       this.applyStill();

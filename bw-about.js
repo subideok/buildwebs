@@ -367,7 +367,7 @@ ul,ol{list-style:none}
       if (c.id && !this.id) { this.id = c.id; this.style.scrollMarginTop = '84px'; }
       const I = {};
       for (const k in c.images) I[k] = /^(https?:|\/|data:)/.test(c.images[k]) ? c.images[k] : new URL(c.images[k], (window.BW_ASSET_BASE || BW_SELF_BASE)).href;
-      this.mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      this.mq = ({ matches: false, addEventListener() {} });
       this.mob = window.matchMedia('(max-width: 860px)');
       const root = this.attachShadow({ mode: 'open' });
       const title = c.titleLines.map((l) => `<span class="ln${l.accent ? ' ac' : ''}">${[...l.text].map((ch) => ch === ' ' ? ' ' : `<span class="ch">${esc(ch)}</span>`).join('')}</span>`).join('');
@@ -407,16 +407,24 @@ ul,ol{list-style:none}
       fr.forEach((f) => ro.observe(f.querySelector('.face')));
 
       // 장면 재생: 한 번 끝나면 결과 화면 유지
-      const played = [], timers = [];
-      const finish = (i) => { c.timeline[i].forEach((_, j) => cvs[i].classList.add('a' + (j + 1))); played[i] = true; };
+      // 장면 반복 재생: 보이는 동안 계속 반복
+      const loops = {};
+      const finish = (i) => c.timeline[i].forEach((_, j) => cvs[i].classList.add('a' + (j + 1)));
+      const stop = (i) => { const l = loops[i]; if (!l) return; l.ts.forEach(clearTimeout); clearTimeout(l.nx); delete loops[i]; };
       const play = (i) => {
-        if (played[i]) return; played[i] = true;
+        if (loops[i]) return;
         if (isStill()) return finish(i);
-        c.timeline[i].forEach((t, j) => timers.push(setTimeout(() => cvs[i].classList.add('a' + (j + 1)), t)));
+        const tl = c.timeline[i], l = loops[i] = { ts: [], nx: 0 };
+        const cyc = () => {
+          tl.forEach((_, j) => cvs[i].classList.remove('a' + (j + 1)));
+          l.ts = tl.map((t, j) => setTimeout(() => cvs[i].classList.add('a' + (j + 1)), t + 700));
+          l.nx = setTimeout(cyc, tl[tl.length - 1] + 700 + 3200);
+        };
+        cyc();
       };
       this.applyStill = () => {
         this.wrap.classList.toggle('still', isStill());
-        if (isStill()) { timers.forEach(clearTimeout); fr.forEach((_, i) => finish(i)); }
+        if (isStill()) fr.forEach((_, i) => { stop(i); finish(i); });
       };
       this.applyStill();
 
@@ -434,7 +442,6 @@ ul,ol{list-style:none}
         fr.forEach((f, i) => f.classList.toggle('cur', i === n));
         steps.forEach((s, i) => s.classList.toggle('on', i === n));
         prog.forEach((p, i) => { p.classList.toggle('on', i === n); p.classList.toggle('done', i < n); });
-        play(n);
       };
       const onScroll = () => {
         const vh = window.innerHeight;
@@ -447,7 +454,7 @@ ul,ol{list-style:none}
           const vw = window.innerWidth; let best = 0, bd = 1e9;
           steps.forEach((s, i) => {
             const b = s.getBoundingClientRect();
-            if (b.top < vh * 0.8 && b.bottom > 0 && b.left < vw * 0.75 && b.right > vw * 0.25) { s.classList.add('on'); play(i); }
+            if (b.top < vh * 0.8 && b.bottom > 0 && b.left < vw * 0.75 && b.right > vw * 0.25) { s.classList.add('on'); play(i); } else stop(i);
             const d = Math.abs(b.left - 20); if (d < bd) { bd = d; best = i; }
           });
           dots.forEach((d, i) => d.classList.toggle('on', i === best));
@@ -456,8 +463,10 @@ ul,ol{list-style:none}
         let n = 0;
         steps.forEach((s, i) => { if (s.getBoundingClientRect().top < vh * 0.5) n = i; });
         setStep(n);
+        const hb = $('.how').getBoundingClientRect(), inView = hb.top < vh * 0.7 && hb.bottom > vh * 0.3;
+        fr.forEach((_, i) => (i === n && inView) ? play(i) : stop(i));
       };
-      this.mob.addEventListener && this.mob.addEventListener('change', () => { active = -1; home(); });
+      this.mob.addEventListener && this.mob.addEventListener('change', () => { active = -1; fr.forEach((_, i) => stop(i)); home(); });
       window.addEventListener('scroll', onScroll, { passive: true });
       track.addEventListener('scroll', onScroll, { passive: true });
       // 마우스로 끌어서 넘기기 + 점 눌러 이동

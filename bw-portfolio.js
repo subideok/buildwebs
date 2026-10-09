@@ -451,7 +451,7 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
         const set = (clone) => list.map(([it, i]) => card(it, i, clone)).join('');
         return `<div class="lane" data-r="${r}"><div class="track">${set(false)}${set(true)}${set(true)}</div></div>`;
       };
-      this.mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      this.mq = ({ matches: false, addEventListener() {} });
       const root = this.attachShadow({ mode: 'open' });
       root.innerHTML = `<style>${css(c.colors)}</style>
 <div class="wrap">

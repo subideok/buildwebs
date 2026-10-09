@@ -79,7 +79,7 @@ br.mb{display:none}
     <div class="mo"><b>${esc(c.more.title)}</b><a href="${esc(c.more.href)}"${/^https?:/.test(c.more.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(c.more.label)} →</a></div></div>
 </section></div>`;
       const $$ = (q) => [...root.querySelectorAll(q)], wrap = root.querySelector('.wrap');
-      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mq = ({ matches: false, addEventListener() {} });
       this.applyStill = () => wrap.classList.toggle('still', mq.matches || this.getAttribute('still') === 'true');
       this.applyStill();
       $$('.q').forEach((b) => b.addEventListener('click', () => { const it = b.parentElement, o = !it.classList.contains('op'); it.classList.toggle('op', o); b.setAttribute('aria-expanded', o); }));
