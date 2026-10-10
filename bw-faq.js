@@ -10,14 +10,13 @@
     items: [
       { cat: '제작', q: '기획이 없는 상태에서도 맡길 수 있나요?', a: '네. 기획은 빌드웹스가 맡습니다. 강점 도출 질문지에 답해 주시면, 그 답변으로 화면 구성과 문구를 설계합니다.' },
       { cat: '제작', q: '질문지는 꼭 작성해야 하나요?', a: '네, 꼭 필요합니다. 질문지는 단순한 자료 수집이 아닙니다. 사업과 고객을 이해하고, 더 설득력 있는 홈페이지를 만들기 위한 기획 과정입니다.' },
-      { cat: '제작', q: '제작 기간은 얼마나 걸리나요?', a: '상품과 페이지 수에 따라 다릅니다. 상담 때 단계별 일정을 먼저 정하고, 진행 상황을 그때그때 공유해 드립니다.' },
-      { cat: '제작', q: '어떤 자료를 준비하면 되나요?', a: '질문지 답변, 업체의 이미지, 동영상이면 충분합니다. 이미지, 영상 자료가 준비되지 않았다면 AI를 통해 제작해드리고 있습니다.' },
+      { cat: '제작', q: '제작 기간은 얼마나 걸리나요?', a: '상품과 페이지 수에 따라 다릅니다. 상담 때 견적에 맞게 사이트 오픈 일정을 안내드리고, 진행 상황은 직접 공유드리고 있습니다.' },
+      { cat: '제작', q: '어떤 자료를 준비하면 되나요?', a: '아래 자료를 보내주시면 충분합니다.\n· 강점 도출 질문지 답변\n· 회사 소개와 대표 프로필\n· 서비스·상품 설명과 가격\n· 로고, 매장·사무실 사진, 작업 사진과 영상\n· 주소, 연락처, 영업시간\n· SNS 링크\n\n문구는 질문지 답변을 바탕으로 빌드웹스가 직접 씁니다. 사진이나 영상이 부족하면 AI로 보완해 드립니다.' },
       { cat: '제작', q: '휴대폰에서도 잘 보이나요?', a: '모든 상품은 PC, 태블릿, 모바일 반응형으로 제작됩니다.' },
-      { cat: '비용', q: '견적 외에 추가 비용이 생기나요?', a: '계약한 범위 안에서는 추가 비용이 없습니다. 도메인과 아임웹 요금제는 별도이며, 범위 밖의 페이지나 기능이 필요하면 작업 전에 먼저 안내해 드립니다.' },
-      { cat: '비용', q: '수정은 몇 번까지 가능한가요?', a: '제작 범위 안에서는 횟수 제한 없이 수정합니다. 시안 세 개 중 하나를 고른 뒤 마음에 들 때까지 다듬습니다.' },
+      { cat: '비용', q: '견적 외에 추가 비용이 생기나요?', a: '견적서에 적힌 범위 안에서는 추가 비용이 없습니다. 아래 작업은 견적과 별도로 진행됩니다.\n· 사진·영상 촬영(필요시)\n· 3D 등 별도 그래픽 제작\n· 예약, 결제, 외부 데이터 연동 같은 기능 개발\n별도 작업은 시작 전에 금액을 먼저 알려드리고, 동의하신 경우에만 진행합니다.\n\n도메인과 아임웹 요금제, SSL 보안인증서는 제작비와 별도로 발생하며 실제 이용료만 별도로 결제됩니다.\n· 도메인: 연 20,000원 내외\n· 호스팅: 아임웹 요금제 월 22,000원부터 (부가세 별도)\n· SSL 보안인증서: 연 38,500원 (부가세 포함)' },
       { cat: '비용', q: '어떤 상품을 골라야 할지 모르겠어요.', a: '업종과 원하는 구성을 문의에 남겨 주시면, 필요한 만큼만 담은 상품을 추천해 드립니다.' },
       { cat: '운영', q: '오픈 후에 내용을 직접 바꿀 수 있나요?', a: '네. 사진, 가격, 팝업처럼 자주 바뀌는 것은 운영 가이드를 보고 직접 고칠 수 있습니다. 간단한 수정은 요청하시면 비용 없이 처리해 드립니다.' },
-      { cat: '운영', q: '검색에 노출되도록 해 주시나요?', a: '네이버와 구글에 사이트를 등록하고, 페이지별 제목과 설명을 설정합니다. 특정 순위를 보장하지는 않습니다.' },
+      { cat: '운영', q: '검색에 노출되도록 해 주시나요?', a: '네. 기획 단계부터 페이지 구조, 문구, 제목과 설명을 검색엔진 최적화(SEO) 기준에 맞춰 설계하고, 네이버와 구글에 사이트 등록까지 마칩니다.\n\n스탠다드 상품부터는 AI 검색 대응도 함께 진행합니다.\n· AEO(답변 엔진 최적화): 고객이 묻는 질문에 바로 답하는 형식으로 문장을 써서, 검색 결과의 답변 영역에 노출되기 쉽게 만듭니다.\n· GEO(생성형 AI 최적화): ChatGPT, 제미나이 같은 AI가 답변할 때 우리 회사를 정확히 소개하고 인용하도록 회사 정보를 정리합니다.\n\n특정 순위를 보장하지는 않습니다.' },
       { cat: '운영', q: '기존 도메인을 그대로 쓸 수 있나요?', a: '네. 쓰시던 도메인을 새 홈페이지에 연결할 수 있고, 필요한 설정은 함께 진행합니다.' }
     ],
     more: { title: '찾는 답이 없으신가요?', label: '카카오톡 무료상담', href: 'https://pf.kakao.com/_jfXFX' },   // 카카오톡 채널 주소로 바꾸세요
@@ -75,7 +74,7 @@ br.mb{display:none}
       root.innerHTML = `<style>${css(c.colors)}</style><div class="wrap"><section class="sec" aria-labelledby="bw-fq-title">
   <div class="hd"><p class="kick">${esc(c.kicker)}</p><h2 id="bw-fq-title">${br(c.title)}</h2><p>${br(c.desc).replace(/\|/g, ' <br class="mb">')}</p>
     <div class="tabs" role="tablist">${c.cats.map((t, i) => `<button type="button" role="tab" aria-selected="${i === 0}" data-c="${esc(t)}">${esc(t)}</button>`).join('')}</div></div>
-  <div class="ls">${c.items.map((it, i) => `<div class="it" data-c="${esc(it.cat)}"><button class="q" type="button" aria-expanded="false" aria-controls="a${i}"><i>Q</i><span>${esc(it.q)}</span>${CHEV}</button><div class="an" id="a${i}" role="region"><div><p>${esc(it.a)}</p></div></div></div>`).join('')}
+  <div class="ls">${c.items.map((it, i) => `<div class="it" data-c="${esc(it.cat)}"><button class="q" type="button" aria-expanded="false" aria-controls="a${i}"><i>Q</i><span>${esc(it.q)}</span>${CHEV}</button><div class="an" id="a${i}" role="region"><div><p>${br(it.a)}</p></div></div></div>`).join('')}
     <div class="mo"><b>${esc(c.more.title)}</b><a href="${esc(c.more.href)}"${/^https?:/.test(c.more.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(c.more.label)} →</a></div></div>
 </section></div>`;
       const $$ = (q) => [...root.querySelectorAll(q)], wrap = root.querySelector('.wrap');
