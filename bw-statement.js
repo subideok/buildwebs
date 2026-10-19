@@ -5,15 +5,18 @@
   if (customElements.get('bw-statement')) return;
 
   const CFG = {
-    lines: [
-      { text: '고객이 보는 건', strong: false },
-      { text: '회사 소개가 아니라', strong: false },
-      { text: '선택할 이유입니다.', strong: true }
+    lead: '고객이 보는 건 회사 소개가 아니라 선택할 이유입니다.',   // 위쪽 작은 문장
+    lines: [   // 큰 제목. accent: true = 파란 글자
+      { text: '디자인 전에,', accent: false },
+      { text: '고객이 누구인지', accent: true },
+      { text: '어떤 고민이 있는지', accent: true },
+      { text: '왜 우리여야 하는지', accent: true },
+      { text: '부터 정리합니다.', accent: false }
     ],
     videoSrc: '',        // 예: 'https://.../bg.mp4'
     posterSrc: '',       // 영상 로딩 전 이미지(선택)
     speed: 1,            // 빛 움직임 속도
-    colors: { bg: '#050507', text: '#F4F5F7', sub: '#B8BCC6', light: ['#3560FF', '#6F8DFF', '#1B2F9E'] }
+    colors: { bg: '#050507', text: '#F4F5F7', sub: '#B8BCC6', accentText: '#6F8DFF', light: ['#3560FF', '#6F8DFF', '#1B2F9E'] }
   };
 
   function merge(a, b) {
@@ -30,17 +33,22 @@
 *{box-sizing:border-box}
 .sec{position:relative;height:100svh;min-height:600px;max-height:1100px;overflow:hidden;display:flex;align-items:center;justify-content:center;isolation:isolate}
 canvas,video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;z-index:0}
-.veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(60% 46% at 50% 50%,rgba(5,5,7,.72),rgba(5,5,7,0) 100%),linear-gradient(${c.bg},rgba(5,5,7,0) 18%,rgba(5,5,7,0) 82%,${c.bg})}
-.tx{position:relative;z-index:2;margin:0;padding:0 24px;text-align:center;font-size:clamp(26px,3.6vw,60px);line-height:1.42;letter-spacing:-.035em;font-weight:500;color:${c.sub};text-wrap:balance}
-.tx span{display:block;opacity:0;transform:translateY(22px);filter:blur(8px);transition:opacity 1.2s ease,transform 1.2s cubic-bezier(.2,.7,.2,1),filter 1.2s ease}
-.tx span.st{color:${c.text};font-weight:700;margin-top:.15em}
-.in .tx span{opacity:1;transform:none;filter:none}
-.in .tx span:nth-child(2){transition-delay:.35s}
-.in .tx span:nth-child(3){transition-delay:.8s}
-.still .tx span{transition:none;opacity:1;transform:none;filter:none}
+.veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(72% 62% at 50% 50%,rgba(5,5,7,.72),rgba(5,5,7,0) 100%),linear-gradient(${c.bg},rgba(5,5,7,0) 18%,rgba(5,5,7,0) 82%,${c.bg})}
+.tx{position:relative;z-index:2;margin:0;padding:0 24px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.ld{display:flex;align-items:center;gap:14px;margin:0 0 clamp(28px,3vw,48px);font-size:clamp(16px,1.3vw,21px);font-weight:500;letter-spacing:-.02em;color:${c.sub}}
+.ld::before,.ld::after{content:'';width:28px;height:1px;background:#3a3d45}
+.tt{margin:0;font-size:clamp(34px,4.4vw,72px);font-weight:700;line-height:1.18;letter-spacing:-.045em;color:${c.text}}
+.tt span{display:block}
+.tt .ac{color:${c.accentText}}
+.ld,.tt span{opacity:0;transform:translateY(22px);filter:blur(8px);transition:opacity 1.1s ease,transform 1.1s cubic-bezier(.2,.7,.2,1),filter 1.1s ease}
+.in .ld,.in .tt span{opacity:1;transform:none;filter:none}
+.still .ld,.still .tt span{transition:none;opacity:1;transform:none;filter:none}
 @media (max-width:860px){
   .sec{height:88svh;min-height:520px}
-  .tx{font-size:clamp(22px,6.4vw,34px);padding:0 20px}
+  .tx{padding:0 20px}
+  .ld{font-size:15px;line-height:1.6;text-wrap:balance;margin-bottom:24px}
+  .ld::before,.ld::after{display:none}
+  .tt{font-size:clamp(28px,8.2vw,44px)}
 }
 `;
 
@@ -55,9 +63,9 @@ canvas,video{position:absolute;inset:0;width:100%;height:100%;display:block;obje
         ? `<video src="${esc(c.videoSrc)}"${c.posterSrc ? ` poster="${esc(c.posterSrc)}"` : ''} autoplay muted loop playsinline aria-hidden="true"></video>`
         : '<canvas aria-hidden="true"></canvas>';
       root.innerHTML = `<style>${css(c.colors)}</style>
-<div class="wrap"><section class="sec" aria-label="${esc(c.lines.map((l) => l.text).join(' '))}">
+<div class="wrap"><section class="sec" aria-labelledby="bw-st-title">
   ${bg}<i class="veil"></i>
-  <p class="tx" aria-hidden="true">${c.lines.map((l) => `<span class="${l.strong ? 'st' : ''}">${esc(l.text)}</span>`).join('')}</p>
+  <div class="tx">${c.lead ? `<p class="ld">${esc(c.lead)}</p>` : ''}<h2 class="tt" id="bw-st-title" aria-label="${esc(c.lines.map((l) => l.text).join(' '))}"><span aria-hidden="true">${c.lines.map((l, i) => `<span class="${l.accent ? 'ac' : ''}" style="transition-delay:${0.35 + i * 0.22}s">${esc(l.text)}</span>`).join('')}</span></h2></div>
 </section></div>`;
       this.wrap = root.querySelector('.wrap');
       const sec = root.querySelector('.sec');

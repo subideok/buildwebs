@@ -6,13 +6,7 @@
 
   const CFG = {
     id: 'about',
-    titleLines: [
-      { text: '디자인 전에,', accent: false },
-      { text: '고객이 누구인지', accent: true },
-      { text: '어떤 고민이 있는지', accent: true },
-      { text: '왜 우리여야 하는지', accent: true },
-      { text: '부터 정리합니다.', accent: false }
-    ],
+    titleLines: [],   // 큰 제목은 앞 섹션(bw-statement)으로 옮겼습니다
     side: [],   // 제목 아래 보조 문단(필요할 때만). 예: { text: '문장', strong: false }
     kicker: '빌드웹스의 방식',
     extrasKicker: '포함 사항',
@@ -75,6 +69,8 @@
   const br = (s) => esc(s).replace(/\n/g, '<br>');
   const PTR = '<svg class="ptr" width="34" height="34" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2l15 9-6.5 1.6L9.6 19z" fill="#111" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>';
 
+  const AR = '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const AR2 = '<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="#10151c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   /* ---------- 장면 4개 (800×600, 업종 공통 예시) ---------- */
   const scenes = (I) => [
 `<div class="cv s1">
@@ -88,20 +84,35 @@
   <div class="chips"><span class="c1">대표가 직접 진행</span><span class="c2">당일 견적 안내<em>핵심 강점</em></span><span class="c3">사후 관리 포함</span></div>
 </div>`,
 `<div class="cv s2">
-  <div class="tb"><b>문구 설계</b><span>첫 화면 제목</span></div>
-  <div class="r r1"><p class="lb">우리가 하고 싶은 말</p><p class="old"><span>최고의 품질, 고객 만족 최우선</span></p></div>
-  <div class="r r2"><p class="lb">고객의 고민</p><p class="wq">“얼마나 걸리고, 믿고 맡겨도 될까?”</p></div>
-  <div class="r r3"><p class="lb">고객이 듣고 싶은 말</p><p class="nw">상담 당일 견적,<br>대표가 끝까지 직접 맡습니다.</p><em>바뀐 제목</em></div>
+  <div class="hx h0"><div class="nv"><b>한빛건축</b><span>회사 소개</span><span>설계</span><span>프로젝트</span><span>문의</span></div>
+    <div class="hc"><h4><s>고객 만족을 최우선으로 하는<br>한빛건축입니다</s></h4><p>정직과 신뢰를 바탕으로 최고의 품질을 약속드립니다.</p><b>회사 소개 보기</b></div>
+    <i class="hp" style="background-image:url('${I.photoB}')"></i>
+    <ul class="co bad"><li><i>✕</i>어느 회사나 쓰는 말</li><li><i>✕</i>누가, 무엇을 해주는지 없음</li><li><i>✕</i>다음 행동이 불분명</li></ul><em class="lab">바꾸기 전</em></div>
+  <i class="ar">${AR}</i>
+  <div class="hx h1"><div class="nv"><b>한빛건축</b><span>회사 소개</span><span>설계</span><span>프로젝트</span><span>문의</span></div>
+    <div class="hc"><h4>설계부터 준공까지<br><mark>대표 건축사가 직접<sup>1</sup></mark> 맡습니다</h4><p>상담 후 <mark>3일 안에<sup>2</sup></mark> 설계 방향과 예상 비용을 받아보세요.</p><div class="pf"><span>설계 상담 무료</span><span>견적 외 추가 비용 없음</span></div><b>무료 상담 신청<sup>3</sup></b></div>
+    <i class="hp" style="background-image:url('${I.photoA}')"></i>
+    <ul class="co good"><li><i>1</i>누가 맡는지</li><li><i>2</i>언제 무엇을 받는지</li><li><i>3</i>바로 할 행동</li></ul><em class="lab">바꾼 후</em></div>
 </div>`,
 `<div class="cv s3">
-  <div class="tb"><b>디자인 설계</b><span>시안 작업</span></div>
-  <div class="pg">
-    <div class="hd"><i class="lo"></i><span></span><span></span><span></span><b class="hb">상담 예약</b></div>
-    <div class="tx"><i class="wf w1"></i><i class="wf w2"></i><h4>오래 머물고 싶은<br>공간을 만듭니다</h4><b class="bt">상담 예약하기</b></div>
-    <div class="ph"><i style="background-image:url('${I.photoA}')"></i></div>
-    <div class="inf"><span><small>운영 시간</small>평일 10:00 – 19:00</span><span><small>상담 방법</small>방문 · 전화 · 온라인</span><em>핵심 정보</em></div>
+  <div class="bz z0"><i></i><i></i><i></i><span>hanbit-arch.co.kr</span></div>
+  <div class="bz z1"><i></i><i></i><i></i><span>hanbit-arch.co.kr</span></div>
+  <div class="fr wa">
+  <div class="old">
+    <div class="ut"><span>홈</span><span>로그인</span><span>회원가입</span><span>사이트맵</span></div>
+    <div class="oh"><b><i></i>(주)한빛건축</b><span>고객센터 <strong>02-000-0000</strong></span></div>
+    <div class="on"><span>회사소개</span><span>사업분야</span><span>시공실적</span><span>고객센터</span><span>커뮤니티</span></div>
+    <div class="ob" style="background-image:url('${I.photoB}')"><h4>고객과 함께 성장하는 기업</h4><p>(주)한빛건축이 여러분과 함께하겠습니다</p><i class="od"><i></i><i></i><i></i></i></div>
+    <div class="oc"><div><h6>공지사항<small>더보기 +</small></h6><p>홈페이지가 새롭게 오픈하였습니다<br>2015년 하계 휴무 안내<br>시공실적 게시판 이용 안내</p></div><div><h6>시공실적<small>더보기 +</small></h6><p class="th"><i></i><i></i><i></i></p></div><div><h6>고객센터</h6><p><strong>02-000-0000</strong><br>평일 09:00 ~ 18:00<br>점심 12:00 ~ 13:00</p></div></div>
   </div>
-  <ul class="tags"><li class="t1">브랜드 색 · 사진</li><li class="t2">핵심 정보 강조</li><li class="t3">행동 버튼 하나</li></ul>
+  <em class="lab l0">바꾸기 전</em></div>
+  <div class="fr wb"><div class="new" style="--bg:url('${I.photoA}')">
+    <div class="nn"><span>프로젝트</span><span>설계 과정</span><span>문의</span><b>상담 신청</b></div>
+    <div class="nc"><small>건축 설계 · 인테리어</small><h4>설계부터 준공까지,<br>대표 건축사가<br>직접 맡습니다.</h4><p>상담 후 3일 안에 설계 방향과<br>예상 비용을 받아보세요.</p><b>무료 상담 신청</b></div>
+    <ul class="nk"><li><strong>3일</strong>설계 방향 회신</li><li><strong>1명</strong>대표 건축사 전담</li></ul>
+  </div>
+  <em class="lab l1">바꾼 후</em></div>
+  <i class="ar">${AR}</i>
 </div>`,
 `<div class="cv s4">
   <div class="tb"><b>문의 전환</b><span>문의 폼 · 상담 버튼</span></div>
@@ -161,9 +172,11 @@ ul,ol{list-style:none}
 
 /* 작업 방식 */
 .how{display:grid;grid-template-columns:minmax(0,62fr) minmax(0,38fr);column-gap:clamp(40px,6vw,104px);margin-top:clamp(80px,9vw,140px)}
+.nt .how{margin-top:clamp(8px,1vw,16px)}
+.nt .kick{margin-bottom:0}
 .stick{position:sticky;top:calc(50vh - var(--mh,320px)/2 + 30px);align-self:start}
 .stage{position:relative;aspect-ratio:800/626}
-.stage .frame{position:absolute;inset:0;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease,visibility .6s}
+.stage .frame{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s}
 .stage .frame.cur{opacity:1;visibility:visible;transform:none}
 .frame{border-radius:14px;overflow:hidden;background:#0d0e12;container-type:inline-size;box-shadow:0 40px 90px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.08)}
 .bar0{height:3.2cqw;background:#17181d;display:flex;align-items:center;gap:.7cqw;padding:0 1.6cqw;border-bottom:1px solid #22242a}
@@ -203,7 +216,7 @@ ul,ol{list-style:none}
 .tb{position:absolute;left:0;right:0;top:0;height:64px;display:flex;align-items:center;gap:14px;padding:0 40px;border-bottom:1px solid #eceef1;font-size:17px;color:#8a8f97}
 .tb b{color:#10151c;font-size:20px}
 .lb{font-size:20px;font-weight:600;color:#8a8f97}
-.cv *,.cv *::before,.cv *::after{transition-duration:.3s!important;animation-duration:.6s!important}
+.cv *,.cv *::before,.cv *::after{transition:none!important;animation:none!important}
 
 /* 1 사업 이해 */
 .s1 .qs{position:absolute;left:40px;right:40px;top:92px;display:flex;flex-direction:column;gap:14px}
@@ -221,51 +234,96 @@ ul,ol{list-style:none}
 .s1.a10 .c2{background:#3560FF;color:#fff;box-shadow:none}
 .s1.a10 .c2 em{opacity:1;transform:none}
 
-/* 2 문구 설계 */
-.s2 .r{position:absolute;left:40px;right:40px;opacity:0;transform:translateY(12px)}
-.s2 .r1{top:98px}.s2 .r2{top:214px}
-.s2 .r3{top:332px;padding:26px 30px;border-radius:18px;background:rgba(53,96,255,.07)}
-.s2 .lb{margin-bottom:10px}
-.s2 .old{font-size:32px;font-weight:600;color:#9aa0aa}
-.s2 .old span{background:linear-gradient(#ff6b5e,#ff6b5e) 0 55%/0 3px no-repeat;transition:background-size .9s ease}
-.s2 .wq{font-size:30px;font-weight:600;color:#3a4250}
-.s2 .r3 .lb{color:#2848d6}
-.s2 .nw{font-size:40px;font-weight:700;line-height:1.32;letter-spacing:-.03em;color:#10151c}
-.s2 .r3 em{position:absolute;right:20px;top:-16px;font-style:normal;font-size:15px;font-weight:700;padding:6px 12px;border-radius:999px;background:#3560FF;color:#fff;opacity:0;transform:translateY(6px)}
-.s2.a1 .r1,.s2.a3 .r2,.s2.a4 .r3{opacity:1;transform:none}
-.s2.a2 .old span{background-size:100% 3px}
-.s2.a5 .r3{box-shadow:inset 0 0 0 2px #3560FF}
-.s2.a5 .r3 em{opacity:1;transform:none}
+/* 2 문구 설계: 같은 디자인, 문구만 바뀜 */
+.s2{background:#e9ebef}
+.s2 .hx{position:absolute;left:28px;right:28px;border-radius:12px;overflow:hidden;background:#f6f5f2;box-shadow:0 10px 30px -14px rgba(16,21,28,.35)}
+.s2 .h0{top:18px;height:214px}
+.s2 .h1{top:262px;height:320px;box-shadow:0 0 0 3px #3560FF,0 18px 40px -16px rgba(53,96,255,.45)}
+.s2 .nv{position:absolute;left:0;top:0;width:462px;height:50px;display:flex;align-items:center;gap:20px;padding:0 28px;font-size:13px;color:#5b616c}
+.s2 .nv b{font-size:18px;font-weight:800;letter-spacing:-.04em;color:#15171b;margin-right:auto}
+.s2 .hc{position:absolute;left:28px;top:64px;width:430px;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.s2 .h1 .hc{top:74px;gap:12px}
+.s2 h4{margin:0;font-size:24px;line-height:1.3;font-weight:700;letter-spacing:-.04em;color:#8a8f97}
+.s2 h4 s{text-decoration:line-through;text-decoration-color:#ff6b5e;text-decoration-thickness:2.5px}
+.s2 .h1 h4{font-size:31px;color:#15171b}
+.s2 mark{position:relative;background:linear-gradient(transparent 62%,rgba(53,96,255,.22) 62%);color:#2848d6;font-weight:700}
+.s2 sup,.s2 .co.good i{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#3560FF;color:#fff;font-size:12px;font-weight:700;font-style:normal;line-height:1}
+.s2 sup{position:relative;top:-.9em;margin-left:3px;vertical-align:baseline}
+.s2 .hc p{margin:0;font-size:14px;color:#8a8f97}
+.s2 .h1 .hc p{font-size:16px;color:#3a4250}
+.s2 .pf{display:flex;gap:8px}
+.s2 .pf span{padding:6px 11px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1px #dde0e5;font-size:13px;font-weight:600;color:#3a4250}
+.s2 .hc b{margin-top:4px;display:inline-flex;align-items:center;padding:10px 17px;border-radius:8px;font-size:14px;font-weight:600}
+.s2 .h0 .hc b{box-shadow:inset 0 0 0 1.5px #aab0b9;color:#8a8f97}
+.s2 .h1 .hc b{padding:13px 22px;font-size:16px;background:#3560FF;color:#fff;box-shadow:0 0 0 5px rgba(53,96,255,.16)}
+.s2 .h1 .hc b sup{background:#fff;color:#3560FF;top:-1.1em;margin-left:6px}
+.s2 .hp{position:absolute;right:0;top:0;bottom:0;width:250px;background:center/cover}
+.s2 .h0 .hp{filter:grayscale(.6) brightness(.95)}
+.s2 .co{position:absolute;right:16px;bottom:16px;width:218px;margin:0;padding:12px 14px;list-style:none;border-radius:12px;background:rgba(255,255,255,.96);box-shadow:0 10px 24px -10px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:8px;z-index:2}
+.s2 .co li{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#15171b}
+.s2 .co.bad li{color:#5b616c}
+.s2 .co.bad i{font-style:normal;width:20px;height:20px;border-radius:50%;background:#ffe9e6;color:#e5483a;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.s2 .lab,.s3 .lab{position:absolute;font-style:normal;font-size:15px;font-weight:700;padding:7px 13px;border-radius:999px;background:rgba(16,21,28,.82);color:#fff;z-index:3}
+.s2 .lab{right:14px;top:14px}
+.s2 .h1 .lab,.s3 .l1{background:#3560FF}
+.s2 .ar{position:absolute;left:382px;top:229px;width:36px;height:36px;border-radius:50%;background:#10151c;display:flex;align-items:center;justify-content:center;z-index:4}
 
-/* 3 디자인 설계 */
-.s3 .pg{position:absolute;left:40px;right:40px;top:88px;height:420px;border-radius:16px;background:#f4f5f7;overflow:hidden}
-.s3 .hd{position:absolute;left:0;right:0;top:0;height:56px;display:flex;align-items:center;gap:18px;padding:0 24px}
-.s3 .lo{width:26px;height:26px;border-radius:7px;background:#cfd3d9}
-.s3 .hd span{width:50px;height:10px;border-radius:5px;background:#dfe2e7}
-.s3 .hb{margin-left:auto;padding:9px 16px;border-radius:8px;background:#cfd3d9;color:transparent;font-size:15px}
-.s3 .tx{position:absolute;left:28px;top:92px;width:330px;height:180px}
-.s3 .wf{display:block;height:28px;border-radius:8px;background:#dfe2e7}
-.s3 .w1{width:300px}.s3 .w2{width:220px;margin-top:14px}
-.s3 h4{position:absolute;left:0;top:0;margin:0;font-size:36px;line-height:1.3;font-weight:700;letter-spacing:-.03em;opacity:0}
-.s3 .bt{position:absolute;left:0;top:124px;padding:14px 22px;border-radius:10px;background:#cfd3d9;color:transparent;font-size:19px}
-.s3 .ph{position:absolute;right:28px;top:84px;width:318px;height:220px;border-radius:14px;background:#dfe2e7;overflow:hidden}
-.s3 .ph i{position:absolute;inset:0;background:center/cover;opacity:0}
-.s3 .inf{position:absolute;left:28px;right:28px;bottom:24px;height:76px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.s3 .inf span{display:flex;flex-direction:column;justify-content:center;gap:4px;padding:0 18px;border-radius:12px;background:#fff;font-size:19px;font-weight:600;color:#9aa0aa}
-.s3 .inf small{font-size:14px;font-weight:500;color:#9aa0aa}
-.s3 .inf em{position:absolute;right:16px;top:-14px;font-style:normal;font-size:14px;font-weight:700;padding:5px 11px;border-radius:999px;background:#3560FF;color:#fff;opacity:0;transform:translateY(6px)}
-.s3 .tags{position:absolute;left:40px;top:530px;display:flex;gap:12px;margin:0;padding:0;list-style:none}
-.s3 .tags li{padding:10px 18px;border-radius:999px;background:#f4f5f7;font-size:22px;font-weight:600;color:#3a4250;opacity:0;transform:translateY(8px)}
-.s3.a1 .ph i{opacity:1}
-.s3.a2 h4{opacity:1}.s3.a2 .wf{opacity:0}
-.s3.a3 .pg{background:#f3efe8}
-.s3.a3 .lo,.s3.a3 .hb,.s3.a3 .bt{background:#2b2a27;color:#fff}
-.s3.a3 .hd span{background:#ddd6ca}
-.s3.a3 .t1,.s3.a4 .t2,.s3.a5 .t3{opacity:1;transform:none}
-.s3.a4 .inf span{box-shadow:inset 0 0 0 2px #3560FF;color:#10151c}
-.s3.a4 .inf small{color:#5b6573}
-.s3.a4 .inf em{opacity:1;transform:none}
-.s3.a5 .bt{background:#3560FF;box-shadow:0 0 0 6px rgba(53,96,255,.18)}
+/* 3 디자인 설계: 브라우저 창 안에서 전·후 비교 */
+.s3{background:#e9ebef}
+.s3 .bz{position:absolute;left:40px;width:720px;height:26px;border-radius:12px 12px 0 0;background:#f9fafb;border-bottom:1px solid #e3e5e9;display:flex;align-items:center;gap:6px;padding:0 12px;z-index:4}
+.s3 .z0{top:16px}.s3 .z1{top:310px}
+.s3 .bz i{width:9px;height:9px;border-radius:50%;background:#d5d8dd}
+.s3 .bz span{margin-left:10px;width:240px;height:16px;border-radius:5px;background:#eceef1;font-size:10px;color:#7d828c;display:flex;align-items:center;padding:0 8px}
+.s3 .fr{position:absolute;left:40px;width:800px;height:268px;transform:scale(.9);transform-origin:0 0;overflow:hidden;border-radius:0 0 14px 14px;box-shadow:0 18px 36px -18px rgba(16,21,28,.45)}
+.s3 .wa{top:42px}.s3 .wb{top:336px;box-shadow:0 0 0 3px #3560FF,0 18px 40px -16px rgba(53,96,255,.5)}
+.s3 .wa .oh{height:56px}
+.s3 .wa .ob{height:150px}.s3 .wa .ob h4{font-size:28px}
+.s3 .wa .oc{display:none}
+.s3 .wb .new{inset:0;clip-path:none;background:#0c0d10 var(--bg) left center/62% auto no-repeat}
+.s3 .wb .new::before{background:linear-gradient(90deg,rgba(12,13,16,0) 34%,rgba(12,13,16,.8) 54%,#0c0d10 64%)}
+.s3 .wb .nn{height:52px}
+.s3 .wb .nc{left:440px;top:52px;gap:10px}
+.s3 .wb .nc h4{font-size:29px}
+.s3 .wb .nc p{display:none}
+.s3 .wb .nc b{margin-top:2px;padding:11px 20px;font-size:15px}
+.s3 .wb .nk{display:none}
+.s3 .ar{position:absolute;left:382px;top:276px;width:36px;height:36px;border-radius:50%;background:#10151c;display:flex;align-items:center;justify-content:center;z-index:5;transform:rotate(90deg)}
+.s3 .old,.s3 .new{position:absolute;inset:0}
+.s3 .old{background:#fff;font-family:Dotum,'돋움',Gulim,'굴림',sans-serif;color:#333;letter-spacing:0}
+.s3 .ut{height:26px;background:#f3f3f3;border-bottom:1px solid #ddd;display:flex;justify-content:flex-end;gap:14px;padding:0 20px;align-items:center;font-size:11px;color:#777}
+.s3 .oh{height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
+.s3 .oh b{display:flex;align-items:center;gap:8px;font-size:25px;font-weight:700;color:#1d4f9a;letter-spacing:-1px}
+.s3 .oh b i{width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#5c9be6,#1d4f9a)}
+.s3 .oh span{font-size:12px;color:#666}.s3 .oh strong{color:#c0392b;font-size:16px}
+.s3 .on{height:40px;background:linear-gradient(#3a74c8,#1d4f9a);display:flex;align-items:center;padding:0 10px}
+.s3 .on span{padding:0 18px;color:#fff;font-size:14px;font-weight:700;border-right:1px solid rgba(255,255,255,.3)}
+.s3 .ob{position:relative;height:220px;background:center/cover;display:flex;flex-direction:column;justify-content:center;padding:0 40px;gap:8px}
+.s3 .ob::before{content:'';position:absolute;inset:0;background:rgba(20,60,130,.45)}
+.s3 .ob h4,.s3 .ob p{position:relative;margin:0;color:#fff;text-shadow:2px 2px 3px rgba(0,0,0,.6)}
+.s3 .ob h4{font-size:30px;font-weight:700;letter-spacing:-1px}.s3 .ob p{font-size:14px}
+.s3 .od{position:absolute;left:40px;bottom:16px;display:flex;gap:6px}.s3 .od i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.6)}
+.s3 .oc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px 18px}
+.s3 .oc>div{border:1px solid #d5d5d5;border-top:2px solid #1d4f9a;padding:8px 10px;height:132px}
+.s3 .oc h6{margin:0 0 8px;display:flex;justify-content:space-between;font-size:13px;color:#1d4f9a}
+.s3 .oc small{font-size:10px;color:#999;font-weight:400}
+.s3 .oc p{margin:0;font-size:11px;line-height:1.8;color:#666}
+.s3 .oc strong{font-size:16px;color:#c0392b}
+.s3 .th{display:flex;gap:5px}.s3 .th i{flex:1;height:64px;background:#ddd}
+.s3 .new{clip-path:inset(0 0 0 400px);background:#0c0d10 var(--bg) left center/62% auto no-repeat;color:#f4f5f7}
+.s3 .new::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,13,16,0) 30%,rgba(12,13,16,.75) 52%,#0c0d10 64%)}
+.s3 .nn{position:absolute;right:30px;top:0;height:64px;display:flex;align-items:center;gap:22px;font-size:14px;color:#b8bcc6}
+.s3 .nn b{padding:9px 16px;border-radius:999px;background:#f4f5f7;color:#0c0d10;font-size:14px}
+.s3 .nc{position:absolute;left:440px;top:118px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.s3 .nc small{font-size:14px;font-weight:600;color:#6f8dff}
+.s3 .nc h4{margin:0;font-size:38px;line-height:1.24;font-weight:700;letter-spacing:-.045em}
+.s3 .nc p{margin:0;font-size:16px;line-height:1.6;color:#9aa0aa}
+.s3 .nc b{margin-top:6px;padding:13px 22px;border-radius:999px;background:#3560FF;color:#fff;font-size:16px}
+.s3 .nk{position:absolute;left:440px;right:30px;bottom:72px;margin:0;padding:18px 0 0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:16px;border-top:1px solid #2a2d35}
+.s3 .nk li{display:flex;flex-direction:column;gap:2px;font-size:13px;color:#9aa0aa}
+.s3 .nk strong{font-size:24px;color:#f4f5f7;letter-spacing:-.03em}
+.s3 .dv{position:absolute;left:398px;top:0;bottom:0;width:4px;background:#fff;box-shadow:0 0 18px rgba(0,0,0,.35);z-index:2}
+.s3 .dv i{position:absolute;left:50%;top:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.s3 .l0{left:16px;top:16px}.s3 .l1{left:16px;top:16px}
 
 /* 4 문의 전환 */
 .s4 .lf{position:absolute;left:40px;top:100px;width:300px}
@@ -291,6 +349,8 @@ ul,ol{list-style:none}
 .s4.a5 .sb .x1{opacity:0}.s4.a5 .sb .y1{opacity:1}
 .s4 .toast{position:absolute;left:50%;top:84px;transform:translate(-50%,-12px);opacity:0;padding:14px 22px;border-radius:12px;background:#10151c;color:#fff;font-size:20px;font-weight:600;white-space:nowrap;box-shadow:0 16px 40px rgba(0,0,0,.2)}
 .s4.a6 .toast{opacity:1;transform:translate(-50%,0)}
+.s4 .f{box-shadow:inset 0 0 0 1px #e3e5e9!important}
+.s4 .sb{background:#3560FF}
 
 /* 포함 서비스 */
 .exs{margin-top:clamp(120px,12vw,200px)}
@@ -375,10 +435,10 @@ ul,ol{list-style:none}
       const frames = scenes(I).map((s, i) => `<div class="frame" data-i="${i}"><div class="bar0"><i></i><i></i><i></i><span></span></div><div class="face">${s}</div></div>`).join('');
       root.innerHTML = `<style>${css(c.colors)}</style>
 <div class="wrap">
-<section class="sec" aria-labelledby="bw-about-title">
+<section class="sec${c.titleLines.length ? '' : ' nt'}" aria-labelledby="${c.titleLines.length ? 'bw-about-title' : 'bw-st-title'}">
   <div class="intro">
     <p class="kick">${esc(c.kicker)}</p>
-    <h2 class="big" id="bw-about-title" aria-label="${esc(c.titleLines.map((l) => l.text).join(' '))}"><span aria-hidden="true">${title}</span></h2>
+    ${c.titleLines.length ? `<h2 class="big" id="bw-about-title" aria-label="${esc(c.titleLines.map((l) => l.text).join(' '))}"><span aria-hidden="true">${title}</span></h2>` : ''}
     ${c.side.length ? '<i class="rule"></i>' : ''}
     <div class="side">${c.side.map((p, i) => `<p class="${p.strong ? 'st' : ''}">${br(p.text).replace(/\*\*(.+?)\*\*/g, '<mark>$1</mark>')}</p>`).join('')}</div>
   </div>
@@ -410,11 +470,11 @@ ul,ol{list-style:none}
       // 장면 재생: 한 번 끝나면 결과 화면 유지
       // 장면 반복 재생: 보이는 동안 계속 반복
       const loops = {};
-      const finish = (i) => c.timeline[i].forEach((_, j) => cvs[i].classList.add('a' + (j + 1)));
+      // 왼쪽 화면은 움직이지 않고 완성된 장면만 보여줍니다
+      const finish = (i) => c.timeline[i].slice(0, i === 3 ? 4 : undefined).forEach((_, j) => cvs[i].classList.add('a' + (j + 1)));
       const stop = (i) => { const l = loops[i]; if (!l) return; l.ts.forEach(clearTimeout); clearTimeout(l.nx); delete loops[i]; };
       const play = (i) => {
-        if (loops[i]) return;
-        if (isStill()) return finish(i);
+        return finish(i);
         const tl = c.timeline[i], l = loops[i] = { ts: [], nx: 0 };
         const cyc = () => {
           tl.forEach((_, j) => cvs[i].classList.remove('a' + (j + 1)));
@@ -446,9 +506,7 @@ ul,ol{list-style:none}
       };
       const onScroll = () => {
         const vh = window.innerHeight;
-        const r = big.getBoundingClientRect();
-        const p = Math.min(1, Math.max(0, (vh * 0.88 - r.top) / (r.height + vh * 0.32)));
-        if (isStill() || r.top < vh * 0.78) lines.forEach((ln) => ln.classList.add('on'));
+        if (big) { const r = big.getBoundingClientRect(); if (isStill() || r.top < vh * 0.78) lines.forEach((ln) => ln.classList.add('on')); }
         $$('.eg>li').forEach((li) => { if (li.getBoundingClientRect().top < vh * 0.85) li.classList.add('in'); });
         const rl = $('.rule'); if (rl && rl.getBoundingClientRect().top < vh * 0.85) $('.intro').classList.add('in');
         if (this.mob.matches) {
