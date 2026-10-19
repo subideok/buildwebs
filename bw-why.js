@@ -90,8 +90,9 @@ h3{font-size:clamp(22px,1.9vw,30px);font-weight:700;letter-spacing:-.03em;line-h
 .gp.add{margin-top:8px;padding:28px clamp(20px,2.4vw,32px) 32px;border-top:0;border-radius:20px;background:rgba(53,96,255,.06);box-shadow:inset 0 0 0 1px rgba(53,96,255,.35)}
 .gp.add .gh em{color:${c.accentText}}
 .ig{grid-column:5/13;display:flex;flex-direction:column}
-.gp{padding:28px 0 32px;border-top:1px solid #1d1f25}
+.gp{position:relative;padding:36px 0 40px;border-top:1.5px solid #3A4A8C}
 .gp:first-child{border-top:0;padding-top:4px}
+.gh h5{color:${c.accentText}}
 .gh{display:flex;align-items:baseline;gap:12px;margin-bottom:22px}
 .gh h5{margin:0;font-size:clamp(19px,1.5vw,23px);font-weight:700;letter-spacing:-.02em}
 .gh em{font-style:normal;font-size:13px;font-weight:600;color:#6f747e}
