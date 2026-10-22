@@ -26,6 +26,7 @@
     },
     // row: 1 = 윗줄, 2 = 아랫줄 / h: 카드 높이 비율(1 = 화면 전체) / url: 클릭 시 이동할 홈페이지 주소
     items: [
+      { video: 'iamsugaring.mp4', poster: 'iamsugaring.jpg', name: '아이엠슈가링', type: '왁싱 · 뷰티 아카데미', intent: '', url: 'https://fgtrggy271237164.imweb.me/', row: 1, h: 1 },
       { site: 'ongyeol', name: '온결 건축', type: '건축 · 인테리어', intent: '시공 사진을 크게, 문구는 짧게. 공간이 실력을 말하도록 구성했습니다.', url: '#', row: 1, h: 1 },
       { site: 'lumion', name: '루미온 테크', type: '기술 기업', intent: '기능 나열 대신 한 화면에서 판단한다는 결과를 먼저 보여줍니다.', url: '#', row: 2, h: 0.9 },
       { site: 'haram', name: '하람 치과', type: '병원 · 의료', intent: '진료 시간과 예약 버튼을 첫 화면에 두어 망설임을 줄였습니다.', url: '#', row: 1, h: 0.88 },
@@ -34,7 +35,6 @@
       { site: 'moa', name: '모아 필라테스', type: '운동 · 웰니스', intent: '수업 방식 소개와 체험 신청을 한 흐름으로 묶었습니다.', url: '#', row: 2, h: 0.88 },
       { site: 'bareun', name: '바른결 컨설팅', type: '기업 컨설팅', intent: '진행 순서를 먼저 보여 무엇을 해 주는지 분명히 했습니다.', url: '#', row: 1, h: 1 },
       { site: 'saebom', name: '새봄 아카데미', type: '교육 · 학원', intent: '설명회 일정과 레벨 테스트 신청이 가장 먼저 보이게 했습니다.', url: '#', row: 2, h: 0.94 },
-      { site: 'orbitd', name: '오르빛 스튜디오', type: '브랜드 · 영상 제작', intent: '작업 영상을 가장 크게, 문의 버튼은 한 곳에만 두었습니다.', url: '#', row: 1, h: 0.9 },
       { site: 'nuri', name: '누리 물류', type: '물류 · 제조', intent: '도착 시간 조회를 첫 화면에 두어 견적 문의로 바로 잇습니다.', url: '#', row: 2, h: 1 }
     ],
     colors: { bg: '#050507', text: '#F4F5F7', gray: '#9AA0AA', dim: '#3A3D45', accent: '#3560FF', accentText: '#6F8DFF' }
@@ -160,7 +160,7 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
 .track{display:flex;align-items:flex-start;gap:var(--gap);width:max-content;will-change:transform}
 .card{flex:none;width:var(--cw);padding:0;border:0;background:none;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:14px}
 .scr{position:relative;width:100%;border-radius:12px;overflow:hidden;background:#111;box-shadow:0 30px 60px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.07);transition:box-shadow .35s,transform .35s cubic-bezier(.2,.7,.2,1)}
-.scr img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.scr img,.scr video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:top}
 .card:hover .scr,.card:focus-visible .scr{transform:translateY(-4px);box-shadow:0 36px 70px -30px rgba(0,0,0,.95),0 0 0 1px rgba(111,141,255,.55)}
 .cap{display:flex;align-items:baseline;gap:10px;padding:0 2px}
 .cap b{font-size:15px;font-weight:600}
@@ -181,6 +181,7 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
 .x:hover{border-color:#4a4e58}
 .vs{position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;perspective:1800px}
 .mn{position:relative;width:min(1120px,72vw,calc((100vh - 280px) * 1.6));aspect-ratio:1280/800;border-radius:14px;overflow:hidden;display:block;background:#111;box-shadow:0 50px 100px -30px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.08);transition:opacity .35s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+.mn>img,.mn>video,.sd>img,.sd>video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:top}
 .mn.sw{opacity:0;transform:translateX(calc(var(--dir,1) * 40px))}
 .mn .go{position:absolute;right:16px;bottom:16px;z-index:5;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;background:rgba(8,9,12,.78);color:#fff;font-size:13px;font-weight:600;text-decoration:none;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
 .mn:hover .go,.mn:focus-visible .go{opacity:1;transform:none}
@@ -188,7 +189,7 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
 .sd:hover{opacity:.5}
 .sd.l{right:calc(50% + min(560px,36vw) + 0px);transform:translate(42%,-50%) rotateY(28deg) scale(.86);transform-origin:100% 50%}
 .sd.r{left:calc(50% + min(560px,36vw) + 0px);transform:translate(-42%,-50%) rotateY(-28deg) scale(.86);transform-origin:0 50%}
-.vi{flex:none;width:min(1120px,72vw,calc((100vh - 280px) * 1.6));margin:0 auto;padding:24px 0 36px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:32px}
+.vi{flex:none;width:min(1120px,72vw,calc((100vh - 280px) * 1.6));margin:0 auto;padding:24px 0 36px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:32px}
 .vi .nm b{display:block;font-size:24px;font-weight:700;letter-spacing:-.02em}
 .vi .nm span{font-size:14px;color:var(--gray)}
 .vi .it{font-size:16px;line-height:1.6;color:#c4c8d0;padding-left:32px;border-left:1px solid #24262c}
@@ -444,7 +445,8 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
       const I = {};
       for (const k in c.images) I[k] = /^(https?:|\/|data:)/.test(c.images[k]) ? c.images[k] : new URL(c.assetBase + c.images[k], (window.BW_ASSET_BASE || BW_SELF_BASE)).href;
       const N = c.items.length;
-      const screen = (it) => it.img ? `<img src="${esc(it.img)}" alt="" loading="lazy">` : (SITES[it.site] ? SITES[it.site](I) : '');
+      const A = (s) => /^(https?:|\/|data:)/.test(s) ? s : new URL(c.assetBase + s, (window.BW_ASSET_BASE || BW_SELF_BASE)).href;
+      const screen = (it) => it.video ? `<video src="${esc(A(it.video))}"${it.poster ? ` poster="${esc(A(it.poster))}"` : ''} autoplay muted loop playsinline preload="metadata"></video>` : it.img ? `<img src="${esc(it.img)}" alt="" loading="lazy">` : (SITES[it.site] ? SITES[it.site](I) : '');
       const card = (it, i, clone) => `<button class="card" type="button" data-i="${i}"${clone ? ' tabindex="-1" aria-hidden="true"' : ` aria-label="${esc(it.name)} 크게 보기"`}><span class="scr" style="aspect-ratio:1280/${Math.round(800 * (it.h || 1))}">${screen(it)}</span><span class="cap"><b>${esc(it.name)}</b><span>${esc(it.type)}</span><i>크게 보기</i></span></button>`;
       const row = (r) => {
         const list = c.items.map((it, i) => [it, i]).filter(([it]) => (it.row || 1) === r);
@@ -467,7 +469,7 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
 <div class="vw" role="dialog" aria-modal="true" aria-label="포트폴리오 크게 보기" aria-hidden="true">
   <div class="vt"><span class="ix"></span><span class="tag">${esc(c.label)}</span><button class="x" type="button" aria-label="닫기">${ICON.x}</button></div>
   <div class="vs"><button class="sd l" type="button" tabindex="-1" aria-hidden="true"></button><a class="mn" target="_blank" rel="noopener"></a><button class="sd r" type="button" tabindex="-1" aria-hidden="true"></button></div>
-  <div class="vi"><div class="nm"><b></b><span></span></div><p class="it"></p>
+  <div class="vi"><div class="nm"><b></b><span></span></div>
     <div class="nv"><button class="nb pv" type="button" aria-label="이전 시안">${ICON.prev}</button><button class="nb nx" type="button" aria-label="다음 시안">${ICON.next}</button><a class="lk" target="_blank" rel="noopener">홈페이지 바로가기${ICON.out}</a></div></div>
 </div>
 </div>`;
@@ -544,7 +546,7 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
       requestAnimationFrame(tick);
 
       // 크게 보기
-      const vw = $('.vw'), mn = $('.mn'), sl = $('.sd.l'), sr = $('.sd.r'), lk = $('.lk');
+      const vw = $('.vw'), mn = $('.mn'), sl = $('.sd.l'), sr = $('.sd.r'), lk = $('.vi .lk');
       const viewer = { open: false, i: 0, from: null };
       const paint = (i, dir) => {
         const it = c.items[i], p = c.items[(i - 1 + N) % N], n = c.items[(i + 1) % N];
@@ -555,7 +557,6 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
           [mn, sl, sr].forEach(fit);
           $('.ix').innerHTML = `${String(i + 1).padStart(2, '0')} <em>/ ${String(N).padStart(2, '0')}</em>`;
           $('.nm b').textContent = it.name; $('.nm span').textContent = it.type;
-          $('.it').innerHTML = `<small>기획 의도</small>${esc(it.intent)}`;
           lk.href = it.url || '#';
         };
         if (!dir) return fill();

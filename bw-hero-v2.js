@@ -42,14 +42,14 @@
       interval: 1500,     // 넘어가는 간격(ms)
       duration: 700,      // 넘어가는 동작 시간(ms)
       visible: 3,         // 앞장 기준 앞뒤로 보이는 장 수 (3 → 최대 7장)
-      // 카드 교체: site 대신 img: '이미지주소' 를 넣으면 실제 포트폴리오 캡처(1280×800 비율 권장)로 바뀝니다.
+      // 카드 교체: site 대신 img: '이미지주소' 또는 video: '영상주소'(+ poster: '첫 화면 이미지')를 넣으면 실제 포트폴리오로 바뀝니다.
       cards: [
+        { video: 'iamsugaring.mp4', poster: 'iamsugaring.jpg', name: '아이엠슈가링', type: '왁싱 · 뷰티 아카데미' },
         { site: 'ongyeol', name: '온결 건축', type: '건축 · 인테리어' },
         { site: 'lumion', name: '루미온 테크', type: '기술 기업' },
         { site: 'damon', name: '담온 스테이', type: '프리미엄 숙소' },
         { site: 'haram', name: '하람 치과', type: '병원 · 의료' },
         { site: 'bareun', name: '바른결 컨설팅', type: '기업 컨설팅' },
-        { site: 'orbitd', name: '오르빛 스튜디오', type: '브랜드 · 영상 제작' },
         { site: 'jeongyeon', name: '정연 법률사무소', type: '법률 · 전문직' },
         { site: 'saebom', name: '새봄 아카데미', type: '교육 · 학원' }
       ]
@@ -203,7 +203,7 @@ h1 .ac{color:var(--accent-text)}
 .card .bar i{width:.9cqw;height:.9cqw;border-radius:50%;background:#cfd0d4}
 .card .bar span{margin:0 auto;height:1.8cqw;width:34%;border-radius:99px;background:#e4e4e8}
 .face{position:relative;aspect-ratio:1280/800;overflow:hidden}
-.face img{width:100%;height:100%;object-fit:cover;display:block}
+.face img,.face video{width:100%;height:100%;object-fit:cover;display:block}
 .shade{position:absolute;inset:0;background:#050507;pointer-events:none;z-index:4}
 .ghost{position:absolute;left:56%;top:48%;width:var(--cw);aspect-ratio:1280/840;border-radius:14px;border:1px solid rgba(255,255,255,.07);background:transparent}
 .fade{position:absolute;pointer-events:none;z-index:200}
@@ -505,6 +505,7 @@ h1 .ac{color:var(--accent-text)}
       this.mq = ({ matches: false, addEventListener() {} });
       this.mob = window.matchMedia('(max-width: 860px)');
       const root = this.attachShadow({ mode: 'open' });
+      const A = (s) => /^(https?:|\/|data:)/.test(s) ? s : new URL(cfg.assetBase + s, (window.BW_ASSET_BASE || BW_SELF_BASE)).href;
       const logoUrl = cfg.logoSrc && !/^(https?:|\/|data:)/.test(cfg.logoSrc) ? new URL(cfg.logoSrc, window.BW_ASSET_BASE || BW_SELF_BASE).href : cfg.logoSrc;
       const logo = cfg.logoSrc ? `<img src="${esc(logoUrl)}" alt="${esc(cfg.logoText)}" onerror="this.replaceWith(this.alt)">` : esc(cfg.logoText);
       const links = cfg.menu.map((m) => `<li><a href="${esc(m.href)}">${esc(m.label)}</a></li>`).join('');
@@ -522,7 +523,7 @@ h1 .ac{color:var(--accent-text)}
   <section class="hero" aria-label="빌드웹스 소개">
     <div class="bgl" aria-hidden="true"></div>
     <div class="stage" role="img" aria-label="빌드웹스가 자체 기획한 가상 브랜드 홈페이지 시안 모음">
-      <div class="stack">${cfg.gallery.cards.map((c, i) => `<div class="card" data-i="${i}"><div class="bar"><i></i><i></i><i></i><span></span></div><div class="face">${c.img ? `<img src="${esc(c.img)}" alt="${esc(c.name)} 홈페이지 시안">` : (SITES[c.site] ? SITES[c.site](I) : '')}</div><i class="shade"></i></div>`).join('')}</div>
+      <div class="stack">${cfg.gallery.cards.map((c, i) => `<div class="card" data-i="${i}"><div class="bar"><i></i><i></i><i></i><span></span></div><div class="face">${c.video ? `<video src="${esc(A(c.video))}"${c.poster ? ` poster="${esc(A(c.poster))}"` : ''} autoplay muted loop playsinline preload="auto" aria-label="${esc(c.name)} 홈페이지"></video>` : c.img ? `<img src="${esc(c.img)}" alt="${esc(c.name)} 홈페이지 시안">` : (SITES[c.site] ? SITES[c.site](I) : '')}</div><i class="shade"></i></div>`).join('')}</div>
       <i class="fade t"></i><i class="fade b"></i><i class="fade l"></i><i class="fade r"></i>
       <div class="meta"><p class="now" aria-live="polite"></p><span class="idx"></span><span class="mk">${esc(cfg.gallery.label)}</span></div>
     </div>
