@@ -45,8 +45,8 @@
       // 카드 교체: site 대신 img: '이미지주소' 또는 video: '영상주소'(+ poster: '첫 화면 이미지')를 넣으면 실제 포트폴리오로 바뀝니다.
       cards: [
         { video: 'iamsugaring.mp4', poster: 'iamsugaring.jpg', name: '아이엠슈가링', type: '왁싱 · 뷰티 아카데미' },
-        { site: 'ongyeol', name: '온결 건축', type: '건축 · 인테리어' },
-        { site: 'lumion', name: '루미온 테크', type: '기술 기업' },
+        { img: 'yeppeojida.jpg', name: '예뻐지다', type: '뷰티 · 피부' },
+        { img: 'gmflexible.jpg', name: '광명후렉시블', type: '제조 · 산업 설비' },
         { site: 'damon', name: '담온 스테이', type: '프리미엄 숙소' },
         { site: 'haram', name: '하람 치과', type: '병원 · 의료' },
         { site: 'bareun', name: '바른결 컨설팅', type: '기업 컨설팅' },
@@ -523,7 +523,7 @@ h1 .ac{color:var(--accent-text)}
   <section class="hero" aria-label="빌드웹스 소개">
     <div class="bgl" aria-hidden="true"></div>
     <div class="stage" role="img" aria-label="빌드웹스가 자체 기획한 가상 브랜드 홈페이지 시안 모음">
-      <div class="stack">${cfg.gallery.cards.map((c, i) => `<div class="card" data-i="${i}"><div class="bar"><i></i><i></i><i></i><span></span></div><div class="face">${c.video ? `<video src="${esc(A(c.video))}"${c.poster ? ` poster="${esc(A(c.poster))}"` : ''} autoplay muted loop playsinline preload="auto" aria-label="${esc(c.name)} 홈페이지"></video>` : c.img ? `<img src="${esc(c.img)}" alt="${esc(c.name)} 홈페이지 시안">` : (SITES[c.site] ? SITES[c.site](I) : '')}</div><i class="shade"></i></div>`).join('')}</div>
+      <div class="stack">${cfg.gallery.cards.map((c, i) => `<div class="card" data-i="${i}"><div class="bar"><i></i><i></i><i></i><span></span></div><div class="face">${c.video ? `<video src="${esc(A(c.video))}"${c.poster ? ` poster="${esc(A(c.poster))}"` : ''} autoplay muted loop playsinline preload="auto" aria-label="${esc(c.name)} 홈페이지"></video>` : c.img ? `<img src="${esc(A(c.img))}" alt="${esc(c.name)} 홈페이지">` : (SITES[c.site] ? SITES[c.site](I) : '')}</div><i class="shade"></i></div>`).join('')}</div>
       <i class="fade t"></i><i class="fade b"></i><i class="fade l"></i><i class="fade r"></i>
       <div class="meta"><p class="now" aria-live="polite"></p><span class="idx"></span><span class="mk">${esc(cfg.gallery.label)}</span></div>
     </div>
