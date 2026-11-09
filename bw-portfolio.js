@@ -29,7 +29,7 @@
       { video: 'iamsugaring.mp4', poster: 'iamsugaring.jpg', name: '아이엠슈가링', type: '왁싱 · 뷰티 아카데미', intent: '', url: 'https://fgtrggy271237164.imweb.me/', row: 1, h: 1 },
       { img: 'yeppeojida.jpg', name: '예뻐지다', type: '뷰티 · 피부', intent: '', url: 'https://yeppeojida.imweb.me/', row: 2, h: 1 },
       { img: 'gmflexible.jpg', name: '광명후렉시블', type: '제조 · 산업 설비', intent: '', url: 'https://gwangmyeongflexible2.imweb.me/', row: 1, h: 0.94 },
-      { site: 'haram', name: '하람 치과', type: '병원 · 의료', intent: '진료 시간과 예약 버튼을 첫 화면에 두어 망설임을 줄였습니다.', url: '#', row: 1, h: 0.88 },
+      { img: 'daolhouse.jpg', name: '다올부동산', type: '부동산 중개', intent: '', url: 'https://daolhouse.imweb.me/', row: 1, h: 0.88 },
       { site: 'damon', name: '담온 스테이', type: '프리미엄 숙소', intent: '첫 화면에서 바로 날짜를 고르도록 예약 입력을 올렸습니다.', url: '#', row: 2, h: 1 },
       { site: 'jeongyeon', name: '정연 법률사무소', type: '법률 · 전문직', intent: '업무 분야 세 가지를 첫 화면에서 바로 고르게 했습니다.', url: '#', row: 1, h: 0.94 },
       { site: 'moa', name: '모아 필라테스', type: '운동 · 웰니스', intent: '수업 방식 소개와 체험 신청을 한 흐름으로 묶었습니다.', url: '#', row: 2, h: 0.88 },
@@ -447,7 +447,7 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
       const N = c.items.length;
       const A = (s) => /^(https?:|\/|data:)/.test(s) ? s : new URL(c.assetBase + s, (window.BW_ASSET_BASE || BW_SELF_BASE)).href;
       const screen = (it) => it.video ? `<video src="${esc(A(it.video))}"${it.poster ? ` poster="${esc(A(it.poster))}"` : ''} autoplay muted loop playsinline preload="metadata"></video>` : it.img ? `<img src="${esc(A(it.img))}" alt="${esc(it.name)} 홈페이지" loading="lazy">` : (SITES[it.site] ? SITES[it.site](I) : '');
-      const card = (it, i, clone) => `<button class="card" type="button" data-i="${i}"${clone ? ' tabindex="-1" aria-hidden="true"' : ` aria-label="${esc(it.name)} 크게 보기"`}><span class="scr" style="aspect-ratio:1280/${Math.round(800 * (it.h || 1))}">${screen(it)}</span><span class="cap"><b>${esc(it.name)}</b><span>${esc(it.type)}</span><i>크게 보기</i></span></button>`;
+      const card = (it, i, clone) => `<button class="card" type="button" data-i="${i}"${clone ? ' tabindex="-1" aria-hidden="true"' : ` aria-label="${esc(it.name)} 크게 보기"`}><span class="scr" style="aspect-ratio:1280/800">${screen(it)}</span><span class="cap"><b>${esc(it.name)}</b><span>${esc(it.type)}</span><i>크게 보기</i></span></button>`;
       const row = (r) => {
         const list = c.items.map((it, i) => [it, i]).filter(([it]) => (it.row || 1) === r);
         const set = (clone) => list.map(([it, i]) => card(it, i, clone)).join('');

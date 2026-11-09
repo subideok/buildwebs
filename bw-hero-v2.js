@@ -48,7 +48,7 @@
         { img: 'yeppeojida.jpg', name: '예뻐지다', type: '뷰티 · 피부' },
         { img: 'gmflexible.jpg', name: '광명후렉시블', type: '제조 · 산업 설비' },
         { site: 'damon', name: '담온 스테이', type: '프리미엄 숙소' },
-        { site: 'haram', name: '하람 치과', type: '병원 · 의료' },
+        { img: 'daolhouse.jpg', name: '다올부동산', type: '부동산 중개' },
         { site: 'bareun', name: '바른결 컨설팅', type: '기업 컨설팅' },
         { site: 'jeongyeon', name: '정연 법률사무소', type: '법률 · 전문직' },
         { site: 'saebom', name: '새봄 아카데미', type: '교육 · 학원' }
