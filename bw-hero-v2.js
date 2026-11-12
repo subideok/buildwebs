@@ -47,11 +47,11 @@
         { video: 'iamsugaring.mp4', poster: 'iamsugaring.jpg', name: '아이엠슈가링', type: '왁싱 · 뷰티 아카데미' },
         { img: 'yeppeojida.jpg', name: '예뻐지다', type: '뷰티 · 피부' },
         { img: 'gmflexible.jpg', name: '광명후렉시블', type: '제조 · 산업 설비' },
+        { video: 'lucina.mp4', poster: 'lucina.jpg', name: '루시나 아카데미', type: '타로 · 상담 아카데미' },
         { site: 'damon', name: '담온 스테이', type: '프리미엄 숙소' },
         { img: 'daolhouse.jpg', name: '다올부동산', type: '부동산 중개' },
         { site: 'bareun', name: '바른결 컨설팅', type: '기업 컨설팅' },
-        { site: 'jeongyeon', name: '정연 법률사무소', type: '법률 · 전문직' },
-        { site: 'saebom', name: '새봄 아카데미', type: '교육 · 학원' }
+        { site: 'jeongyeon', name: '정연 법률사무소', type: '법률 · 전문직' }
       ]
     },
     fontCss: [
@@ -523,7 +523,7 @@ h1 .ac{color:var(--accent-text)}
   <section class="hero" aria-label="빌드웹스 소개">
     <div class="bgl" aria-hidden="true"></div>
     <div class="stage" role="img" aria-label="빌드웹스가 자체 기획한 가상 브랜드 홈페이지 시안 모음">
-      <div class="stack">${cfg.gallery.cards.map((c, i) => `<div class="card" data-i="${i}"><div class="bar"><i></i><i></i><i></i><span></span></div><div class="face">${c.video ? `<video src="${esc(A(c.video))}"${c.poster ? ` poster="${esc(A(c.poster))}"` : ''} autoplay muted loop playsinline preload="auto" aria-label="${esc(c.name)} 홈페이지"></video>` : c.img ? `<img src="${esc(A(c.img))}" alt="${esc(c.name)} 홈페이지">` : (SITES[c.site] ? SITES[c.site](I) : '')}</div><i class="shade"></i></div>`).join('')}</div>
+      <div class="stack">${cfg.gallery.cards.map((c, i) => `<div class="card" data-i="${i}"><div class="bar"><i></i><i></i><i></i><span></span></div><div class="face">${c.video ? `<video src="${esc(A(c.video))}"${c.poster ? ` poster="${esc(A(c.poster))}"` : ''} muted loop playsinline preload="${i === 0 ? 'auto' : 'metadata'}" aria-label="${esc(c.name)} 홈페이지"></video>` : c.img ? `<img src="${esc(A(c.img))}" alt="${esc(c.name)} 홈페이지">` : (SITES[c.site] ? SITES[c.site](I) : '')}</div><i class="shade"></i></div>`).join('')}</div>
       <i class="fade t"></i><i class="fade b"></i><i class="fade l"></i><i class="fade r"></i>
       <div class="meta"><p class="now" aria-live="polite"></p><span class="idx"></span><span class="mk">${esc(cfg.gallery.label)}</span></div>
     </div>
@@ -589,7 +589,7 @@ h1 .ac{color:var(--accent-text)}
       let cur = 0, from = 0, to = 0, t0 = 0, hover = false, visible = true, last = performance.now(), acc = 0;
       const ease = (t) => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
       const wrap = (p) => { p = ((p % N) + N) % N; return p >= N / 2 ? p - N : p; };
-      const label = () => { const i = ((Math.round(to) % N) + N) % N, c = G.cards[i]; now.innerHTML = esc(c.name) + '<em>' + esc(c.type) + '</em>'; idx.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(N).padStart(2, '0'); };
+      const label = () => { const i = ((Math.round(to) % N) + N) % N, c = G.cards[i]; now.innerHTML = esc(c.name) + '<em>' + esc(c.type) + '</em>'; els.forEach((el, k) => { const v = el.querySelector('video'); if (!v) return; if (k === i && visible) { v.preload = 'auto'; const pr = v.play(); pr && pr.catch(() => {}); } else if (!v.paused) v.pause(); }); idx.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(N).padStart(2, '0'); };
 
       const layout = () => {
         const m = this.mob.matches, cw = els[0].offsetWidth, ch = els[0].offsetHeight;

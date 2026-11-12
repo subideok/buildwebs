@@ -16,7 +16,8 @@
     items: [
       { img: 'review-iamsugaring.jpg', text: '요즘은 홈페이지 보고 **아카데미 수강 연락이 많이 늘어서** 왜 진작 안 만들었나 싶어요', name: '아이엠슈가링 사장님', biz: '왁싱 · 뷰티 아카데미', plan: '홈페이지 신규 제작' },
       { img: 'review-yeppeojida.png', text: '홈페이지 제작을 고민하시는 분들께 **자신 있게 추천하고 싶어요!!**', name: '예뻐지다 원장님', biz: '뷰티 · 피부', plan: '홈페이지 신규 제작' },
-      { img: 'review-gmflexible.jpg', text: '작업물 결과가 **기대보다 훨씬 이상**입니다!', name: '광명후렉시블 대표님', biz: '제조 · 산업 설비', plan: '홈페이지 리뉴얼' }
+      { img: 'review-gmflexible.jpg', text: '작업물 결과가 **기대보다 훨씬 이상**입니다!', name: '광명후렉시블 대표님', biz: '제조 · 산업 설비', plan: '홈페이지 리뉴얼' },
+      { img: 'review-daolhouse.jpg', text: '생각했던 것보다 **훨씬 깔끔하게** 나왔고, 다올부동산만의 분위기도 잘 살려주셨어요.', name: '다올부동산 대표님', biz: '부동산 중개', plan: '홈페이지 신규 제작' }
     ],
     colors: { bg: '#F4F5F7', ink: '#0B0C10', gray: '#5B616C', line: '#E2E4E9', card: '#FFFFFF', accent: '#3560FF', dark: '#0B0C10' }
   };
@@ -44,7 +45,7 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
 .cd:hover{box-shadow:0 0 0 1px #c9cdd6,0 40px 70px -36px rgba(11,12,16,.35)}
 .in .cd{opacity:1;translate:0 0;rotate:0deg}
 .cd.tilt{transition:opacity .9s ease var(--d,0s),translate 1.1s cubic-bezier(.16,.84,.24,1) var(--d,0s),rotate 1.3s cubic-bezier(.16,.84,.24,1) var(--d,0s),transform .12s linear,box-shadow .4s}
-.ctl{display:flex;align-items:center;gap:20px;margin-top:clamp(28px,3vw,44px)}
+.ctl{display:flex;align-items:center;justify-content:flex-end;gap:20px;margin-top:clamp(28px,3vw,44px)}
 .bar{flex:1;height:2px;border-radius:2px;background:${c.line};overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:${c.ink};border-radius:2px;transition:width .2s}
 .ix{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:${c.gray};min-width:52px}
@@ -104,11 +105,11 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
       const root = this.attachShadow({ mode: 'open' });
       const A = (s) => /^(https?:|\/|data:)/.test(s) ? s : new URL(c.assetBase + s, (window.BW_ASSET_BASE || BW_SELF_BASE)).href;
       const card = (r, i) => `<li class="cd${r.featured ? ' ft' : ''}${r.img ? ' im' : ''}" style="--d:${Math.min(i, 4) * 0.14}s;--r:${[-2.4, 1.8, -1.2, 2.2][i % 4]}deg">${r.img ? `<button type="button" class="sh" data-src="${esc(A(r.img))}" aria-label="${esc(r.name)} 후기 이미지 크게 보기"><img src="${esc(A(r.img))}" alt="${esc(r.name)} 후기 이미지" loading="lazy"><span>크게 보기</span></button>` : ''}${r.text ? `<p class="q">${esc(r.text).replace(/\*\*(.+?)\*\*/g, '<mark>$1</mark>')}</p>` : ''}<div class="who"><div><b>${esc(r.name)}</b><span>${esc(r.biz)}</span></div><i>${esc(r.plan)}</i></div></li>`;
-      root.innerHTML = `<style>${css(c.colors)}</style><div class="wrap${c.items.length <= 3 ? ' cnt3' : ''}"><section class="sec" aria-labelledby="bw-rv-title">
+      root.innerHTML = `<style>${css(c.colors)}</style><div class="wrap"><section class="sec" aria-labelledby="bw-rv-title">
   <div class="hd"><p class="kick">${esc(c.kicker)}</p><h2 id="bw-rv-title">${br(c.title)}</h2>
     <div class="rt"><p>${br(c.desc)}</p>${c.sampleNote ? `<span class="note">${esc(c.sampleNote)}</span>` : ''}</div></div>
-  <div class="rail"><ul class="grid" aria-label="고객 후기 목록">${c.items.map(card).join('')}</ul></div>
-  <div class="ctl"><span class="ix"><b>01</b> / ${String(c.items.length).padStart(2, '0')}</span><span class="bar"><i></i></span>
+  <div class="rail"><ul class="grid" aria-label="고객 후기 목록">${[0, 1, 2].map((k) => c.items.map((it, i) => card(it, i).replace('<li class="cd', k === 1 ? '<li class="cd' : '<li aria-hidden="true" class="cd')).join('')).join('')}</ul></div>
+  <div class="ctl">
     <div class="nb"><button type="button" class="pv" aria-label="이전 후기"><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="nx" aria-label="다음 후기"><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
 </section><div class="lb" role="dialog" aria-modal="true" aria-label="후기 이미지"><img alt=""><button type="button" aria-label="닫기">×</button></div></div>`;
       const wrap = root.querySelector('.wrap'), grid = root.querySelector('.grid');
@@ -116,28 +117,27 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
       this.applyStill = () => wrap.classList.toggle('still', mq.matches || this.getAttribute('still') === 'true');
       this.applyStill();
       new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { grid.classList.add('in'); o.disconnect(); } }, { threshold: 0.12 }).observe(grid);
-      const cards = [...grid.children], bar = root.querySelector('.bar i'), ix = root.querySelector('.ix b'), pv = root.querySelector('.pv'), nx = root.querySelector('.nx');
+      const cards = [...grid.children], pv = root.querySelector('.pv'), nx = root.querySelector('.nx');
       const curIdx = () => { let best = 0, bd = 1e9; const gl = grid.getBoundingClientRect().left + parseFloat(getComputedStyle(grid).paddingLeft); cards.forEach((cd, i) => { const d = Math.abs(cd.getBoundingClientRect().left - gl); if (d < bd) { bd = d; best = i; } }); return best; };
+      let dx = null, sl = 0, moved = false;
+      const n = c.items.length;
+      const setW = () => cards[n].offsetLeft - cards[0].offsetLeft;
       const update = () => {
-        const max = grid.scrollWidth - grid.clientWidth, r = max > 0 ? grid.scrollLeft / max : 1;
-        bar.style.width = (Math.max(1 / cards.length, r) * 100).toFixed(1) + '%';
-        const i = r > 0.995 ? cards.length - 1 : curIdx();
-        ix.textContent = String(i + 1).padStart(2, '0');
-        pv.disabled = grid.scrollLeft < 4; nx.disabled = grid.scrollLeft > max - 4;
+        const i = curIdx() % n;
       };
+      const recenter = () => { if (dx !== null) return; const w = setW(), s = grid.scrollLeft; if (!w) return;
+        if (s < w * 0.5 || s > w * 1.5) { grid.style.scrollSnapType = 'none'; grid.style.scrollBehavior = 'auto'; grid.scrollLeft = s + (s < w * 0.5 ? w : -w); requestAnimationFrame(() => { grid.style.scrollSnapType = ''; grid.style.scrollBehavior = ''; }); } };
+      let rcT; grid.addEventListener('scroll', () => { clearTimeout(rcT); rcT = setTimeout(recenter, 140); }, { passive: true });
+      requestAnimationFrame(() => { grid.style.scrollBehavior = 'auto'; grid.scrollLeft = setW(); grid.style.scrollBehavior = ''; update(); });
+      window.addEventListener('resize', () => { grid.scrollLeft = setW() + (curIdx() % n) * (cards[1].offsetLeft - cards[0].offsetLeft); });
       const go = (i) => { const cd = cards[Math.max(0, Math.min(cards.length - 1, i))]; const gl = grid.getBoundingClientRect().left + parseFloat(getComputedStyle(grid).paddingLeft); grid.scrollTo({ left: Math.max(0, grid.scrollLeft + cd.getBoundingClientRect().left - gl), behavior: 'smooth' }); };
       const pos = () => { const max = grid.scrollWidth - grid.clientWidth, o = cards[0].offsetLeft; return cards.map((cd) => Math.min(max, Math.max(0, cd.offsetLeft - o))); };
-      const step = (d) => { const p = pos(), s = grid.scrollLeft; let t;
-        if (d < 0) { t = 0; p.forEach((v) => { if (v < s - 8) t = v; }); }
-        else { t = p.find((v) => v > s + 8); if (t === undefined) t = p[p.length - 1]; }
-        grid.style.scrollSnapType = 'none'; grid.scrollTo({ left: t, behavior: 'smooth' });
+      const step = (d) => { recenter(); const t = cards[curIdx() + d]; if (!t) return;
+        grid.style.scrollSnapType = 'none'; grid.scrollTo({ left: t.offsetLeft - cards[0].offsetLeft, behavior: 'smooth' });
         clearTimeout(step.tm); step.tm = setTimeout(() => { grid.style.scrollSnapType = ''; }, 700); };
       pv.addEventListener('click', () => step(-1));
       nx.addEventListener('click', () => step(1));
       grid.addEventListener('scroll', update, { passive: true });
-      window.addEventListener('resize', update);
-      update();
-      let dx = null, sl = 0, moved = false;
       grid.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse') return; dx = e.clientX; sl = grid.scrollLeft; moved = false; grid.classList.add('drag'); });
       window.addEventListener('pointermove', (e) => { if (dx === null) return; const d = e.clientX - dx; if (Math.abs(d) > 4) moved = true; grid.scrollLeft = sl - d; });
       window.addEventListener('pointerup', () => { if (dx === null) return; dx = null; grid.classList.remove('drag'); go(curIdx()); });
