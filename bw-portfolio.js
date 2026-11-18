@@ -26,7 +26,7 @@
     },
     // row: 1 = 윗줄, 2 = 아랫줄 / h: 카드 높이 비율(1 = 화면 전체) / url: 클릭 시 이동할 홈페이지 주소
     items: [
-      { video: 'iamsugaring.mp4', poster: 'iamsugaring.jpg', name: '아이엠슈가링', type: '왁싱 · 뷰티 아카데미', intent: '', url: 'https://fgtrggy271237164.imweb.me/', row: 1, h: 1 },
+      { video: 'iamsugaring.mp4', poster: 'iamsugaring.jpg', name: '아이엠슈가링', type: '왁싱 · 뷰티 아카데미', intent: '', url: 'https://iamsugaring.imweb.me/', row: 1, h: 1 },
       { img: 'yeppeojida.jpg', name: '예뻐지다', type: '뷰티 · 피부', intent: '', url: 'https://yeppeojida.imweb.me/', row: 2, h: 1 },
       { img: 'gmflexible.jpg', name: '광명후렉시블', type: '제조 · 산업 설비', intent: '', url: 'https://gwangmyeongflexible2.imweb.me/', row: 1, h: 0.94 },
       { img: 'daolhouse.jpg', name: '다올부동산', type: '부동산 중개', intent: '', url: 'https://daolhouse.imweb.me/', row: 1, h: 0.88 },
