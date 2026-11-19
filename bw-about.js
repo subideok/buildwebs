@@ -41,8 +41,8 @@
         ['운영 가이드 제공', '자주 바꾸는 작업을 순서대로 정리해 드립니다'] ] }
     ],
     extrasCta: { label: '무료 견적 받기', href: '#contact' },
-    exampleLabel: '제작 과정 예시',
-    images: { photoA: 'assets/p1076.jpg', photoB: 'assets/p1031.jpg' },
+    exampleLabel: '제작 과정 예시 · 아이엠슈가링',
+    images: { photoA: 'assets/p1076.jpg', photoB: 'assets/p1031.jpg', shot: 'assets/iamsugaring.jpg', full: 'assets/iamsugaring-full.jpg', scroll: 'assets/iamsugaring-scroll.mp4', scrollPoster: 'assets/iamsugaring-scroll.jpg' },
     steps: [
       { no: '01', name: '사업 이해', title: '고객이 반응할\n강점을 찾습니다.', desc: '질문지와 인터뷰를 통해,\n업체만의 차별점을 수집합니다.', result: '핵심 고객과 차별점 정리' },
       { no: '02', name: '문구 설계', title: '우리가 하고 싶은 말보다,\n고객이 듣고 싶은 말로 바꿉니다.', desc: '업체만의 차별점을\n고객의 고민에 답하는 문장으로 바꿉니다.', result: '페이지 구성과 주요 문구' },
@@ -71,69 +71,36 @@
 
   const AR = '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const AR2 = '<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="#10151c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  /* ---------- 장면 4개 (800×600, 업종 공통 예시) ---------- */
+  // 예시: 아이엠슈가링. 질문지 답변 → 첫 화면 문구 → 실제 디자인 → 문의
+  const EX = {
+    form: '01 사업 한눈에',
+    qa: [
+      ['회사를 한 문장으로 소개해 주세요.', '대구에서 슈가링 왁싱을 가르치는 아카데미예요.'],
+      ['다른 곳과 무엇이 다른가요?', '10년 동안 샵을 운영한 원장이 직접 가르쳐요.'],
+      ['수강생이 배우고 나면 무엇이 달라지나요?', '비전공자 40,50대도 누구나 배우고 난 후 혼자 창업할 수 있어요.']
+    ],
+    picks: ['10년차 원장이 직접 가르쳐요.', '비전공자도 스스로 창업할때까지 교육해요.'],
+    head: ['내 손끝 평생', '기술 하나로,', '완벽히 독립하는 법'],
+    sub: '10년차 브라질리언 전문샵 원장이 직접 가르칩니다.',
+    toast: '아카데미 상담 신청 완료'
+  };
   const scenes = (I) => [
-`<div class="cv s1">
-  <div class="tb"><b>강점 도출 질문지</b><span>답변 정리</span></div>
-  <div class="qs">
-    <div class="qq q1"><em>Q1</em><b>고객이 가장 자주 묻는 질문은?</b><i class="an"></i></div>
-    <div class="qq q2"><em>Q2</em><b>다른 곳과 무엇이 다른가요?</b><i class="an"></i></div>
-    <div class="qq q3"><em>Q3</em><b>고객이 다시 찾는 이유는?</b><i class="an"></i></div>
-  </div>
-  <p class="lb">수집한 차별점</p>
-  <div class="chips"><span class="c1">대표가 직접 진행</span><span class="c2">당일 견적 안내<em>핵심 강점</em></span><span class="c3">사후 관리 포함</span></div>
+`<div class="cv w1">
+  <div class="fh"><b>${esc(EX.form)}</b><span>무엇을, 누구에게 제공하는지 정리합니다.</span></div>
+  ${EX.qa.map(([q, a], i) => `<div class="fq"><p>${i + 1}. ${esc(q)}</p><div class="fa"><span class="ty" data-t="${esc(a)}">${esc(a)}</span><i class="cr"></i></div></div>`).join('')}
 </div>`,
-`<div class="cv s2">
-  <div class="hx h0"><div class="nv"><b>한빛건축</b><span>회사 소개</span><span>설계</span><span>프로젝트</span><span>문의</span></div>
-    <div class="hc"><h4><s>고객 만족을 최우선으로 하는<br>한빛건축입니다</s></h4><p>정직과 신뢰를 바탕으로 최고의 품질을 약속드립니다.</p><b>회사 소개 보기</b></div>
-    <i class="hp" style="background-image:url('${I.photoB}')"></i>
-    <ul class="co bad"><li><i>✕</i>어느 회사나 쓰는 말</li><li><i>✕</i>누가, 무엇을 해주는지 없음</li><li><i>✕</i>다음 행동이 불분명</li></ul><em class="lab">바꾸기 전</em></div>
-  <i class="ar">${AR}</i>
-  <div class="hx h1"><div class="nv"><b>한빛건축</b><span>회사 소개</span><span>설계</span><span>프로젝트</span><span>문의</span></div>
-    <div class="hc"><h4>설계부터 준공까지<br><mark>대표 건축사가 직접<sup>1</sup></mark> 맡습니다</h4><p>상담 후 <mark>3일 안에<sup>2</sup></mark> 설계 방향과 예상 비용을 받아보세요.</p><div class="pf"><span>설계 상담 무료</span><span>견적 외 추가 비용 없음</span></div><b>무료 상담 신청<sup>3</sup></b></div>
-    <i class="hp" style="background-image:url('${I.photoA}')"></i>
-    <ul class="co good"><li><i>1</i>누가 맡는지</li><li><i>2</i>언제 무엇을 받는지</li><li><i>3</i>바로 할 행동</li></ul><em class="lab">바꾼 후</em></div>
+`<div class="cv w2">
+  <div class="pk"><p class="kl">답변에서 찾은 말</p>${EX.picks.map((p, i) => `<span><i>${i + 1}</i>“${esc(p)}”</span>`).join('')}</div>
+  <i class="ar2">${AR}</i>
+  <div class="cp"><p class="kl">첫 화면 문구</p><h4>${EX.head.map((l, i) => i === EX.head.length - 1 ? `<em>${esc(l)}<sup>2</sup></em>` : esc(l)).join('<br>')}</h4><p>${esc(EX.sub)}<sup>1</sup></p></div>
 </div>`,
-`<div class="cv s3">
-  <div class="bz z0"><i></i><i></i><i></i><span>hanbit-arch.co.kr</span></div>
-  <div class="bz z1"><i></i><i></i><i></i><span>hanbit-arch.co.kr</span></div>
-  <div class="fr wa">
-  <div class="old">
-    <div class="ut"><span>홈</span><span>로그인</span><span>회원가입</span><span>사이트맵</span></div>
-    <div class="oh"><b><i></i>(주)한빛건축</b><span>고객센터 <strong>02-000-0000</strong></span></div>
-    <div class="on"><span>회사소개</span><span>사업분야</span><span>시공실적</span><span>고객센터</span><span>커뮤니티</span></div>
-    <div class="ob" style="background-image:url('${I.photoB}')"><h4>고객과 함께 성장하는 기업</h4><p>(주)한빛건축이 여러분과 함께하겠습니다</p><i class="od"><i></i><i></i><i></i></i></div>
-    <div class="oc"><div><h6>공지사항<small>더보기 +</small></h6><p>홈페이지가 새롭게 오픈하였습니다<br>2015년 하계 휴무 안내<br>시공실적 게시판 이용 안내</p></div><div><h6>시공실적<small>더보기 +</small></h6><p class="th"><i></i><i></i><i></i></p></div><div><h6>고객센터</h6><p><strong>02-000-0000</strong><br>평일 09:00 ~ 18:00<br>점심 12:00 ~ 13:00</p></div></div>
-  </div>
-  <em class="lab l0">바꾸기 전</em></div>
-  <div class="fr wb"><div class="new" style="--bg:url('${I.photoA}')">
-    <div class="nn"><span>프로젝트</span><span>설계 과정</span><span>문의</span><b>상담 신청</b></div>
-    <div class="nc"><small>건축 설계 · 인테리어</small><h4>설계부터 준공까지,<br>대표 건축사가<br>직접 맡습니다.</h4><p>상담 후 3일 안에 설계 방향과<br>예상 비용을 받아보세요.</p><b>무료 상담 신청</b></div>
-    <ul class="nk"><li><strong>3일</strong>설계 방향 회신</li><li><strong>1명</strong>대표 건축사 전담</li></ul>
-  </div>
-  <em class="lab l1">바꾼 후</em></div>
-  <i class="ar">${AR}</i>
+`<div class="cv w3">
+  <div class="full"><video muted playsinline preload="none" poster="${I.scrollPoster}" data-src="${I.scroll}"></video></div>
+  <ol class="sm"><li style="animation-delay:0.00s"><em>01</em><b>첫 화면 · 핵심 문구</b><i></i></li><li style="animation-delay:0.07s"><em>02</em><b>숫자로 보는 신뢰</b><i></i></li><li style="animation-delay:0.13s"><em>03</em><b>시술 사진</b><i></i></li><li style="animation-delay:0.20s"><em>04</em><b>시술 · 교육 안내</b><i></i></li><li style="animation-delay:0.27s"><em>05</em><b>다른 곳과 비교</b><i></i></li><li style="animation-delay:0.33s"><em>06</em><b>원장 소개</b><i></i></li><li style="animation-delay:0.40s"><em>07</em><b>아카데미 과정</b><i></i></li><li style="animation-delay:0.46s"><em>08</em><b>고객 후기</b><i></i></li><li style="animation-delay:0.53s"><em>09</em><b>샵 내부</b><i></i></li><li style="animation-delay:0.59s"><em>10</em><b>오시는 길 · 문의</b><i></i></li></ol>
+  <ol class="ph"><li>구조</li><li>전체 완성</li></ol>
+  <b class="pz"><i></i><span>멈춤</span></b>
 </div>`,
-`<div class="cv s4">
-  <div class="tb"><b>문의 전환</b><span>문의 폼 · 상담 버튼</span></div>
-  <div class="lf">
-    <p class="lb">입력 항목</p>
-    <p class="ct"><span class="sw2"><em class="va">7</em><em class="vb">3</em></span>개</p>
-    <p class="cd">꼭 필요한 것만 남깁니다</p>
-    <div class="qb"><span>전화 걸기</span><span>카카오톡 상담</span></div>
-  </div>
-  <div class="fm">
-    <span class="f f1">성함<em>홍길동</em></span>
-    <span class="f x">회사명</span>
-    <span class="f x">직책</span>
-    <span class="f f2">연락처<em>010-1234-5678</em></span>
-    <span class="f x">이메일</span>
-    <span class="f x">예산</span>
-    <span class="f f3">문의 내용</span>
-    <b class="sb"><em class="x1">문의 보내기</em><em class="y1">접수 완료</em></b>
-  </div>
-  <div class="toast">문의가 접수되었습니다</div>
-</div>`
+`<div class="cv w4"><div class="sh" style="background-image:url('${I.shot}')"></div><i class="ring">${PTR}</i><div class="ft"><i>✓</i>${esc(EX.toast)}</div></div>`
   ];
 
   const css = (c) => `
@@ -175,14 +142,14 @@ ul,ol{list-style:none}
 .nt .how{margin-top:clamp(8px,1vw,16px)}
 .nt .kick{margin-bottom:0}
 .stick{position:sticky;top:calc(50vh - var(--mh,320px)/2 + 30px);align-self:start}
-.stage{position:relative;aspect-ratio:800/626}
+.stage{position:relative;aspect-ratio:1280/700}
 .stage .frame{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s}
 .stage .frame.cur{opacity:1;visibility:visible;transform:none}
 .frame{border-radius:14px;overflow:hidden;background:#0d0e12;container-type:inline-size;box-shadow:0 40px 90px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.08)}
 .bar0{height:3.2cqw;background:#17181d;display:flex;align-items:center;gap:.7cqw;padding:0 1.6cqw;border-bottom:1px solid #22242a}
 .bar0 i{width:.9cqw;height:.9cqw;border-radius:50%;background:#33363d}
 .bar0 span{margin:0 auto;height:1.8cqw;width:34%;border-radius:99px;background:#22242a}
-.face{position:relative;aspect-ratio:4/3;overflow:hidden}
+.face{position:relative;aspect-ratio:1280/700;overflow:hidden}
 .prog{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
 .prog li{display:flex;flex-direction:column;gap:10px;font-size:13px;color:#6f747e;transition:color .4s}
 .prog li::before{content:'';height:2px;border-radius:2px;background:#24262c;transition:background .4s}
@@ -211,14 +178,85 @@ ul,ol{list-style:none}
 .frame{background:#fff;box-shadow:0 40px 90px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.1)}
 .bar0{background:#eef0f3;border-bottom-color:#e1e4e8}
 .bar0 i{background:#cfd3d9}.bar0 span{background:#e1e4e8}
-.cv{position:absolute;left:0;top:0;width:800px;height:600px;transform-origin:0 0;transform:scale(var(--k,.5));overflow:hidden;background:#fff;color:#10151c}
+.cv{position:absolute;left:0;top:0;width:1000px;height:547px;transform-origin:0 0;transform:scale(var(--k,.5));overflow:hidden;background:#fff;color:#10151c}
 .cv *{transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1),background-color .4s,color .4s,border-color .4s,box-shadow .4s}
 .tb{position:absolute;left:0;right:0;top:0;height:64px;display:flex;align-items:center;gap:14px;padding:0 40px;border-bottom:1px solid #eceef1;font-size:17px;color:#8a8f97}
 .tb b{color:#10151c;font-size:20px}
 .lb{font-size:20px;font-weight:600;color:#8a8f97}
 .cv *,.cv *::before,.cv *::after{transition:none!important;animation:none!important}
 
+/* 장면: 질문지 → 문구 → 디자인 → 문의 */
+.w1{background:#eef0f6}
+.w1 .fh{position:absolute;left:110px;right:110px;top:20px;height:86px;border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.w1 .fh b{height:44px;display:flex;align-items:center;padding:0 24px;background:#3560FF;color:#fff;font-size:21px;font-weight:700}
+.w1 .fh span{flex:1;display:flex;align-items:center;padding:0 24px;font-size:16px;color:#5b616c}
+.w1 .fq{position:absolute;left:110px;right:110px;height:124px;padding:18px 24px;border-radius:14px;background:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.w1 .fq:nth-of-type(2){top:118px}.w1 .fq:nth-of-type(3){top:256px}.w1 .fq:nth-of-type(4){top:394px}
+.w1 .fq p{font-size:19px;font-weight:600;color:#10151c}
+.w1 .fa{display:flex;align-items:center;height:46px;border-bottom:2px solid #3560FF;font-size:20px;font-weight:700;color:#2848d6;letter-spacing:-.03em;white-space:nowrap}
+.w1 .cr{width:2px;height:26px;margin-left:3px;background:#3560FF;opacity:0}
+.w1 .fa.typing .cr{opacity:1;animation:bwblink .8s steps(1) infinite!important}
+@keyframes bwblink{50%{opacity:0}}
+.w2{background:#f1f2f5}
+.w2 .kl{font-size:17px;font-weight:700;color:#8a8f97;margin-bottom:6px}
+.w2 .pk{position:absolute;left:100px;top:0;bottom:0;width:300px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.w2 .pk span{display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:16px;background:#fff;font-size:19px;line-height:1.4;font-weight:700;letter-spacing:-.03em;color:#10151c;box-shadow:0 10px 24px -16px rgba(16,21,28,.3)}
+.w2 .pk i,.w2 sup{flex:none;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#3560FF;color:#fff;font-style:normal;font-size:14px;font-weight:700;letter-spacing:0;line-height:1}
+.w2 .ar2{position:absolute;left:418px;top:50%;width:44px;height:44px;margin-top:-22px;border-radius:50%;background:#10151c;display:flex;align-items:center;justify-content:center}
+.w2 .cp{position:absolute;left:480px;right:100px;top:64px;bottom:64px;padding:30px 30px;border-radius:20px;background:#17120f;color:#fff;display:flex;flex-direction:column;justify-content:center;gap:18px;box-shadow:0 24px 50px -20px rgba(0,0,0,.5)}
+.w2 .cp .kl{color:#a59a90;margin:0}
+.w2 .cp h4{margin:0;font-size:38px;line-height:1.2;font-weight:800;letter-spacing:-.05em}
+.w2 .cp h4 em{font-style:normal;color:#F0A955;white-space:nowrap}
+.w2 .cp h4{font-size:36px}
+.w2 .cp>p:last-child{font-size:16px;line-height:1.55;color:#cfc7bf}
+.w2 sup{position:relative;top:-.7em;margin-left:6px;width:22px;height:22px;font-size:12px}
+.w3{background:#0d0e12}
+.w3 .full{position:absolute;inset:0;opacity:0;transition:opacity .5s}
+.w3 video{display:block;width:100%;height:100%;object-fit:contain;background:#1b1512}
+.w3 .sm{position:absolute;inset:0;margin:0;padding:30px 110px 88px;list-style:none;background:#fff;display:grid;grid-template-columns:1fr 1fr;grid-auto-flow:column;grid-template-rows:repeat(5,1fr);gap:10px 14px;z-index:2;transition:opacity .5s}
+.w3 .sm li{min-height:0;display:flex;align-items:center;gap:14px;padding:0 16px;border-radius:10px;background:#f1f2f5;opacity:0}
+.w3.bld .sm li{animation:w3li .3s ease-out both!important}
+.w3 .sm li:first-child{background:#e6e9ff}
+.w3 .sm em{font-style:normal;font-size:14px;font-weight:700;color:#3560FF;width:22px}
+.w3 .sm b{font-size:17px;font-weight:700;color:#10151c}
+.w3 .sm i{margin-left:auto;width:60px;height:8px;border-radius:4px;background:#dcdfe4}
+@keyframes w3li{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.w3.live .full{opacity:1}
+.w3.live .sm{opacity:0;pointer-events:none}
+.w3 .ph{position:absolute;left:24px;bottom:22px;display:flex;gap:8px;margin:0;padding:0;list-style:none;z-index:3}
+.w3 .ph li{padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.94);color:#8a8f97;font-size:17px;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,.12);transition:background .3s,color .3s}
+.w3.bld .ph li:nth-child(1),.w3.live .ph li:nth-child(2){background:#3560FF;color:#fff}
+.w3 .pz{position:absolute;right:24px;bottom:22px;z-index:4;display:flex;align-items:center;gap:8px;padding:9px 16px 9px 12px;border-radius:999px;background:rgba(16,21,28,.82);color:#fff;font-size:17px;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.w3 .pz i{width:16px;height:16px;position:relative}
+.w3 .pz i::before,.w3 .pz i::after{content:'';position:absolute;top:1px;width:5px;height:14px;border-radius:1px;background:#fff}
+.w3 .pz i::before{left:2px}.w3 .pz i::after{right:2px}
+.w3.hold .pz{background:#3560FF}
+.w3.hold .pz i::before{left:3px;top:0;width:0;height:0;border-radius:0;background:none;border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent}
+.w3.hold .pz i::after{display:none}
+.frame:has(.w3){cursor:pointer}
+.frame .bar0{display:none}
+.w3 .ph li{cursor:pointer}
+.w3 .ph li:hover{color:#10151c}
+.still .w3 .pz,.still .w3 .sm{display:none}
+.still .w3 .full{opacity:1}
+.still .w3 .ph li:nth-child(2){background:#3560FF;color:#fff}
+
+.w4 .sh{position:absolute;inset:0;background:#111 center bottom/cover no-repeat}
+.w4 .sh::after{content:'';position:absolute;inset:0;background:rgba(5,5,7,.45)}
+.w4 .ring{position:absolute;left:511px;top:368px;width:190px;height:54px;border-radius:999px;box-shadow:0 0 0 3px #3560FF,0 0 0 9px rgba(53,96,255,.35),0 0 40px rgba(53,96,255,.6)}
+.w4 .ring .ptr{position:absolute;right:24px;bottom:-26px;width:40px;height:40px}
+.w4 .ft{position:absolute;left:50%;top:40px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;padding:16px 24px;border-radius:16px;background:#fff;color:#10151c;font-size:21px;font-weight:700;white-space:nowrap;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.w4 .ft i{width:28px;height:28px;border-radius:50%;background:#3560FF;color:#fff;font-style:normal;font-size:15px;display:flex;align-items:center;justify-content:center}
+
 /* 1 사업 이해 */
+.s1 .hd{position:absolute;left:0;right:0;text-align:center;top:104px;font-size:18px;font-weight:700;color:#8a8f97}
+.s1 .hd.h2{top:316px;color:#3560FF}
+.s1 .bb{position:absolute;left:50%;top:142px;transform:translateX(-50%);padding:26px 40px;border-radius:28px 28px 28px 8px;background:#f1f2f5;font-size:34px;font-weight:700;letter-spacing:-.035em;color:#3a4250;white-space:nowrap}
+.s1 .ar1{position:absolute;left:50%;top:252px;width:44px;height:44px;margin-left:-22px;border-radius:50%;background:#10151c;display:flex;align-items:center;justify-content:center;transform:rotate(90deg)}
+.s1 .st{position:absolute;left:50%;top:356px;transform:translateX(-50%);padding:34px 56px;border-radius:24px;background:#3560FF;text-align:center;box-shadow:0 24px 50px -20px rgba(53,96,255,.6)}
+.s1 .st b{font-size:46px;line-height:1.25;font-weight:800;letter-spacing:-.045em;color:#fff;white-space:nowrap}
+.s1 .st em{position:absolute;left:50%;top:-16px;transform:translateX(-50%);font-style:normal;font-size:15px;font-weight:700;padding:6px 13px;border-radius:999px;background:#10151c;color:#fff;white-space:nowrap}
+/* (이전 장면 1 스타일) */
 .s1 .qs{position:absolute;left:40px;right:40px;top:92px;display:flex;flex-direction:column;gap:14px}
 .s1 .qq{display:grid;grid-template-columns:56px 1fr;align-items:center;row-gap:12px;padding:20px 24px;border-radius:16px;background:#f4f5f7;opacity:0;transform:translateY(12px)}
 .s1 .qq em{font-style:normal;font-size:20px;font-weight:700;color:#3560FF}
@@ -462,7 +500,7 @@ ul,ol{list-style:none}
       const slots = $$('.slot'), steps = $$('.steps>li'), prog = $$('.prog li');
       const exl = $('.exl'), dots = $$('.dots i'), track = $('.steps');
       const ro = new ResizeObserver((es) => es.forEach((e) => {
-        const f = e.target; f.style.setProperty('--k', f.clientWidth / 800);
+        const f = e.target; f.style.setProperty('--k', f.clientWidth / 1000);
         if (stick.offsetHeight) stick.style.setProperty('--mh', stick.offsetHeight + 'px');
       }));
       fr.forEach((f) => ro.observe(f.querySelector('.face')));
@@ -472,8 +510,25 @@ ul,ol{list-style:none}
       const loops = {};
       // 왼쪽 화면은 움직이지 않고 완성된 장면만 보여줍니다
       const finish = (i) => c.timeline[i].slice(0, i === 3 ? 4 : undefined).forEach((_, j) => cvs[i].classList.add('a' + (j + 1)));
+      let typed = false;
+      const type = () => {
+        if (typed) return; typed = true;
+        const tys = [...cvs[0].querySelectorAll('.ty')];
+        if (isStill()) return;
+        tys.forEach((s) => { s.textContent = ''; });
+        let k = 0, n = 0;
+        const step = () => {
+          const s = tys[k]; if (!s) return;
+          const full = s.dataset.t, fa = s.parentNode;
+          fa.classList.add('typing');
+          s.textContent = full.slice(0, ++n);
+          if (n >= full.length) { fa.classList.remove('typing'); k++; n = 0; setTimeout(step, 250); } else setTimeout(step, 28);
+        };
+        setTimeout(step, 300);
+      };
       const stop = (i) => { const l = loops[i]; if (!l) return; l.ts.forEach(clearTimeout); clearTimeout(l.nx); delete loops[i]; };
       const play = (i) => {
+        if (i === 0) return type();
         return finish(i);
         const tl = c.timeline[i], l = loops[i] = { ts: [], nx: 0 };
         const cyc = () => {
@@ -488,6 +543,32 @@ ul,ol{list-style:none}
         if (isStill()) fr.forEach((_, i) => { stop(i); finish(i); });
       };
       this.applyStill();
+      { // 03 디자인 설계: 구조(3초) → 실제 사이트 스크롤 영상. 마우스 올리기·누르기로 멈춤
+        const w3 = cvs[2], f3 = fr[2], lab = w3.querySelector('.pz span'), vd = w3.querySelector('video');
+        let pinned = false, held = false, seen = false, phase = '', left = 0, t0 = 0, tm = 0;
+        const load = () => { if (vd.dataset.src && !vd.src) { vd.src = new URL(vd.dataset.src, (window.BW_ASSET_BASE || BW_SELF_BASE)).href; vd.preload = 'auto'; } };
+        const live = () => { clearTimeout(tm); phase = 'live'; w3.classList.remove('bld'); w3.classList.add('live'); load(); try { vd.currentTime = 0; } catch (e) {} if (!held && seen) vd.play().catch(() => {}); };
+        const wait = (ms) => { left = ms; t0 = Date.now(); clearTimeout(tm); tm = setTimeout(live, ms); };
+        const build = () => { phase = 'bld'; vd.pause(); w3.classList.remove('live', 'bld'); void w3.offsetWidth; w3.classList.add('bld'); load(); wait(1600); };
+        vd.addEventListener('ended', () => { if (seen) build(); });
+        const set = (h) => {
+          held = h; w3.classList.toggle('hold', h); lab.textContent = h ? '재생' : '멈춤';
+          if (phase === 'bld') { if (h) { clearTimeout(tm); left = Math.max(0, left - (Date.now() - t0)); } else wait(left); }
+          else if (phase === 'live') { if (h) vd.pause(); else if (seen) vd.play().catch(() => {}); }
+        };
+        f3.addEventListener('mouseenter', () => { if (!pinned) set(true); });
+        f3.addEventListener('mouseleave', () => { if (!pinned) set(false); });
+        f3.addEventListener('click', () => { pinned = !pinned; set(pinned); });
+        const ph = w3.querySelectorAll('.ph li');
+        ph[0].addEventListener('click', (e) => { e.stopPropagation(); pinned = false; set(false); build(); });
+        ph[1].addEventListener('click', (e) => { e.stopPropagation(); pinned = false; set(false); live(); });
+        new IntersectionObserver((es) => es.forEach((en) => {
+          seen = en.isIntersecting;
+          if (isStill()) { load(); return; }
+          if (seen) { if (!phase) build(); else if (phase === 'live' && !held) vd.play().catch(() => {}); }
+          else { vd.pause(); }
+        }), { threshold: 0.3 }).observe(f3);
+      }
 
       // PC: 고정 화면 / 모바일: 단계마다 장면 배치
       const home = () => {

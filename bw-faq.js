@@ -19,7 +19,7 @@
       { cat: '운영', q: '검색에 노출되도록 해 주시나요?', a: '네. 기획 단계부터 페이지 구조, 문구, 제목과 설명을 검색엔진 최적화(SEO) 기준에 맞춰 설계하고, 네이버와 구글에 사이트 등록까지 마칩니다.\n\n스탠다드 상품부터는 AI 검색 대응도 함께 진행합니다.\n· AEO(답변 엔진 최적화): 고객이 묻는 질문에 바로 답하는 형식으로 문장을 써서, 검색 결과의 답변 영역에 노출되기 쉽게 만듭니다.\n· GEO(생성형 AI 최적화): ChatGPT, 제미나이 같은 AI가 답변할 때 우리 회사를 정확히 소개하고 인용하도록 회사 정보를 정리합니다.\n\n특정 순위를 보장하지는 않습니다.' },
       { cat: '운영', q: '기존 도메인을 그대로 쓸 수 있나요?', a: '네. 쓰시던 도메인을 새 홈페이지에 연결할 수 있고, 필요한 설정은 함께 진행합니다.' }
     ],
-    more: { title: '찾는 답이 없으신가요?', label: '카카오톡 무료상담', href: 'https://pf.kakao.com/_jfXFX' },   // 카카오톡 채널 주소로 바꾸세요
+    more: { title: '찾는 답이 없으신가요?', label: '카카오톡 무료상담', href: 'https://open.kakao.com/o/sGCKEDXi' },   // 카카오톡 채널 주소로 바꾸세요
     colors: { bg: '#F4F5F7', ink: '#0B0C10', gray: '#5B616C', line: '#E2E4E9', accent: '#3560FF' }
   };
   function merge(a, b) { if (!b) return a; const o = Array.isArray(a) ? a.slice() : Object.assign({}, a); for (const k in b) o[k] = (b[k] && typeof b[k] === 'object' && !Array.isArray(b[k]) && a[k]) ? merge(a[k], b[k]) : b[k]; return o; }

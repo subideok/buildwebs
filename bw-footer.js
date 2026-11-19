@@ -7,13 +7,13 @@
     line: '매출로 이어지도록\n홈페이지를 설계합니다.',
     menu: [
       { label: '빌드웹스', href: '#about' }, { label: '포트폴리오', href: '#portfolio' }, { label: '고객후기', href: '#reviews' },
-      { label: '서비스', href: '#service' }, { label: '자주 묻는 질문', href: '#faq' }, { label: '무료 견적 받기', href: '#contact' }
+      { label: '서비스', href: '#service' }, { label: '자주 묻는 질문', href: '#faq' }, { label: '무료 견적 받기', href: 'https://open.kakao.com/o/sGCKEDXi' }
     ],
     contact: [['이메일', 'buildwebs@naver.com', 'mailto:buildwebs@naver.com'], ['연락처', '010-5312-2422', 'tel:01053122422'], ['상담 시간', '평일 10:00 – 18:00']],
     info: [['상호', '빌드웹스'], ['대표', '공덕영'], ['사업자등록번호', '533-20-01389'], ['주소', '부산 수영로 298 산암빌딩 10층']],
     // SNS: 주소를 바꾸거나 줄을 지우면 아이콘도 바뀝니다. (icon: kakao · instagram · youtube · blog)
     sns: [
-      { icon: 'kakao', label: '카카오톡 채널', href: 'https://pf.kakao.com/_jfXFX' },
+      { icon: 'kakao', label: '카카오톡 채널', href: 'https://open.kakao.com/o/sGCKEDXi' },
       { icon: 'instagram', label: '인스타그램', href: 'https://www.instagram.com/subi_deoki/' },
       { icon: 'youtube', label: '유튜브', href: 'https://www.youtube.com/@subideoki' },
       { icon: 'blog', label: '네이버 블로그', href: 'https://blog.naver.com/buildwebs' }
@@ -75,8 +75,8 @@ a:hover{color:#6F8DFF}
       const root = this.attachShadow({ mode: 'open' });
       root.innerHTML = `<style>${css(c.colors)}</style><footer class="ft">
   <div class="tp">
-    <div class="br"><img src="${esc(logo)}" alt="빌드웹스"><p>${br(c.line)}</p>${(c.sns || []).length ? `<div class="sns">${c.sns.map((s) => { const h = SNS_HOVER[s.icon] || ['#3560FF', '#fff']; return `<a href="${esc(s.href)}" target="_blank" rel="noopener" aria-label="${esc(s.label)}" title="${esc(s.label)}" style="--hb:${h[0]};--hc:${h[1]}">${ICON[s.icon] || esc(s.label)}</a>`; }).join('')}</div>` : ''}<a class="go" href="#contact">무료 견적 받기</a></div>
-    <nav class="col m" aria-label="바닥 메뉴"><h4>메뉴</h4><ul class="col">${c.menu.map((m) => `<li><a href="${esc(m.href)}">${esc(m.label)}</a></li>`).join('')}</ul></nav>
+    <div class="br"><img src="${esc(logo)}" alt="빌드웹스"><p>${br(c.line)}</p>${(c.sns || []).length ? `<div class="sns">${c.sns.map((s) => { const h = SNS_HOVER[s.icon] || ['#3560FF', '#fff']; return `<a href="${esc(s.href)}" target="_blank" rel="noopener" aria-label="${esc(s.label)}" title="${esc(s.label)}" style="--hb:${h[0]};--hc:${h[1]}">${ICON[s.icon] || esc(s.label)}</a>`; }).join('')}</div>` : ''}<a class="go" href="https://open.kakao.com/o/sGCKEDXi" target="_blank" rel="noopener">무료 견적 받기</a></div>
+    <nav class="col m" aria-label="바닥 메뉴"><h4>메뉴</h4><ul class="col">${c.menu.map((m) => `<li><a href="${esc(m.href)}"${/^https?:/.test(m.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(m.label)}</a></li>`).join('')}</ul></nav>
     <div class="col ct"><h4>문의</h4><ul class="col">${c.contact.map(([k, v, h]) => `<li><span>${esc(k)}</span>${h ? `<a href="${esc(h)}">${esc(v)}</a>` : esc(v)}</li>`).join('')}</ul></div>
   </div>
   <div class="bt"><p class="in">${c.info.map(([k, v]) => `<span><b>${esc(k)}</b>${esc(v)}</span>`).join('')}</p>

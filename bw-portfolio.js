@@ -31,11 +31,7 @@
       { img: 'gmflexible.jpg', name: '광명후렉시블', type: '제조 · 산업 설비', intent: '', url: 'https://gwangmyeongflexible2.imweb.me/', row: 1, h: 0.94 },
       { img: 'daolhouse.jpg', name: '다올부동산', type: '부동산 중개', intent: '', url: 'https://daolhouse.imweb.me/', row: 1, h: 0.88 },
       { video: 'lucina.mp4', poster: 'lucina.jpg', name: '루시나 아카데미', type: '타로 · 상담 아카데미', intent: '', url: 'https://73792a76709b5.imweb.me/', row: 2, h: 1 },
-      { site: 'damon', name: '담온 스테이', type: '프리미엄 숙소', intent: '첫 화면에서 바로 날짜를 고르도록 예약 입력을 올렸습니다.', url: '#', row: 2, h: 1 },
-      { site: 'jeongyeon', name: '정연 법률사무소', type: '법률 · 전문직', intent: '업무 분야 세 가지를 첫 화면에서 바로 고르게 했습니다.', url: '#', row: 1, h: 0.94 },
-      { site: 'moa', name: '모아 필라테스', type: '운동 · 웰니스', intent: '수업 방식 소개와 체험 신청을 한 흐름으로 묶었습니다.', url: '#', row: 2, h: 0.88 },
-      { site: 'bareun', name: '바른결 컨설팅', type: '기업 컨설팅', intent: '진행 순서를 먼저 보여 무엇을 해 주는지 분명히 했습니다.', url: '#', row: 1, h: 1 },
-      { site: 'nuri', name: '누리 물류', type: '물류 · 제조', intent: '도착 시간 조회를 첫 화면에 두어 견적 문의로 바로 잇습니다.', url: '#', row: 2, h: 1 }
+      { video: 'melmood.mp4', poster: 'melmood.jpg', logo: 'melmood-logo.png', name: '멜무드', type: '인테리어', intent: '', url: '#', row: 2, h: 1 }
     ],
     colors: { bg: '#050507', text: '#F4F5F7', gray: '#9AA0AA', dim: '#3A3D45', accent: '#3560FF', accentText: '#6F8DFF' }
   };
@@ -446,7 +442,7 @@ h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:
       for (const k in c.images) I[k] = /^(https?:|\/|data:)/.test(c.images[k]) ? c.images[k] : new URL(c.assetBase + c.images[k], (window.BW_ASSET_BASE || BW_SELF_BASE)).href;
       const N = c.items.length;
       const A = (s) => /^(https?:|\/|data:)/.test(s) ? s : new URL(c.assetBase + s, (window.BW_ASSET_BASE || BW_SELF_BASE)).href;
-      const screen = (it, play) => it.video ? `<video src="${esc(A(it.video))}"${it.poster ? ` poster="${esc(A(it.poster))}"` : ''}${play ? ' autoplay preload="auto"' : ' preload="none"'} muted loop playsinline></video>` : it.img ? `<img src="${esc(A(it.img))}" alt="${esc(it.name)} 홈페이지" loading="lazy">` : (SITES[it.site] ? SITES[it.site](I) : '');
+      const screen = (it, play) => it.video ? `<video src="${esc(A(it.video))}"${it.poster ? ` poster="${esc(A(it.poster))}"` : ''}${play ? ' autoplay preload="auto"' : ' preload="none"'} muted loop playsinline></video>${it.logo ? `<img src="${esc(A(it.logo))}" alt="" style="position:absolute;inset:auto;left:1.2%;top:.3%;width:11.5%;height:auto;object-fit:contain;z-index:2;pointer-events:none">` : ''}` : it.img ? `<img src="${esc(A(it.img))}" alt="${esc(it.name)} 홈페이지" loading="lazy">` : (SITES[it.site] ? SITES[it.site](I) : '');
       const card = (it, i, clone) => `<button class="card" type="button" data-i="${i}"${clone ? ' tabindex="-1" aria-hidden="true"' : ` aria-label="${esc(it.name)} 크게 보기"`}><span class="scr" style="aspect-ratio:1280/800">${screen(it)}</span><span class="cap"><b>${esc(it.name)}</b><span>${esc(it.type)}</span><i>크게 보기</i></span></button>`;
       const row = (r) => {
         const list = c.items.map((it, i) => [it, i]).filter(([it]) => (it.row || 1) === r);

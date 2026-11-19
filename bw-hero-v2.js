@@ -14,14 +14,14 @@
       { label: '고객후기', href: '#reviews' },
       { label: '서비스', href: '#service' }
     ],
-    cta: { label: '무료 견적 받기', href: '#contact' },
+    cta: { label: '무료 견적 받기', href: 'https://open.kakao.com/o/sGCKEDXi' },
     eyebrow: '기업 · 전문직 · 서비스 업종 홈페이지 제작',
     titleTop: '매출이 오르는 홈페이지는',
     rotating: [],                 // 단어 바뀌는 효과: ['단어1','단어2'] 넣으면 가운데 줄로 표시
     titleAccent: '기획부터',      // 둘째 줄 파란 글자
     titleBottom: '다릅니다.',
     desc: ['6년의 마케팅·기획·카피 경험으로,', '문의로 이어지는 구조와 메시지를 설계합니다.'],   // 한 줄씩
-    primary: { label: '무료 견적 받기', href: '#contact' },
+    primary: { label: '무료 견적 받기', href: 'https://open.kakao.com/o/sGCKEDXi' },
     secondary: { label: '포트폴리오 보기', href: '#portfolio' },
     steps: ['강점 발견', '문구 설계', '디자인 · 제작'],
     rotateInterval: 2800,
@@ -48,10 +48,8 @@
         { img: 'yeppeojida.jpg', name: '예뻐지다', type: '뷰티 · 피부' },
         { img: 'gmflexible.jpg', name: '광명후렉시블', type: '제조 · 산업 설비' },
         { video: 'lucina.mp4', poster: 'lucina.jpg', name: '루시나 아카데미', type: '타로 · 상담 아카데미' },
-        { site: 'damon', name: '담온 스테이', type: '프리미엄 숙소' },
         { img: 'daolhouse.jpg', name: '다올부동산', type: '부동산 중개' },
-        { site: 'bareun', name: '바른결 컨설팅', type: '기업 컨설팅' },
-        { site: 'jeongyeon', name: '정연 법률사무소', type: '법률 · 전문직' }
+        { video: 'melmood.mp4', poster: 'melmood.jpg', logo: 'melmood-logo.png', name: '멜무드', type: '인테리어' }
       ]
     },
     fontCss: [
@@ -515,15 +513,15 @@ h1 .ac{color:var(--accent-text)}
     <a class="logo" href="#" aria-label="빌드웹스 홈">${logo}</a>
     <nav aria-label="주 메뉴"><ul class="links">${links}</ul></nav>
     <div class="right">
-      <a class="cta" href="${esc(cfg.cta.href)}">${esc(cfg.cta.label)}</a>
+      <a class="cta" href="${esc(cfg.cta.href)}"${/^https?:/.test(cfg.cta.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(cfg.cta.label)}</a>
       <button class="burger" type="button" aria-label="메뉴 열기" aria-expanded="false"><i></i><i></i></button>
     </div>
   </header>
-  <div class="panel" role="menu">${cfg.menu.map((m) => `<a role="menuitem" href="${esc(m.href)}">${esc(m.label)}</a>`).join('')}<a role="menuitem" class="pc" href="${esc(cfg.cta.href)}">${esc(cfg.cta.label)}</a></div>
+  <div class="panel" role="menu">${cfg.menu.map((m) => `<a role="menuitem" href="${esc(m.href)}">${esc(m.label)}</a>`).join('')}<a role="menuitem" class="pc" href="${esc(cfg.cta.href)}"${/^https?:/.test(cfg.cta.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(cfg.cta.label)}</a></div>
   <section class="hero" aria-label="빌드웹스 소개">
     <div class="bgl" aria-hidden="true"></div>
     <div class="stage" role="img" aria-label="빌드웹스가 자체 기획한 가상 브랜드 홈페이지 시안 모음">
-      <div class="stack">${cfg.gallery.cards.map((c, i) => `<div class="card" data-i="${i}"><div class="bar"><i></i><i></i><i></i><span></span></div><div class="face">${c.video ? `<video src="${esc(A(c.video))}"${c.poster ? ` poster="${esc(A(c.poster))}"` : ''} muted loop playsinline preload="${i === 0 ? 'auto' : 'metadata'}" aria-label="${esc(c.name)} 홈페이지"></video>` : c.img ? `<img src="${esc(A(c.img))}" alt="${esc(c.name)} 홈페이지">` : (SITES[c.site] ? SITES[c.site](I) : '')}</div><i class="shade"></i></div>`).join('')}</div>
+      <div class="stack">${cfg.gallery.cards.map((c, i) => `<div class="card" data-i="${i}"><div class="bar"><i></i><i></i><i></i><span></span></div><div class="face">${c.video ? `<video src="${esc(A(c.video))}"${c.poster ? ` poster="${esc(A(c.poster))}"` : ''} muted loop playsinline preload="${i === 0 ? 'auto' : 'metadata'}" aria-label="${esc(c.name)} 홈페이지"></video>${c.logo ? `<img src="${esc(A(c.logo))}" alt="" style="position:absolute;inset:auto;left:1.2%;top:.3%;width:11.5%;height:auto;object-fit:contain;z-index:2;pointer-events:none">` : ''}` : c.img ? `<img src="${esc(A(c.img))}" alt="${esc(c.name)} 홈페이지">` : (SITES[c.site] ? SITES[c.site](I) : '')}</div><i class="shade"></i></div>`).join('')}</div>
       <i class="fade t"></i><i class="fade b"></i><i class="fade l"></i><i class="fade r"></i>
       <div class="meta"><p class="now" aria-live="polite"></p><span class="idx"></span><span class="mk">${esc(cfg.gallery.label)}</span></div>
     </div>
@@ -536,7 +534,7 @@ h1 .ac{color:var(--accent-text)}
       </h1>` : `<h1><span class="ln">${esc(cfg.titleTop)}</span><span class="ln">${cfg.titleAccent ? `<span class="ac">${esc(cfg.titleAccent)}</span> ` : ''}${esc(cfg.titleBottom)}</span></h1>`}
       <p class="desc">${[].concat(cfg.desc).map((l) => `<span>${esc(l)}</span>`).join(' ')}</p>
       <div class="actions">
-        <a class="btn pri" href="${esc(cfg.primary.href)}">${esc(cfg.primary.label)}${arrow}</a>
+        <a class="btn pri" href="${esc(cfg.primary.href)}"${/^https?:/.test(cfg.primary.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(cfg.primary.label)}${arrow}</a>
         <a class="btn sec" href="${esc(cfg.secondary.href)}">${esc(cfg.secondary.label)}</a>
       </div>
     </div></div>
