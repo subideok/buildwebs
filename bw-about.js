@@ -42,7 +42,7 @@
     ],
     extrasCta: { label: '무료 견적 받기', href: '#contact' },
     exampleLabel: '제작 과정 예시 · 아이엠슈가링',
-    images: { photoA: 'assets/p1076.jpg', photoB: 'assets/p1031.jpg', shot: 'assets/iamsugaring.jpg', full: 'assets/iamsugaring-full.jpg', scroll: 'assets/iamsugaring-scroll.mp4', scrollPoster: 'assets/iamsugaring-scroll.jpg' },
+    images: { photoA: 'assets/p1076.jpg', photoB: 'assets/p1031.jpg', shot: 'assets/iamsugaring.jpg', full: 'assets/iamsugaring-full.jpg', scroll: 'assets/iamsugaring-scroll.mp4', scrollPoster: 'assets/iamsugaring-scroll.jpg', scrollM: 'assets/iamsugaring-scroll-m.mp4', scrollPosterM: 'assets/iamsugaring-scroll-m.jpg' },
     steps: [
       { no: '01', name: '사업 이해', title: '고객이 반응할\n강점을 찾습니다.', desc: '질문지와 인터뷰를 통해,\n업체만의 차별점을 수집합니다.', result: '핵심 고객과 차별점 정리' },
       { no: '02', name: '문구 설계', title: '우리가 하고 싶은 말보다,\n고객이 듣고 싶은 말로 바꿉니다.', desc: '업체만의 차별점을\n고객의 고민에 답하는 문장으로 바꿉니다.', result: '페이지 구성과 주요 문구' },
@@ -95,7 +95,7 @@
   <div class="cp"><p class="kl">첫 화면 문구</p><h4>${EX.head.map((l, i) => i === EX.head.length - 1 ? `<em>${esc(l)}<sup>2</sup></em>` : esc(l)).join('<br>')}</h4><p>${esc(EX.sub)}<sup>1</sup></p></div>
 </div>`,
 `<div class="cv w3">
-  <div class="full"><video muted playsinline preload="none" poster="${I.scrollPoster}" data-src="${I.scroll}"></video></div>
+  <div class="full"><video muted playsinline preload="none" poster="${I.scrollPoster}" data-src="${I.scroll}" data-src-m="${I.scrollM}" data-poster-m="${I.scrollPosterM}"></video></div>
   <ol class="sm"><li style="animation-delay:0.00s"><em>01</em><b>첫 화면 · 핵심 문구</b><i></i></li><li style="animation-delay:0.07s"><em>02</em><b>숫자로 보는 신뢰</b><i></i></li><li style="animation-delay:0.13s"><em>03</em><b>시술 사진</b><i></i></li><li style="animation-delay:0.20s"><em>04</em><b>시술 · 교육 안내</b><i></i></li><li style="animation-delay:0.27s"><em>05</em><b>다른 곳과 비교</b><i></i></li><li style="animation-delay:0.33s"><em>06</em><b>원장 소개</b><i></i></li><li style="animation-delay:0.40s"><em>07</em><b>아카데미 과정</b><i></i></li><li style="animation-delay:0.46s"><em>08</em><b>고객 후기</b><i></i></li><li style="animation-delay:0.53s"><em>09</em><b>샵 내부</b><i></i></li><li style="animation-delay:0.59s"><em>10</em><b>오시는 길 · 문의</b><i></i></li></ol>
   <ol class="ph"><li>구조</li><li>전체 완성</li></ol>
   <b class="pz"><i></i><span>멈춤</span></b>
@@ -452,6 +452,53 @@ ul,ol{list-style:none}
   .dots i{cursor:pointer}
   .steps{cursor:grab}
   .steps.drag{cursor:grabbing;scroll-snap-type:none;user-select:none}
+  /* 모바일·태블릿: 세로로 쌓기 + 세로형 장면 */
+  .steps{flex-direction:column;gap:20px;overflow:visible;margin:0;padding:0;scroll-snap-type:none}
+  .steps>li,.steps>li:first-child,.steps>li:last-child{flex:none;width:100%;max-width:560px;margin:0 auto;padding:12px 12px 26px}
+  .steps>li>h3{font-size:24px}
+  .dots{display:none!important}
+  .slot .face{aspect-ratio:1000/1100}
+  .slot .cv{height:1110px}
+  .slot .frame:has(.w3),.slot .frame:has(.w3) .face{background:#0d0e12}
+  .slot .w1 .fh{left:50px;right:50px;top:50px;height:150px;border-radius:24px}
+  .slot .w1 .fh b{height:76px;font-size:38px;padding:0 36px}
+  .slot .w1 .fh span{font-size:28px;padding:0 36px}
+  .slot .w1 .fq{left:50px;right:50px;height:260px;padding:34px 36px;border-radius:24px}
+  .slot .w1 .fq:nth-of-type(2){top:225px}.slot .w1 .fq:nth-of-type(3){top:510px}.slot .w1 .fq:nth-of-type(4){top:795px}
+  .slot .w1 .fq p{font-size:32px}
+  .slot .w1 .fa{height:auto;min-height:110px;align-items:flex-end;padding-bottom:12px;border-bottom-width:4px;font-size:38px;line-height:1.35;white-space:normal}
+  .slot .w1 .cr{width:4px;height:44px}
+  .slot .w2 .kl{font-size:30px;margin-bottom:10px}
+  .slot .w2 .pk{left:50px;right:50px;top:60px;bottom:auto;width:auto;gap:18px}
+  .slot .w2 .pk span{padding:28px 30px;border-radius:24px;font-size:36px;gap:18px}
+  .slot .w2 .pk i{width:46px;height:46px;font-size:24px}
+  .slot .w2 .ar2{left:50%;top:478px;width:80px;height:80px;margin:0 0 0 -40px;transform:rotate(90deg)}
+  .slot .w2 .ar2 svg{width:38px;height:38px}
+  .slot .w2 .cp{left:50px;right:50px;top:590px;bottom:50px;padding:44px;border-radius:28px;gap:24px}
+  .slot .w2 .cp .kl{font-size:28px}
+  .slot .w2 .cp h4{font-size:62px}
+  .slot .w2 .cp>p:last-child{font-size:28px}
+  .slot .w2 sup{width:36px;height:36px;font-size:20px}
+  .slot .w3{background:#0d0e12}
+  .slot .w3 .sm{padding:40px 40px 190px;grid-template-columns:1fr;grid-template-rows:repeat(10,1fr);gap:10px}
+  .slot .w3 .sm li{padding:0 28px;border-radius:16px;gap:20px}
+  .slot .w3 .sm em{font-size:30px;width:44px}
+  .slot .w3 .sm b{font-size:38px;white-space:nowrap}
+  .slot .w3 .sm i{display:none}
+  .slot .w3 .full{inset:auto;left:68px;top:36px;width:864px;height:898px;border-radius:22px;overflow:hidden;background:#f7f3ee;box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+  .slot .w3 video{object-fit:cover;object-position:50% 0}
+  .slot .w3 .ph{left:40px;bottom:40px;gap:14px}
+  .slot .w3 .ph li{font-size:40px;height:104px;padding:0 38px;display:flex;align-items:center}
+  .slot .w3 .pz{right:40px;bottom:40px;height:104px;font-size:40px;padding:0 38px 0 30px;gap:16px}
+  .slot .w3 .pz i{width:32px;height:32px}
+  .slot .w3 .pz i::before,.slot .w3 .pz i::after{top:2px;width:10px;height:28px}
+  .slot .w3.hold .pz i::before{border-left-width:26px;border-top-width:16px;border-bottom-width:16px}
+  .slot .w4{background:#f1f2f5}
+  .slot .w4 .sh{inset:0 0 auto;height:601px;background-position:center top;background-size:100% auto}
+  .slot .w4 .sh::after{display:none}
+  .slot .w4 .ring{left:511px;top:422px}
+  .slot .w4 .ft{left:50px;right:50px;top:660px;bottom:60px;transform:none;flex-direction:column;justify-content:center;gap:28px;padding:40px;border-radius:32px;font-size:48px;white-space:normal;text-align:center;box-shadow:0 30px 60px -30px rgba(16,21,28,.4)}
+  .slot .w4 .ft i{width:96px;height:96px;font-size:48px}
 }
 .still *{transition:none!important}
 .still .side p{opacity:1;transform:none}
@@ -504,6 +551,7 @@ ul,ol{list-style:none}
         if (stick.offsetHeight) stick.style.setProperty('--mh', stick.offsetHeight + 'px');
       }));
       fr.forEach((f) => ro.observe(f.querySelector('.face')));
+      const setK = () => fr.forEach((f) => { const fc = f.querySelector('.face'); if (fc.clientWidth) fc.style.setProperty('--k', fc.clientWidth / 1000); });
 
       // 장면 재생: 한 번 끝나면 결과 화면 유지
       // 장면 반복 재생: 보이는 동안 계속 반복
@@ -546,7 +594,9 @@ ul,ol{list-style:none}
       { // 03 디자인 설계: 구조(3초) → 실제 사이트 스크롤 영상. 마우스 올리기·누르기로 멈춤
         const w3 = cvs[2], f3 = fr[2], lab = w3.querySelector('.pz span'), vd = w3.querySelector('video');
         let pinned = false, held = false, seen = false, phase = '', left = 0, t0 = 0, tm = 0;
-        const load = () => { if (vd.dataset.src && !vd.src) { vd.src = new URL(vd.dataset.src, (window.BW_ASSET_BASE || BW_SELF_BASE)).href; vd.preload = 'auto'; } };
+        const B = (p) => new URL(p, (window.BW_ASSET_BASE || BW_SELF_BASE)).href;
+        const load = () => { const m = this.mob.matches && vd.dataset.srcM; const want = B(m ? vd.dataset.srcM : vd.dataset.src); if (vd.dataset.cur !== want) { vd.dataset.cur = want; vd.dataset.posterP = vd.dataset.posterP || vd.getAttribute('poster'); vd.poster = B(m ? vd.dataset.posterM : vd.dataset.posterP); vd.src = want; vd.preload = 'auto'; } };
+        this.mob.addEventListener && this.mob.addEventListener('change', () => { if (vd.dataset.cur) { load(); if (phase === 'live' && seen && !held) vd.play().catch(() => {}); } });
         const live = () => { clearTimeout(tm); phase = 'live'; w3.classList.remove('bld'); w3.classList.add('live'); load(); try { vd.currentTime = 0; } catch (e) {} if (!held && seen) vd.play().catch(() => {}); };
         const wait = (ms) => { left = ms; t0 = Date.now(); clearTimeout(tm); tm = setTimeout(live, ms); };
         const build = () => { phase = 'bld'; vd.pause(); w3.classList.remove('live', 'bld'); void w3.offsetWidth; w3.classList.add('bld'); load(); wait(1600); };
@@ -574,6 +624,7 @@ ul,ol{list-style:none}
       const home = () => {
         if (this.mob.matches) { fr.forEach((f, i) => slots[i].appendChild(f)); track.before(exl); }
         else { fr.forEach((f) => stage.appendChild(f)); stick.appendChild(exl); }
+        setK(); requestAnimationFrame(setK);
         onScroll();
       };
 
@@ -623,7 +674,7 @@ ul,ol{list-style:none}
       });
       track.addEventListener('click', (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
       track.addEventListener('dragstart', (e) => e.preventDefault());
-      window.addEventListener('resize', onScroll);
+      window.addEventListener('resize', () => { setK(); onScroll(); });
       home();
     }
     attributeChangedCallback() { this.applyStill && this.applyStill(); }
