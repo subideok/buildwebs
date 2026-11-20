@@ -31,7 +31,7 @@
       { img: 'gmflexible.jpg', name: '광명후렉시블', type: '제조 · 산업 설비', intent: '', url: 'https://gwangmyeongflexible2.imweb.me/', row: 1, h: 0.94 },
       { img: 'daolhouse.jpg', name: '다올부동산', type: '부동산 중개', intent: '', url: 'https://daolhouse.imweb.me/', row: 1, h: 0.88 },
       { video: 'lucina.mp4', poster: 'lucina.jpg', name: '루시나 아카데미', type: '타로 · 상담 아카데미', intent: '', url: 'https://73792a76709b5.imweb.me/', row: 2, h: 1 },
-      { video: 'melmood.mp4', poster: 'melmood.jpg', logo: 'melmood-logo.png', name: '멜무드', type: '인테리어', intent: '', url: '#', row: 2, h: 1 }
+      { video: 'melmood.mp4', poster: 'melmood.jpg', logo: 'melmood-logo.png', name: '멜무드', type: '인테리어', intent: '', url: 'https://mellmood.com/', row: 2, h: 1 }
     ],
     colors: { bg: '#050507', text: '#F4F5F7', gray: '#9AA0AA', dim: '#3A3D45', accent: '#3560FF', accentText: '#6F8DFF' }
   };
