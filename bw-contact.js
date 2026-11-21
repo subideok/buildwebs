@@ -20,13 +20,14 @@
   const css = (c) => `
 :host{display:block;background:${c.bg};color:${c.text};font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
 *{box-sizing:border-box}
+button,input,textarea,select{font-family:inherit}
 p,h2,ul,fieldset,legend{margin:0;padding:0;list-style:none;border:0}
 input,textarea,button,select{font:inherit;color:inherit}
 .sec{max-width:1440px;margin:0 auto;padding:clamp(64px,7vw,120px) clamp(24px,6.5vw,112px) clamp(80px,9vw,150px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px)}
 .lf{grid-column:1/6;align-self:start;position:sticky;top:120px}
 .kick{display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 22px 0 18px;border-radius:999px;border:1px solid #2a2d35;background:#0c0d11;font-size:clamp(16px,1.25vw,19px);font-weight:600;margin-bottom:clamp(28px,3vw,44px)}
 .kick::before{content:'';width:8px;height:8px;border-radius:50%;background:${c.accent};box-shadow:0 0 0 5px rgba(53,96,255,.18)}
-h2{font-size:clamp(34px,3.8vw,60px);font-weight:700;line-height:1.2;letter-spacing:-.045em}
+h2{font-size:clamp(34px,3.8vw,60px);font-weight:700;line-height:1.18;letter-spacing:-.045em}
 .pts{margin-top:40px;display:flex;flex-direction:column;gap:14px}
 .pts li{position:relative;padding-left:28px;font-size:16px;line-height:1.6;color:#c4c8d0}
 .pts li::before{content:'';position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:50%;background:rgba(53,96,255,.18)}

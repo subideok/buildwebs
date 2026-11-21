@@ -28,12 +28,13 @@
   const css = (c) => `
 :host{display:block;background:${c.bg};color:${c.text};font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
 *{box-sizing:border-box}
+button,input,textarea,select{font-family:inherit}
 p,h2,h3,ol{margin:0;padding:0;list-style:none}
 .sec{max-width:1440px;margin:0 auto;padding:clamp(48px,5vw,88px) clamp(24px,6.5vw,112px) clamp(48px,5vw,88px)}
 .hd{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:end}
 .kick{grid-column:1/-1;justify-self:start;display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 22px 0 18px;border-radius:999px;border:1px solid #2a2d35;background:#0c0d11;font-size:clamp(16px,1.25vw,19px);font-weight:600;margin-bottom:clamp(28px,3vw,44px)}
 .kick::before{content:'';width:8px;height:8px;border-radius:50%;background:${c.accent};box-shadow:0 0 0 5px rgba(53,96,255,.18)}
-h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:1.16;letter-spacing:-.045em}
+h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:1.18;letter-spacing:-.045em}
 .rt{grid-column:8/13;padding-bottom:.5em;font-size:clamp(15px,1.1vw,17px);line-height:1.75;color:${c.gray}}
 h2 .n{display:inline-block;font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;font-size:1.7em;line-height:.8;letter-spacing:0;color:${c.accentText};margin:0 .06em 0 -.02em;vertical-align:-.06em;opacity:0;transform:translateY(.25em) rotate(-10deg) scale(.85);filter:blur(10px);transition:opacity 1.1s ease,transform 1.3s cubic-bezier(.2,.8,.2,1),filter 1.1s ease;text-shadow:0 0 40px rgba(53,96,255,.45)}
 .on h2 .n{opacity:1;transform:none;filter:none}

@@ -57,11 +57,12 @@
   const css = (c) => `
 :host{display:block;background:${c.bg};color:${c.text};font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
 *{box-sizing:border-box}
+button,input,textarea,select{font-family:inherit}
 p,h2,h3,h4,ul,ol{margin:0;padding:0;list-style:none}
 .sec{max-width:1440px;margin:0 auto;padding:clamp(72px,8vw,140px) clamp(24px,6.5vw,112px) clamp(48px,5vw,88px)}
 .kick{display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 22px 0 18px;border-radius:999px;border:1px solid #2a2d35;background:#0c0d11;font-size:clamp(16px,1.25vw,19px);font-weight:600;margin-bottom:clamp(28px,3vw,44px)}
 .kick::before{content:'';width:8px;height:8px;border-radius:50%;background:${c.accent};box-shadow:0 0 0 5px rgba(53,96,255,.18)}
-h2{font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:1.16;letter-spacing:-.045em}
+h2{font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:1.18;letter-spacing:-.045em}
 .box{position:relative;margin-top:clamp(56px,6vw,96px);border-radius:28px 28px 0 0;overflow:hidden;background:linear-gradient(180deg,#0d0e12,#0a0b0e);box-shadow:inset 0 0 0 1px #1f2127;display:grid;grid-template-columns:repeat(3,1fr)}
 .box::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:var(--o,0);transition:opacity .4s;background:radial-gradient(420px circle at var(--x,50%) var(--y,50%),rgba(53,96,255,.13),transparent 70%)}
 .box li{position:relative;display:flex;flex-direction:column;gap:14px;padding:clamp(36px,3.6vw,60px) clamp(28px,3vw,52px) clamp(40px,4vw,64px);border-right:1px solid #1a1c22;border-bottom:1px solid #1a1c22;opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}

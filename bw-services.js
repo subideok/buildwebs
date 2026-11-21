@@ -31,13 +31,14 @@
   const css = (c) => `
 :host{display:block;background:${c.bg};color:${c.text};font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
 *{box-sizing:border-box}
+button,input,textarea,select{font-family:inherit}
 p,h2,h3,ul{margin:0;padding:0;list-style:none}
 .sec{max-width:1440px;margin:0 auto;padding:clamp(48px,5vw,88px) clamp(24px,6.5vw,112px) clamp(80px,9vw,150px)}
 br.mb{display:none}
 .hd{text-align:center;display:flex;flex-direction:column;align-items:center}
 .kick{display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 22px 0 18px;border-radius:999px;border:1px solid #2a2d35;background:#0c0d11;font-size:clamp(16px,1.25vw,19px);font-weight:600;margin-bottom:clamp(28px,3vw,44px)}
 .kick::before{content:'';width:8px;height:8px;border-radius:50%;background:${c.accent};box-shadow:0 0 0 5px rgba(53,96,255,.18)}
-h2{font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:1.16;letter-spacing:-.045em}
+h2{font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:1.18;letter-spacing:-.045em}
 .hd p{margin-top:24px;font-size:clamp(15px,1.1vw,17px);line-height:1.75;color:${c.gray}}
 .cm{margin-top:clamp(20px,2vw,28px);padding:clamp(24px,2.4vw,36px);border-radius:22px;background:#0c0d11;box-shadow:inset 0 0 0 1px #1f2127}
 .cm .ch{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:22px;margin-bottom:24px;border-bottom:1px solid #1f2127}

@@ -35,6 +35,7 @@
   const css = (c) => `
 :host{display:block;background:${c.bg};color:${c.text};font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all;border-top:1px solid #15161b}
 *{box-sizing:border-box}
+button,input,textarea,select{font-family:inherit}
 p,ul{margin:0;padding:0;list-style:none}
 a{color:inherit;text-decoration:none;transition:color .2s}
 a:hover{color:#6F8DFF}

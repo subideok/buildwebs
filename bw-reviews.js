@@ -17,7 +17,8 @@
       { img: 'review-iamsugaring.jpg', text: '요즘은 홈페이지 보고 **아카데미 수강 연락이 많이 늘어서** 왜 진작 안 만들었나 싶어요', name: '아이엠슈가링 사장님', biz: '왁싱 · 뷰티 아카데미', plan: '홈페이지 신규 제작' },
       { img: 'review-yeppeojida.png', text: '홈페이지 제작을 고민하시는 분들께 **자신 있게 추천하고 싶어요!!**', name: '예뻐지다 원장님', biz: '뷰티 · 피부', plan: '홈페이지 신규 제작' },
       { img: 'review-gmflexible.jpg', text: '작업물 결과가 **기대보다 훨씬 이상**입니다!', name: '광명후렉시블 대표님', biz: '제조 · 산업 설비', plan: '홈페이지 리뉴얼' },
-      { img: 'review-daolhouse.jpg', text: '생각했던 것보다 **훨씬 깔끔하게** 나왔고, 다올부동산만의 분위기도 잘 살려주셨어요.', name: '다올부동산 대표님', biz: '부동산 중개', plan: '홈페이지 신규 제작' }
+      { img: 'review-daolhouse.jpg', text: '생각했던 것보다 **훨씬 깔끔하게** 나왔고, 다올부동산만의 분위기도 잘 살려주셨어요.', name: '다올부동산 대표님', biz: '부동산 중개', plan: '홈페이지 신규 제작' },
+      { img: 'review-melmood.jpg', text: '질문지에 답하면서 담고 싶은 내용을 정리할 수 있었고, 전체적으로 **제가 원했던 차분하고 과하지 않은 느낌**으로 나와서 마음에 듭니다.', name: '멜무드 대표님', biz: '인테리어', plan: '홈페이지 신규 제작' }
     ],
     colors: { bg: '#F4F5F7', ink: '#0B0C10', gray: '#5B616C', line: '#E2E4E9', card: '#FFFFFF', accent: '#3560FF', dark: '#0B0C10' }
   };
@@ -27,13 +28,14 @@
   const css = (c) => `
 :host{display:block;background:${c.bg};color:${c.ink};font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
 *{box-sizing:border-box}
+button,input,textarea,select{font-family:inherit}
 p,h2,h3,ul{margin:0;padding:0;list-style:none}
 a{color:inherit}
 .sec{max-width:1440px;margin:0 auto;padding:clamp(64px,7vw,120px) clamp(24px,6.5vw,112px) clamp(80px,9vw,150px)}
 .hd{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:end}
 .kick{grid-column:1/-1;justify-self:start;display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 22px 0 18px;border-radius:999px;border:1px solid ${c.line};background:#fff;font-size:clamp(16px,1.25vw,19px);font-weight:600;margin-bottom:clamp(28px,3vw,44px)}
 .kick::before{content:'';width:8px;height:8px;border-radius:50%;background:${c.accent};box-shadow:0 0 0 5px rgba(53,96,255,.14)}
-h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:1.16;letter-spacing:-.045em}
+h2{grid-column:1/8;font-size:clamp(36px,4.4vw,72px);font-weight:700;line-height:1.18;letter-spacing:-.045em}
 .rt{grid-column:8/13;display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding-bottom:.5em}
 .rt p{font-size:clamp(15px,1.1vw,17px);line-height:1.75;color:${c.gray}}
 .note{font-size:13px;font-weight:600;color:#2848d6;background:#e3e8ff;padding:6px 12px;border-radius:999px}

@@ -28,6 +28,7 @@
   const css = (c) => `
 :host{display:block;background:${c.bg};color:${c.ink};font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
 *{box-sizing:border-box}
+button,input,textarea,select{font-family:inherit}
 p,h2,ul{margin:0;padding:0;list-style:none}
 button{font:inherit;color:inherit}
 button:focus-visible,a:focus-visible{outline:2px solid ${c.accent};outline-offset:3px}
@@ -54,7 +55,7 @@ br.mb{display:none}
 .an{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
 .op .an{grid-template-rows:1fr}
 .an>div{overflow:hidden}
-.an p{padding:0 26px 26px 74px;font-size:16px;line-height:1.8;color:#3a3f48}
+.an p{padding:0 26px 26px 74px;font-size:16px;line-height:1.75;color:#3a3f48}
 .mo{margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 28px;border-radius:18px;background:${c.ink};color:#fff}
 .mo b{font-size:clamp(17px,1.3vw,20px);font-weight:600}
 .mo a{flex:none;display:inline-flex;align-items:center;gap:8px;height:50px;padding:0 22px;border-radius:999px;background:${c.accent};color:#fff;text-decoration:none;font-size:15px;font-weight:600;transition:background .2s}

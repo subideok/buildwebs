@@ -31,6 +31,7 @@
   const css = (c) => `
 :host{display:block;position:relative;background:${c.bg};color:${c.text};font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
 *{box-sizing:border-box}
+button,input,textarea,select{font-family:inherit}
 .sec{position:relative;height:100svh;min-height:600px;max-height:1100px;overflow:hidden;display:flex;align-items:center;justify-content:center;isolation:isolate}
 canvas,video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;z-index:0}
 .veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(72% 62% at 50% 50%,rgba(5,5,7,.72),rgba(5,5,7,0) 100%),linear-gradient(${c.bg},rgba(5,5,7,0) 18%,rgba(5,5,7,0) 82%,${c.bg})}
